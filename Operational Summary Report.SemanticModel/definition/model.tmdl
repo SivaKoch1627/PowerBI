@@ -1,0 +1,50 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.126.1261.0 (24.02)
+
+annotation PBI_QueryOrder = ["Timeperiod","Calendar","DimDate2","DimDate3","Safety Education","Timesheet","JobDetail","RefreshDateTime","Human Performance","Workers Compensation","Vehicle Incidents","Incident Report","Unsatisfactory Events","DCITools","Production","Gateway Analysis","Contract","TimesheetLineItems","Equipment Detail","Equipment Summary","Purchase Order","WorksiteObservation","Quality Control","Tools Misuse","Safety Score","Coaching Effectiveness","Event Resolution","Trip History","Coaching Timeliness","Safety Score Unpivot","Safety Score Unpivot_Sub","Coaching Effectiveness Unpivot","Server hostname","HTTP Path","Catalogue Name"]
+
+ref table Timeperiod
+ref table Measure
+ref table Calendar
+ref table DimDate2
+ref table DimDate3
+ref table 'Safety Education'
+ref table Timesheet
+ref table JobDetail
+ref table RefreshDateTime
+ref table 'Human Performance'
+ref table 'Workers Compensation'
+ref table 'Vehicle Incidents'
+ref table 'Incident Report'
+ref table 'Unsatisfactory Events'
+ref table DCITools
+ref table Production
+ref table 'Gateway Analysis'
+ref table Contract
+ref table TimesheetLineItems
+ref table 'Equipment Detail'
+ref table 'Equipment Summary'
+ref table 'Purchase Order'
+ref table WorksiteObservation
+ref table 'Quality Control'
+ref table 'Tools Misuse'
+ref table 'Safety Score'
+ref table 'Coaching Effectiveness'
+ref table 'Event Resolution'
+ref table 'Trip History'
+ref table 'Coaching Timeliness'
+ref table 'Safety Score Unpivot'
+ref table 'Safety Score Unpivot_Sub'
+ref table 'Coaching Effectiveness Unpivot'
+
+ref cultureInfo en-US
+

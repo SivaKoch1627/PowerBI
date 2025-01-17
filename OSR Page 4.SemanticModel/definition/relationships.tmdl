@@ -1,0 +1,71 @@
+relationship 00ffcbd7-fa80-446b-8a16-c317c232eab9
+	fromColumn: JobDetail.Received_Date
+	toColumn: Calendar.Calendar_Date
+
+relationship 80aee545-2244-4486-96f5-3870769d122e
+	fromColumn: 'Safety Education'.Date
+	toColumn: Calendar.Calendar_Date
+
+relationship f99dc620-f261-4bc4-bfe9-0e8a0b9b34fb
+	fromColumn: 'Incident Report'.IncidentDate
+	toColumn: Calendar.Calendar_Date
+
+relationship ca8f16ed-9026-435b-9493-d27930c2d674
+	fromColumn: Timesheet.contract
+	toColumn: Contract.Contract
+
+relationship adefebf9-e9a0-44e6-8d78-3224ea9caf5b
+	fromColumn: JobDetail.contract
+	toColumn: Contract.Contract
+
+relationship 0ce9234b-e675-425b-9a7c-80b6a12426f9
+	fromColumn: Production.contract
+	toColumn: Contract.Contract
+
+relationship ac64def5-1c31-4e71-9679-1c16b35a862f
+	fromColumn: 'Equipment Detail'.source_created_date
+	toColumn: Calendar.Calendar_Date
+
+relationship f82b02df-35dd-45aa-b266-1757f4d53e57
+	fromColumn: WorksiteObservation.Contract
+	toColumn: Contract.Contract
+
+relationship 244bc5ae-8b26-4270-ac21-1a23c9e88002
+	fromColumn: 'Quality Control'.contract
+	toColumn: Contract.Contract
+
+relationship ad914c34-85e6-4365-a749-82f2eadcb230
+	fromColumn: 'Gateway Analysis'.Calendar_Date
+	toColumn: Calendar.Calendar_Date
+
+relationship f0316031-839a-4edb-b327-8c32199040ec
+	fromColumn: 'Purchase Order'.Source_Created_Date
+	toColumn: Calendar.Calendar_Date
+
+relationship 4b64c5a2-22e2-4963-bc27-7069e8df358b
+	fromColumn: WorksiteObservation.Date
+	toColumn: Calendar.Calendar_Date
+
+relationship b6ea9f2c-0f19-4e46-839e-4b68fb716879
+	fromColumn: 'Quality Control'.Date
+	toColumn: Calendar.Calendar_Date
+
+relationship 65d86843-44b7-44a7-95e3-2a4cec7bd2bd
+	fromColumn: 'Human Performance'.DateTime_Reported
+	toColumn: Calendar.Calendar_Date
+
+relationship 437dcbc2-a303-457d-8b83-3651149b874f
+	fromColumn: 'Tools Misuse'.Date
+	toColumn: Calendar.Calendar_Date
+
+relationship 53d978e1-2881-47cd-95a6-5ac34f2dafdf
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Equipment Detail'.vehicle_number
+	toColumn: 'Equipment Summary'.Vehicle_Name
+
+relationship fd944c7b-fb37-40da-856f-02a8d8e09ba6
+	fromColumn: 'Safety Score Unpivot'.Calendar_Date
+	toColumn: Calendar.Calendar_Date
+

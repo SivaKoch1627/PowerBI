@@ -1,0 +1,50 @@
+table 'Unsatisfactory Events'
+	lineageTag: 06534d9c-3976-4e81-9526-8d8a7647d162
+
+	column DW_WSOR_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0164a0d6-61b9-4706-82ff-7986b6efd5af
+		summarizeBy: count
+		sourceColumn: DW_WSOR_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unsat_Event_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2737e697-e22c-4b60-ad41-c4a0f96dc831
+		summarizeBy: count
+		sourceColumn: Unsat_Event_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Normalized_Line_Item
+		dataType: string
+		lineageTag: 38980de0-6cfe-4ca3-8ba6-b3e8272267e0
+		summarizeBy: none
+		sourceColumn: Normalized_Line_Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 402c5a71-76f4-4664-a6a3-49cc141dc3be
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Unsatisfactory Events' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select DW_WSOR_ID,Unsat_Event_ID,Normalized_Line_Item ,Date from Gold.Dim_UnSatEvent", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

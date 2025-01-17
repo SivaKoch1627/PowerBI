@@ -1,0 +1,124 @@
+{
+  "name": "Custom",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "visualTooltip": [
+          {
+            "background": {
+              "solid": {
+                "color": "#245E99"
+              }
+            }
+          }
+        ],
+        "visualHeaderTooltip": [
+          {
+            "background": {
+              "solid": {
+                "color": "#245E99"
+              }
+            }
+          }
+        ],
+        "visualHeader": [
+          {
+            "background": {
+              "solid": {
+                "color": "#245E99"
+              }
+            }
+          }
+        ],
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F2F2F2"
+              }
+            },
+            "titleSize": 12,
+            "checkboxAndApplyColor": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            }
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F2F2F2"
+              }
+            },
+            "transparency": 0
+          },
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F2F2F2"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            },
+            "transparency": 100
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#011F3E"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "background": "#011F3E",
+  "backgroundNeutral": "#011F3E",
+  "foreground": "#011F3E",
+  "foregroundNeutralSecondary": "#011F3E",
+  "backgroundLight": "#011F3E",
+  "foregroundNeutralTertiary": "#011F3E"
+}

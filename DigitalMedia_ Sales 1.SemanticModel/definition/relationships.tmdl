@@ -1,0 +1,84 @@
+relationship 9df4a893-696e-4b3a-94ec-6a5719edbe07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'dm employee'.birthdate
+	toColumn: LocalDateTable_ca5a2a1e-7902-4e9d-a4c1-9b778cbb15fb.Date
+
+relationship 9bc646d9-6eaa-46fc-a313-5526d4fac59a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'dm employee'.hiredate
+	toColumn: LocalDateTable_7b4f414d-1d6f-4b8d-8505-6a9eaf649a69.Date
+
+relationship 334ff430-7055-4ab9-a540-f36368e9e2ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'dm invoice'.invoicedate
+	toColumn: LocalDateTable_58e0a127-a7f3-4313-98e9-eed7a10e1c78.Date
+
+relationship f2f2b595-4455-44dc-99c0-d9c6856e561a
+	fromColumn: 'dm album'.artistid
+	toColumn: 'dm artist'.artistid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3e9551d4-6132-42e0-bc8b-e2b7a0d22225
+	fromColumn: 'dm invoice'.customerid
+	toColumn: 'dm customer'.customerid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 9d552f21-eca6-46a5-a4e5-ac3a321c8baa
+	fromColumn: 'dm invoiceline'.invoiceid
+	toColumn: 'dm invoice'.invoiceid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1ce31d22-c4c6-4056-a395-59103d810146
+	fromColumn: 'dm invoiceline'.trackid
+	toColumn: 'dm track'.trackid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 11ac32f5-183c-4641-95f7-b52c69e9258b
+	fromColumn: 'dm playlisttrack'.playlistid
+	toColumn: 'dm playlist'.playlistid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 88c7f023-d53b-43f5-ad35-aa7f4e38e870
+	fromColumn: 'dm playlisttrack'.trackid
+	toColumn: 'dm track'.trackid
+
+	annotation PBI_IsFromSource = FS
+
+relationship 28c122d4-8881-4e32-b448-e8f4e8b9f5a9
+	fromColumn: 'dm track'.albumid
+	toColumn: 'dm album'.albumid
+
+	annotation PBI_IsFromSource = FS
+
+relationship c02935bc-e7c7-2211-42e1-c13a7e5858f0
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'dm invoiceline'.trackid
+	toColumn: 'dm playlisttrack'.trackid
+
+relationship 3542e12c-fd3d-9413-ca79-240369a01d77
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'dm invoice'.billingcountry
+	toColumn: Rank.billingcountry
+
+relationship e3ee3c4f-670b-3a77-6b90-ce3a57c8e2fe
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'dm invoice'.billingcountry
+	toColumn: 'Track Description'.billingcountry
+
+relationship 15a0969f-215e-4369-5e76-383650eb9b71
+	fromColumn: 'dm track'.genreid
+	toColumn: 'dm genre'.genreid
+
+relationship c1d27a0f-dab8-4274-9e10-c17dd7a81713
+	fromColumn: 'dm track'.mediatypeid
+	toColumn: 'dm mediatype'.mediatypeid
+
+	annotation PBI_IsFromSource = FS
+

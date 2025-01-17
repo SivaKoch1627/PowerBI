@@ -1,0 +1,24 @@
+table Profit
+	lineageTag: c1dc8daa-75aa-44b1-ae3e-57033b3f1e32
+
+	column 'Profit Percentage '
+		dataType: double
+		lineageTag: 1b674eab-f495-4141-bfb9-96e5f055038a
+		summarizeBy: sum
+		sourceColumn: "Profit Percentage "
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Profit = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Nc25CQAwDMXQXVyHkPuYxXj/NVJ8pXmgSu5W8rRIblVSTVJdUkNSSC1JbUkdSV3578UiHg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Profit Percentage " = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Profit Percentage ", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

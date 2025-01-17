@@ -1,0 +1,42 @@
+table 'dm album'
+	lineageTag: ea20f874-db30-4100-b908-a322288bd20d
+
+	column albumid
+		dataType: int64
+		formatString: 0
+		lineageTag: 31ae5d2b-6b7b-4415-9877-e7308ca0c894
+		summarizeBy: none
+		sourceColumn: albumid
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 0064e34f-0018-4aa6-bf29-2fbff5ba53c9
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column artistid
+		dataType: int64
+		formatString: 0
+		lineageTag: ec18e21a-446c-410d-966f-4daf573397c9
+		summarizeBy: none
+		sourceColumn: artistid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm album' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_album = Source{[Schema="dm",Item="album"]}[Data]
+				in
+				    dm_album
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

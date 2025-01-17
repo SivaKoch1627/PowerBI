@@ -1,0 +1,47 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dm artist","dm album","dm customer","dm employee","dm genre","dm invoice","dm invoiceline","dm playlist","dm playlisttrack","dm track","Rank","Track Description","dm mediatype","Profit"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.137.751.0 (24.10)
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop"]
+
+annotation __TEdtr = 1
+
+ref table 'dm artist'
+ref table DateTableTemplate_22698dfc-9d50-41d0-90b8-60d0d3f8444b
+ref table 'dm album'
+ref table 'dm customer'
+ref table 'dm employee'
+ref table LocalDateTable_ca5a2a1e-7902-4e9d-a4c1-9b778cbb15fb
+ref table LocalDateTable_7b4f414d-1d6f-4b8d-8505-6a9eaf649a69
+ref table 'dm genre'
+ref table 'dm invoice'
+ref table LocalDateTable_58e0a127-a7f3-4313-98e9-eed7a10e1c78
+ref table 'dm invoiceline'
+ref table 'dm playlist'
+ref table 'dm playlisttrack'
+ref table 'dm track'
+ref table Rank
+ref table 'Track Description'
+ref table 'dm mediatype'
+ref table Parameter
+ref table Profit
+ref table Numeric_profit
+ref table 'Parameter 2'
+
+ref role Employee_3
+ref role Employee_4
+ref role Employee_5
+ref role ols
+
+ref cultureInfo en-US
+

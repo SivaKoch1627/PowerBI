@@ -1,0 +1,81 @@
+table 'Coaching Effectiveness'
+	lineageTag: b8774066-c24c-4843-a147-217523108768
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2d7261c3-205f-46f3-801d-c557d6a11889
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Driver_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b2c7e96-9d93-4680-be1a-1922d8db1a4e
+		summarizeBy: sum
+		sourceColumn: Driver_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver_Name
+		dataType: string
+		lineageTag: 9641596b-6be6-416a-8904-d0b23f5f0852
+		summarizeBy: none
+		sourceColumn: Driver_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Repeat_Behaviors_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: b189eca9-e067-488c-ad2e-1f34d5a4acce
+		summarizeBy: sum
+		sourceColumn: Repeat_Behaviors_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Behaviors_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 125bf76f-ce70-4f1c-ae50-8e5a3843976c
+		summarizeBy: sum
+		sourceColumn: Total_Behaviors_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnRepeat_Behaviors_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 77c0d7fe-c1b6-469f-90f9-53e0b39f3722
+		summarizeBy: sum
+		sourceColumn: UnRepeat_Behaviors_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Distance
+		dataType: double
+		lineageTag: fd0e9663-0e3f-4000-89bd-85ea5269f0ce
+		summarizeBy: sum
+		sourceColumn: Total_Distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Coaching Effectiveness' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select #(lf)Calendar_Date,Driver_id,Driver_Name,Repeat_Behaviors_Count,Total_Behaviors_Count, #(lf)sum(Total_Behaviors_Count-Repeat_Behaviors_Count) as UnRepeat_Behaviors_Count ,Total_Distance#(lf)from gold.fact_coachingeffectiveness#(lf)group by Calendar_Date,Driver_id,Driver_Name,Repeat_Behaviors_Count,Total_Behaviors_Count,Total_Distance", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Calendar_Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

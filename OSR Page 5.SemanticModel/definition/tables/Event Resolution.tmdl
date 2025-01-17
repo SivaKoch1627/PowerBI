@@ -1,0 +1,153 @@
+table 'Event Resolution'
+	lineageTag: d1c64ce8-9134-4f08-9d47-ae3ce6858394
+
+	column DW_Event_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c4fd9b1b-4358-4bbb-ab86-9ed2d75a65f5
+		summarizeBy: count
+		sourceColumn: DW_Event_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1f3152b0-ab2e-4f48-a6c3-a01dc8d1a10d
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Coach_Name
+		dataType: string
+		lineageTag: f882c952-816e-4319-9403-e2c4273872cd
+		summarizeBy: none
+		sourceColumn: Coach_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Events
+		dataType: int64
+		formatString: 0
+		lineageTag: b08c11e8-1cba-4bfd-8035-a5b2f47cb20d
+		summarizeBy: sum
+		sourceColumn: Total_Events
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unresolved
+		dataType: int64
+		formatString: 0
+		lineageTag: b1ae5ecc-6dc3-4cab-8412-76462cf014b8
+		summarizeBy: sum
+		sourceColumn: Unresolved
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resolved
+		dataType: int64
+		formatString: 0
+		lineageTag: a51366f6-1dfd-43c9-89b2-a69abc1b4f1a
+		summarizeBy: sum
+		sourceColumn: Resolved
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dismissed
+		dataType: int64
+		formatString: 0
+		lineageTag: 1100abb8-8a1f-42f0-b54c-c74faa96d0ba
+		summarizeBy: sum
+		sourceColumn: Dismissed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Needs_Review
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d4d0d7f-da9c-4e26-a299-6849f534b413
+		summarizeBy: sum
+		sourceColumn: Needs_Review
+
+		annotation SummarizationSetBy = Automatic
+
+	column Needs_Coaching
+		dataType: int64
+		formatString: 0
+		lineageTag: 12a0dc4d-ee04-418a-93e8-6b7c37dee04b
+		summarizeBy: sum
+		sourceColumn: Needs_Coaching
+
+		annotation SummarizationSetBy = Automatic
+
+	column Needs_Recognition
+		dataType: int64
+		formatString: 0
+		lineageTag: bd3d8518-4e1a-4613-94a8-d09d0f87b046
+		summarizeBy: sum
+		sourceColumn: Needs_Recognition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reviewed
+		dataType: int64
+		formatString: 0
+		lineageTag: 94d0fc1a-5336-413e-88e2-ca43060cad5e
+		summarizeBy: sum
+		sourceColumn: Reviewed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coached
+		dataType: int64
+		formatString: 0
+		lineageTag: 821197e4-ca07-45e0-b85a-a2800b05b529
+		summarizeBy: sum
+		sourceColumn: Coached
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recognized
+		dataType: int64
+		formatString: 0
+		lineageTag: 624a7749-0673-4725-8244-ce7ea9520ac4
+		summarizeBy: sum
+		sourceColumn: Recognized
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shared_With_Driver
+		dataType: int64
+		formatString: 0
+		lineageTag: a66c7332-1c7a-42a0-95c3-0a6a5cf3d492
+		summarizeBy: sum
+		sourceColumn: Shared_With_Driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shared_Events_Viewed_by_Driver
+		dataType: int64
+		formatString: 0
+		lineageTag: 65465f18-29dc-45d5-b851-8360115413dc
+		summarizeBy: sum
+		sourceColumn: Shared_Events_Viewed_by_Driver
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Event Resolution' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select * from gold.fact_eventresolution", null, [EnableFolding=true]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"DW_Created_By", "DW_Created_Date", "DW_Modified_By", "DW_Modified_Date"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns",{{"Calendar_Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

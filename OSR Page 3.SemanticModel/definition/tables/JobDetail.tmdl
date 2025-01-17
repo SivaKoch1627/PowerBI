@@ -1,0 +1,187 @@
+table JobDetail
+	lineageTag: 27fc5d72-4cb9-4804-9996-357fb47767e9
+
+	column Job_ID
+		dataType: string
+		lineageTag: 77ad3218-b9bd-4a62-b07e-d47fad5257b6
+		summarizeBy: none
+		sourceColumn: Job_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Name
+		dataType: string
+		lineageTag: 61374a45-d11e-46e0-a69a-a3adf152d376
+		summarizeBy: none
+		sourceColumn: Job_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Municipality
+		dataType: string
+		lineageTag: e0b70e5f-3120-4ebf-8583-285f407ee9c4
+		summarizeBy: none
+		sourceColumn: Municipality
+
+		annotation SummarizationSetBy = Automatic
+
+	column Received_Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 9dfd6a64-ce1d-40a7-8239-72afb67317a7
+		summarizeBy: none
+		sourceColumn: Received_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Status
+		dataType: string
+		lineageTag: 4a6169df-e079-4574-8e04-785230508901
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supervisor
+		dataType: string
+		lineageTag: d02c8196-0f07-4d34-9bb1-d95ef0976661
+		summarizeBy: none
+		sourceColumn: Supervisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_of_Work
+		dataType: string
+		lineageTag: 2aa187ff-a35a-4b9e-931b-cdb718e41de6
+		summarizeBy: none
+		sourceColumn: Type_of_Work
+
+		annotation SummarizationSetBy = Automatic
+
+	column Work_order_Number
+		dataType: string
+		lineageTag: 1c145972-304e-4c56-8b35-3b0391f4e67d
+		summarizeBy: none
+		sourceColumn: Work_order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: d764f954-e75a-4834-8146-d62055aa700e
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Due_Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 05d6d69e-00fa-4df7-89ac-5d209a167a4f
+		summarizeBy: none
+		sourceColumn: Due_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Address
+		dataType: string
+		lineageTag: b16e96c1-c5b7-4656-8333-a8f10e9c7a8b
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Name
+		dataType: string
+		lineageTag: 83a6b7fd-aa71-46c5-a022-671e4762acd5
+		summarizeBy: none
+		sourceColumn: Project_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Closed
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 00ee1767-f622-469e-abc9-37d1ed52a6a5
+		summarizeBy: none
+		sourceColumn: Date_Closed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_End_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a61db7ab-0c45-4286-9c6b-8d0fc70580b9
+		summarizeBy: none
+		sourceColumn: Job_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Start_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d3a6f83e-0bb2-4c27-8bde-01bab649efc9
+		summarizeBy: none
+		sourceColumn: Job_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Type
+		dataType: string
+		lineageTag: b2ad9e85-4f7f-4693-aa88-12690b669959
+		summarizeBy: none
+		sourceColumn: Job_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractName
+		dataType: string
+		lineageTag: 11f94128-cbbd-492c-afba-f7782fe16823
+		summarizeBy: none
+		sourceColumn: ContractName
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract
+		dataType: string
+		lineageTag: b68ed29a-d9b6-46dd-8b29-4c79a91db15f
+		summarizeBy: none
+		sourceColumn: contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column AgingBucket
+		dataType: string
+		lineageTag: a50c3cff-0a53-4c60-b208-33152ec975b6
+		summarizeBy: none
+		sourceColumn: AgingBucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pastdueflag
+		dataType: string
+		lineageTag: 72b03b99-5b75-48d8-aeef-51479c79bf8d
+		summarizeBy: none
+		sourceColumn: Pastdueflag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JobDetail = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "SELECT a.Record_ID AS Job_ID, a.Job_Name, a.Municipality, a.Received_Date, a.Status, a.Supervisor,#(lf)a.Type_of_Work, a.Work_order_Number, a.Country, a.Due_Date, a.Address, a.Project_Name, a.Date_Closed, a.Job_End_Date, a.Job_Start_Date, a.Job_Type,#(lf)b.record_id AS ContractName, b.contract,#(lf)CASE#(lf)    WHEN DATEDIFF(day, a.received_date, CURRENT_DATE) >= 0 AND DATEDIFF(day, a.received_date, CURRENT_DATE) <= 30 THEN '1-30 Days' #(lf)    WHEN DATEDIFF(day, a.received_date, CURRENT_DATE) >= 31 AND DATEDIFF(day, a.received_date, CURRENT_DATE) <= 60 THEN '31-60 Days' #(lf)    WHEN DATEDIFF(day, a.received_date, CURRENT_DATE) >= 61 AND DATEDIFF(day, a.received_date, CURRENT_DATE) <= 90 THEN '61-90 Days' #(lf)    WHEN DATEDIFF(day, a.received_date, CURRENT_DATE) >= 90 THEN '>90 Days'#(lf)    ELSE 'Receiveddatemissing'#(lf)END AS AgingBucket,#(lf)CASE#(lf)    WHEN a.due_date >current_date-1 then ""1"" else ""0"" end as Pastdueflag#(lf)FROM gold.dim_job a#(lf)LEFT JOIN gold.dim_contract b ON a.dw_contract_id = b.dw_contract_id#(lf)WHERE a.is_active = true", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Received_Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

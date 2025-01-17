@@ -1,0 +1,42 @@
+table Contract
+	lineageTag: 4abe2c11-846d-4804-abc8-87bec9ba5b6b
+
+	column ContractName
+		dataType: string
+		lineageTag: 42e12af2-15c1-4256-add4-38d5dec886f1
+		summarizeBy: none
+		sourceColumn: ContractName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contract
+		dataType: string
+		lineageTag: 69223d61-d914-4b67-a055-18b755c91158
+		summarizeBy: none
+		sourceColumn: Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column Initial
+		dataType: string
+		lineageTag: 87f2a869-7b7d-4146-9bfa-4535af58899b
+		summarizeBy: none
+		sourceColumn: Initial
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Contract = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select Record_ID AS ContractName,Contract,Initial from gold.dim_contract", null, [EnableFolding=true]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each [ContractName] <> "AGIMP"),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each [ContractName] <> "Capacity Expansion"),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each [ContractName] <> "GAMS")
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

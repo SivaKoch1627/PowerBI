@@ -1,0 +1,68 @@
+table 'Safety Education'
+	lineageTag: cbbab952-b0e9-4171-abc3-9948f3339774
+
+	column Safety_Education_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c58ce71-25e9-4415-8bf2-8c352c2549f0
+		summarizeBy: sum
+		sourceColumn: Safety_Education_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: ead7a719-582c-49e9-b071-cca0665b4084
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 1565e53c-1d44-4285-acdd-fac84a2579fd
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Number_of_Attendees
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a92ecbe-e3fd-4b1b-91e5-b602b90d9b34
+		summarizeBy: sum
+		sourceColumn: Number_of_Attendees
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subject
+		dataType: string
+		lineageTag: 4d2539ec-b0f0-4ee5-ab24-90a5991fc205
+		summarizeBy: none
+		sourceColumn: Subject
+
+		annotation SummarizationSetBy = Automatic
+
+	column Instructor
+		dataType: string
+		lineageTag: 2c9d4a5a-f170-4a95-af78-5b3182e87ee8
+		summarizeBy: none
+		sourceColumn: Instructor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Safety Education' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select Safety_Education_id,Type,Date,Number_of_Attendees,Subject, Instructors as Instructor from gold.dim_SafetyEducation", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

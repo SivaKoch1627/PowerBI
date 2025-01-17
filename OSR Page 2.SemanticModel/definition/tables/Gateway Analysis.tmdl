@@ -1,0 +1,157 @@
+table 'Gateway Analysis'
+	lineageTag: 09f8b332-f2d6-43f2-9b0d-3eacc7ac5049
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 32eda218-538c-4e51-aa4f-94b44d1f5b86
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Last_Connected
+		dataType: string
+		lineageTag: bf44acad-8774-48f9-a7b9-8f0d5a8cdf8c
+		summarizeBy: none
+		sourceColumn: Last_Connected
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_Gateway_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f26b48a-e9ff-40c7-b201-2c89318c266e
+		summarizeBy: count
+		sourceColumn: DW_Gateway_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 5bd8e7ff-027d-40a3-b821-6803b31839ed
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 0259cf51-5fde-491a-ad61-afba9a930c55
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recommended_Action
+		dataType: string
+		lineageTag: 637276e4-19b7-4461-a206-67e0e3a1860e
+		summarizeBy: none
+		sourceColumn: Recommended_Action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Days_In_Status
+		dataType: string
+		lineageTag: a5d05007-f566-46a1-8a48-82e7eccc2f22
+		summarizeBy: none
+		sourceColumn: Days_In_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gateway_Type
+		dataType: string
+		lineageTag: 136d2454-5daa-4ea3-9e66-5205a36f7cb7
+		summarizeBy: none
+		sourceColumn: Gateway_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gateway_Serial
+		dataType: string
+		lineageTag: 723eb860-aee8-4072-8011-dc4ca3b0097d
+		summarizeBy: none
+		sourceColumn: Gateway_Serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tags
+		dataType: string
+		lineageTag: 92496b95-16ce-4957-9ab1-c144a937531d
+		summarizeBy: none
+		sourceColumn: Tags
+
+		annotation SummarizationSetBy = Automatic
+
+	column First_Connected
+		dataType: string
+		lineageTag: 02acdd2d-bc89-4061-a6c6-a3cecefb90ba
+		summarizeBy: none
+		sourceColumn: First_Connected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Known_Location
+		dataType: string
+		lineageTag: 8f82b56e-2ff4-4b8e-9107-76ffb04c1d7b
+		summarizeBy: none
+		sourceColumn: Last_Known_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Known_Location_Timestamp
+		dataType: string
+		lineageTag: 288a9c11-f7e7-4f7f-bd5c-397d72c43831
+		summarizeBy: none
+		sourceColumn: Last_Known_Location_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cell_Operator
+		dataType: string
+		lineageTag: 30a5ac54-8bd5-4cf1-ac05-e394d4d61992
+		summarizeBy: none
+		sourceColumn: Cell_Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_Battery_Volts
+		dataType: string
+		lineageTag: 05e9338e-5073-4460-aac2-247cd65b8b39
+		summarizeBy: none
+		sourceColumn: Vehicle_Battery_Volts
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gateway_Battery_Volts
+		dataType: string
+		lineageTag: 4e8ce81d-6a6f-43f7-be4f-0cc9d2ff5c39
+		summarizeBy: none
+		sourceColumn: Gateway_Battery_Volts
+
+		annotation SummarizationSetBy = Automatic
+
+	column HealthStatus
+		dataType: string
+		lineageTag: d12e945c-96f6-4dc7-bd32-4c752196ae8a
+		summarizeBy: none
+		sourceColumn: HealthStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Gateway Analysis' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "with Gatewayanalysis as (#(lf)SELECT *,#(lf)CASE#(lf)        WHEN status IN ('Connected', 'Vehicle Off') THEN 'Healthy'#(lf)        WHEN status IN ('Requires Investigation', 'Temporarily Offline') THEN 'Needs Attention'#(lf)        WHEN status = 'Replacement Required' THEN 'Needs Replacement'#(lf)        WHEN status IN ('Weak Cellular Signal', 'Low Vehicle Battery', 'Weak Gps Signal', 'Low Gateway Battery', 'Low Charging State') THEN 'Monitor'#(lf)        WHEN status = 'Not Installed' THEN 'Not Installed'#(lf)    END AS HealthStatus#(lf)FROM gold.fact_gateway_analysis#(lf))#(lf)select * from Gatewayanalysis", null, [EnableFolding=true]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"DW_Created_By", "DW_Created_Date", "DW_Modified_By", "DW_Modified_Date"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns",{{"Calendar_Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,102 @@
+table 'dm invoice'
+	lineageTag: 9f8e1c56-9c7b-43d9-b058-43bd9ec7a5f8
+
+	measure Target_sales = 50
+		formatString: 0
+		lineageTag: 8e62c904-2d89-4be9-aaaa-900cfdaf1f38
+
+	column invoiceid
+		dataType: int64
+		formatString: 0
+		lineageTag: 40bc55fe-b325-4f3f-a424-7e4d443005c8
+		summarizeBy: none
+		sourceColumn: invoiceid
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerid
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a56ce8c-aa9f-47f7-8839-3b0c90c00521
+		summarizeBy: none
+		sourceColumn: customerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoicedate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 330b24f5-5d9b-4ece-b78c-1caddeedfb50
+		summarizeBy: none
+		sourceColumn: invoicedate
+
+		variation Variation
+			isDefault
+			relationship: 334ff430-7055-4ab9-a540-f36368e9e2ec
+			defaultHierarchy: LocalDateTable_58e0a127-a7f3-4313-98e9-eed7a10e1c78.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingaddress
+		dataType: string
+		lineageTag: e8ed95ae-5112-4ee8-b521-420c1440800c
+		summarizeBy: none
+		sourceColumn: billingaddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingcity
+		dataType: string
+		lineageTag: 14a026b5-c6f9-48a9-896e-103d6242fab5
+		summarizeBy: none
+		sourceColumn: billingcity
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingstate
+		dataType: string
+		lineageTag: 6baf4c45-8900-48ba-aae4-45334e0e21b9
+		summarizeBy: none
+		sourceColumn: billingstate
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingcountry
+		dataType: string
+		lineageTag: 0e7ba2ef-f500-4040-8313-ea8ee235c8b8
+		summarizeBy: none
+		sourceColumn: billingcountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingpostalcode
+		dataType: string
+		lineageTag: 2038a2cd-8ce0-415d-bc83-a64b72546a0c
+		summarizeBy: none
+		sourceColumn: billingpostalcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: double
+		lineageTag: ceef0da6-048b-4148-9ab0-435fd3760624
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'dm invoice' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_invoice = Source{[Schema="dm",Item="invoice"]}[Data]
+				in
+				    dm_invoice
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

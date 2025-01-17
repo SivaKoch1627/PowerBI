@@ -1,0 +1,211 @@
+table Timesheet
+	lineageTag: 8356b902-9fb2-4133-a8ef-353dd8267514
+
+	column Timesheet_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 35ce0c4a-abba-4182-a757-b47c3d814b6a
+		summarizeBy: sum
+		sourceColumn: Timesheet_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: m/d/yyyy
+		lineageTag: cc926c18-7c6e-4358-a0eb-e92a313053ee
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column crew_size
+		dataType: int64
+		formatString: 0
+		lineageTag: f4e7d727-c38e-4da1-bf92-151b6467d7be
+		summarizeBy: sum
+		sourceColumn: crew_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column am_weather
+		dataType: string
+		lineageTag: 70c6d048-7636-49a4-9837-9f82b770d213
+		summarizeBy: none
+		sourceColumn: am_weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column pm_weather
+		dataType: string
+		lineageTag: 0ba5d36f-e52d-4f75-9735-fb18c2b6a397
+		summarizeBy: none
+		sourceColumn: pm_weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_night_work
+		dataType: string
+		lineageTag: f80e3aa2-2406-4f41-82e6-57b3511d7894
+		summarizeBy: none
+		sourceColumn: is_night_work
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift
+		dataType: string
+		lineageTag: aece50fa-ebdc-4c6f-b702-f154410495cd
+		summarizeBy: none
+		sourceColumn: shift
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timesheet_approval_workflow
+		dataType: string
+		lineageTag: 25da5212-6fdf-4123-b567-101f54a59e89
+		summarizeBy: none
+		sourceColumn: Timesheet_approval_workflow
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreman_signed_by
+		dataType: string
+		lineageTag: 55bdffc0-f916-4648-b0e1-fb8853930fb6
+		summarizeBy: none
+		sourceColumn: foreman_signed_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column datetime_submitted_by_foreman
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 594ccd18-ece4-4e3d-95d9-be3dad880fcf
+		summarizeBy: none
+		sourceColumn: datetime_submitted_by_foreman
+
+		annotation SummarizationSetBy = Automatic
+
+	column supervisor_signed_by
+		dataType: string
+		lineageTag: bcd83b0c-e3e7-4da8-894c-7ad01bf07c4b
+		summarizeBy: none
+		sourceColumn: supervisor_signed_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column datetime_signed_by_supervisor
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 976c0014-f79d-4754-a995-de1ba6d8b222
+		summarizeBy: none
+		sourceColumn: datetime_signed_by_supervisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column pm_signed_by
+		dataType: string
+		lineageTag: 477644a9-6d22-4ea4-a700-489e26bcc071
+		summarizeBy: none
+		sourceColumn: pm_signed_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Manager_Approved_Timesheet_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 874ebcb1-1993-44d9-a161-09b166220bc1
+		summarizeBy: none
+		sourceColumn: Project_Manager_Approved_Timesheet_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supervisorflag
+		dataType: string
+		lineageTag: c0514e96-4a97-4e60-b89f-e80e8e4c933f
+		summarizeBy: none
+		sourceColumn: Supervisorflag
+
+		annotation SummarizationSetBy = Automatic
+
+	column PMFlag
+		dataType: string
+		lineageTag: 3256bfd2-96d6-4913-b96d-d0dabb944fbb
+		summarizeBy: none
+		sourceColumn: PMFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Daydiff
+		dataType: double
+		formatString: 0
+		lineageTag: 327acc1b-5c94-4319-8b43-b25c253fc76c
+		summarizeBy: sum
+		sourceColumn: Daydiff
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOB_ID
+		dataType: string
+		lineageTag: 12c48ec2-8057-4093-8a48-1b7a389e8060
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract
+		dataType: string
+		lineageTag: 1693c9dd-b2e8-4d76-9cfb-78e0a9083049
+		summarizeBy: none
+		sourceColumn: contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column contractfullname
+		dataType: string
+		lineageTag: b870415f-8896-40fc-815a-f95ed23de2e8
+		summarizeBy: none
+		sourceColumn: contractfullname
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: 581c2ff0-3b73-4978-84e8-fef3c2676265
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimesheetIDNew
+		dataType: string
+		lineageTag: 49bf46ec-3309-4038-b130-255f5d7476fd
+		summarizeBy: none
+		sourceColumn: TimesheetIDNew
+
+		annotation SummarizationSetBy = Automatic
+
+	column outstanding_flag
+		dataType: string
+		lineageTag: bf10d6f8-ec83-4ec2-b75c-3c39c9419ea4
+		summarizeBy: none
+		sourceColumn: outstanding_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Timesheet = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "SELECT a.Timesheet_id,concat(a.Timesheet_ID,a.SourceApp_ID) as TimesheetIDNew, a.date, a.crew_size, a.am_weather, a.pm_weather, a.is_night_work,#(lf)  a.shift, a.Timesheet_approval_workflow, a.foreman_signed_by, a.datetime_submitted_by_foreman,#(lf)  a.supervisor_signed_by, a.datetime_signed_by_supervisor, a.pm_signed_by, a.Project_Manager_Approved_Timesheet_Date,#(lf)  CASE WHEN Timesheet_Approval_workflow =""Not Touched""  or Timesheet_Approval_workflow =""Submitted by Foreman"" THEN '1' ELSE '0' END AS Supervisorflag,#(lf)  CASE WHEN Timesheet_Approval_workflow =""Approved by Super""  THEN '1' ELSE '0' END AS PMFlag,#(lf)  case when (Supervisor_signed_by is null or pm_signed_by is null) then '1' else '0' end as outstanding_flag,#(lf) ROUND((DATEDIFF(hour, datetime_submitted_by_foreman, Project_Manager_Approved_Timesheet_Date))/24,1) AS Daydiff,#(lf)  b.record_id AS JOB_ID, c.contract, c.record_id AS contractfullname,#(lf)  CONCAT(First_Name, ' ', Last_Name) AS ForemanName #(lf)FROM gold.dim_timesheet a#(lf)LEFT JOIN gold.dim_job b ON a.dw_job_id = b.dw_job_id AND b.is_active = true#(lf)LEFT JOIN gold.dim_contract c ON a.dw_contract_id = c.dw_contract_id#(lf)LEFT JOIN gold.dim_employee d ON a.dw_employee_id = d.dw_employee_id AND d.is_active = true#(lf)WHERE a.Is_Active = true", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

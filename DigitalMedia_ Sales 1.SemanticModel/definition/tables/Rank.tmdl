@@ -1,0 +1,83 @@
+table Rank
+	lineageTag: 37d978ef-1427-4403-9b80-7c275efc705a
+
+	measure 'Country description' = ```
+			
+			VAR validselection = 
+			isfiltered('dm invoice'[billingcountry])
+			var result = 
+			if(
+				validselection,
+				"See Description for " & ALLSELECTED('dm invoice'[billingcountry]),
+				" view country description"
+			)
+			return
+				result
+			
+			
+			```
+		lineageTag: 85941e6e-0e32-4a82-8140-a1723e0e1259
+
+	measure 'Track description' = ```
+			
+			VAR validselection = 
+			isfiltered('dm invoice'[billingcountry])
+			var result = 
+			if(
+				validselection,
+				"See Description for " & Selectedvalue('dm invoice'[billingcountry]),
+				"view Track info"
+			)
+			return
+				result
+			
+			
+			```
+		lineageTag: ae7229d1-e1eb-42dd-b47e-132187bb4900
+
+	column genreid
+		dataType: int64
+		formatString: 0
+		lineageTag: 249f20b5-a7b1-4cc1-93fb-c26fe73a2dba
+		summarizeBy: none
+		sourceColumn: genreid
+
+		annotation SummarizationSetBy = Automatic
+
+	column billingcountry
+		dataType: string
+		lineageTag: 4511c01a-9a39-4cb3-9b5e-8fd561030fd7
+		summarizeBy: none
+		sourceColumn: billingcountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Track _Name'
+		dataType: string
+		lineageTag: 8a00827b-68e5-4640-8d4b-816c0a9293d0
+		summarizeBy: none
+		sourceColumn: Track _Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column album_title
+		dataType: string
+		lineageTag: 739fb73d-2650-4d54-abd2-b50cb2942058
+		summarizeBy: none
+		sourceColumn: album_title
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rank = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(PostgreSQL.Database("localhost:5432", "DigitalMedia"), "select highest.genreId,highest.billingcountry,highest.name,highest.title from#(lf)#(tab)(select e.genreid,a.billingcountry,c.name,d.title, sum(b.unitprice), row_number () over(partition by a.billingcountry order by sum(b.unitprice) desc) as top from dm.invoice a#(lf)inner join dm.Invoiceline b on a.InvoiceId=b.InvoiceId#(lf)inner join dm.Track c on b.trackId=c.Trackid#(lf)inner join dm.album d on c.albumid=d.albumid#(lf)inner join dm.genre e on c.genreid=e.genreid#(lf)group by e.genreid, c.name, a.billingcountry,d.title)as highest#(lf)where highest.top =1", null, [EnableFolding=true]),
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"title", "album_title"}, {"name", "Track _Name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

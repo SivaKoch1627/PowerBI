@@ -1,0 +1,34 @@
+table 'dm playlisttrack'
+	lineageTag: 080acb88-f3f4-4589-970c-722a9b909e6d
+
+	column playlistid
+		dataType: int64
+		formatString: 0
+		lineageTag: c1ab78e7-2491-4199-b29e-bf5656818050
+		summarizeBy: none
+		sourceColumn: playlistid
+
+		annotation SummarizationSetBy = Automatic
+
+	column trackid
+		dataType: int64
+		formatString: 0
+		lineageTag: 041d3f25-e427-477a-b6fb-320f10ffbfd7
+		summarizeBy: none
+		sourceColumn: trackid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm playlisttrack' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_playlisttrack = Source{[Schema="dm",Item="playlisttrack"]}[Data]
+				in
+				    dm_playlisttrack
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

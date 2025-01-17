@@ -1,0 +1,235 @@
+table Timeperiod
+	lineageTag: ee31e190-1f57-45c8-87d1-fe09a40bded0
+
+	measure 'Refresh Date' = DATE(YEAR([Refreshdatetime]),MONTH([Refreshdatetime]),DAY([Refreshdatetime]))
+		formatString: m/d/yyyy
+		lineageTag: fc0c5b2e-b272-472b-9cfb-51306d1d9a93
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure Selectionflag =
+			
+			Var a = ISFILTERED('DimDate2'[Calendar_Date])
+			Return a
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ec4f4aca-1daf-4841-b6f6-64632dc94c0c
+
+	measure 'Base Date' = ```
+			
+			 
+			var A =  CALCULATE(MAX('DimDate2'[Calendar_Date]),FILTER('DimDate2',
+			(((YEAR('DimDate2'[Calendar_Date])) = YEAR([Refresh Date])) &&
+			((MONTH('DimDate2'[Calendar_Date])) = MONTH([Refresh Date]))) &&
+			((DAY('DimDate2'[Calendar_Date]) <= DAY([Refresh Date])))))
+			 
+			Var B = CALCULATE(max('DimDate2'[Calendar_Date]))
+			 
+			Var Flag = [Selectionflag]
+			 
+			Var Logic = IF(Flag = TRUE(),B,A)
+			 
+			Return Logic
+			```
+		formatString: m/d/yyyy
+		lineageTag: b1a33800-f90c-4ff9-b9b6-68d87a6173a3
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Ace Week Date' = ```
+			
+			 
+			var A =  CALCULATE(MAX('DimDate2'[Calendar_Date]),FILTER('DimDate2',
+			(((YEAR('DimDate2'[Calendar_Date])) = YEAR([Refresh Date])) &&
+			((MONTH('DimDate2'[Calendar_Date])) = MONTH([Refresh Date]))) &&
+			((DAY('DimDate2'[Calendar_Date]) <= DAY([Refresh Date])))))
+			
+			 
+			Return A
+			```
+		formatString: General Date
+		lineageTag: 2a664e0c-0fe3-47a1-a0c9-65bcf5347afd
+
+	measure 'WTD End Date' =
+			
+			Var A = [Base Date]
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 93ee9ba1-5437-47d0-9da6-4324b5c65102
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'MTD End Date' =
+			
+			Var A = [Base Date]
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 2d75c676-3c66-4d90-99bc-efc2fcc23d2f
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YTD End Date' =
+			
+			Var A = [Base Date]
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 8abb0138-1cc3-411f-ad7f-a883dbb94807
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'MTD Start Date' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((MONTH('DimDate3'[Calendar_Date])) = MONTH([Base Date]))) &&
+			((DAY('DimDate3'[Calendar_Date]) <= DAY([Base Date])))))
+			
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 3eee2f07-e3a2-4058-8467-35b5533c65c6
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'WTD Start Date' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((MONTH('DimDate3'[Calendar_Date])) = MONTH([Base Date]))) &&
+			((WEEKNUM('DimDate3'[Calendar_Date],2)) = WEEKNUM([Base Date],2))))
+			Var b =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((WEEKNUM('DimDate3'[Calendar_Date],2)) = WEEKNUM([Base Date],2)))))
+			
+			RETURN b
+		formatString: m/d/yyyy
+		lineageTag: 6f8efa90-1947-4820-a165-5529b3ef806b
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YTD Start Date' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])))))
+			
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: f9741829-4fcb-4875-a299-22ae01dcfb62
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Past 2 Weeks Start Date' =
+			
+			Var A = [Base Date]-14
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 55b6d18c-5297-43c0-b7ae-52d965ceb6c1
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Past 2 Weeks End Date' =
+			
+			Var A = [Base Date]
+			RETURN A
+		formatString: m/d/yyyy
+		lineageTag: 7e14f9e6-08aa-411f-b8c8-b12b62a65d99
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'MTD Start Date Prev' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((MONTH('DimDate3'[Calendar_Date])) = MONTH([Base Date]))) &&
+			((DAY('DimDate3'[Calendar_Date]) <= DAY([Base Date])))))
+			var b = date(year(a),month(a)-1,day(a))
+			RETURN b
+		formatString: m/d/yyyy
+		lineageTag: d820d3f1-2b34-41b4-8737-c59e6f53d6d2
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'MTD End Date Prev' =
+			
+			Var A = [Base Date]
+			Var B = date(year(a),month(a)-1,day(a))
+			RETURN b
+		formatString: m/d/yyyy
+		lineageTag: 94df7cd4-88a5-417b-b56c-0c403536b8b7
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'WTD Start Date Prev' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((WEEKNUM('DimDate3'[Calendar_Date],2)) = WEEKNUM([Base Date],2)))))
+			Var B = A-7
+			RETURN B
+		formatString: m/d/yyyy
+		lineageTag: c5586fdb-e962-4b15-91ca-11b799834a05
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'WTD End Date Prev' =
+			
+			Var A = [Base Date]
+			Var B = A-7
+			RETURN B
+		formatString: m/d/yyyy
+		lineageTag: 0f2c9492-67f6-4cf2-91c7-57bf69236ec9
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YTD Start Date Prev' =
+			
+			Var A =  CALCULATE(MIN('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])))))
+			Var B = Date(year(a)-1,month(a),day(a))
+			RETURN B
+		formatString: m/d/yyyy
+		lineageTag: 4358a65f-b72e-4ae3-973a-053f8a4f9ffa
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YTD End Date Prev' =
+			
+			Var A = [Base Date]
+			Var B = Date(year(a)-1,month(a),day(a))
+			RETURN B
+		formatString: m/d/yyyy
+		lineageTag: a260e36d-0ddb-4e67-a997-5d94b9405e01
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column TimeperiodID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2dd8c0f9-059e-487c-ba61-692254a6b21d
+		summarizeBy: count
+		sourceColumn: TimeperiodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timeperiod
+		dataType: string
+		lineageTag: 99882819-4d57-4102-b153-2a354bedc497
+		summarizeBy: none
+		sourceColumn: Timeperiod
+		sortByColumn: TimeperiodID
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Timeperiod = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUQoPcVGK1YlWMgKyfaFsYyA7EsSOBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [TimeperiodID = _t, Timeperiod = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"TimeperiodID", Int64.Type}, {"Timeperiod", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

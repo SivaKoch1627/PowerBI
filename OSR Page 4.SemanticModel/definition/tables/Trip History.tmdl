@@ -1,0 +1,112 @@
+table 'Trip History'
+	lineageTag: c04aa635-a3ae-4a79-aa91-523c3ee35c19
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cd52555f-ddaa-4e47-b8eb-006b9dda933b
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Vehicle
+		dataType: string
+		lineageTag: db909ebd-8de7-4161-aaac-38d740e21407
+		summarizeBy: none
+		sourceColumn: Vehicle
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver
+		dataType: string
+		lineageTag: ec15ba5c-97fd-4537-a306-0f97a3f1a0f3
+		summarizeBy: none
+		sourceColumn: Driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trip_Start
+		dataType: string
+		lineageTag: 88c62d7f-31e7-4ed7-bfb0-7f234bb3f2c1
+		summarizeBy: none
+		sourceColumn: Trip_Start
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_At
+		dataType: string
+		lineageTag: 4c7fd8fd-b32d-48f6-8a91-3dae13b9b941
+		summarizeBy: none
+		sourceColumn: Start_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trip_End
+		dataType: string
+		lineageTag: b04049c1-4365-4862-96bc-a27111ffe57d
+		summarizeBy: none
+		sourceColumn: Trip_End
+
+		annotation SummarizationSetBy = Automatic
+
+	column End_At
+		dataType: string
+		lineageTag: 3a04aee7-f53b-42c7-8a9a-3fc9b9f9f1ca
+		summarizeBy: none
+		sourceColumn: End_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trip_Duration
+		dataType: int64
+		formatString: 0
+		lineageTag: 02b8179e-e6da-4021-82fd-6febedb8705d
+		summarizeBy: sum
+		sourceColumn: Trip_Duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mile
+		dataType: double
+		lineageTag: 828a4561-7475-4ac4-bd6d-365eb227df94
+		summarizeBy: sum
+		sourceColumn: Mile
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Vehciledriver
+		dataType: string
+		lineageTag: 64b1fc0e-13f7-48ed-a70d-30a8afde85b7
+		summarizeBy: none
+		sourceColumn: Vehciledriver
+
+		annotation SummarizationSetBy = Automatic
+
+	column DW_SafetyScore_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d3af4ee-663e-4bdd-b59d-2c60dbc0dd58
+		summarizeBy: count
+		sourceColumn: DW_SafetyScore_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Trip History' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select *,concat(vehicle,driver) as Vehciledriver from gold.fact_triphistory", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Calendar_Date", type date}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"DW_Created_By", "DW_Created_Date", "DW_Modified_By", "DW_Modified_Date"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

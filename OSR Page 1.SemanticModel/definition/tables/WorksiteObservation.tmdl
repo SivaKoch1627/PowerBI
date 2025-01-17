@@ -1,0 +1,150 @@
+table WorksiteObservation
+	lineageTag: 1f44c167-aadc-4d09-8713-be9162a99b20
+
+	column Work_Site_Observation_ID
+		dataType: string
+		lineageTag: f22d8c19-9a77-4dea-a38e-3dd70c689fb5
+		summarizeBy: none
+		sourceColumn: Work_Site_Observation_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCustomer
+		dataType: string
+		lineageTag: 6b73c41b-b103-4b34-a148-c1fc1d2d9a44
+		summarizeBy: none
+		sourceColumn: MasterCustomer
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: 675f69fc-d56b-4262-ae96-f841464cd4be
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObserverName
+		dataType: string
+		lineageTag: bd0e378d-fdeb-4dd5-bc81-186d686a7eeb
+		summarizeBy: none
+		sourceColumn: ObserverName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupervisorName
+		dataType: string
+		lineageTag: 0c281602-48fd-497b-aecd-e2f21454adb3
+		summarizeBy: none
+		sourceColumn: SupervisorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contract
+		dataType: string
+		lineageTag: 4352d317-e575-4343-bd6b-f08f042bec2a
+		summarizeBy: none
+		sourceColumn: Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type_Of_Work
+		dataType: string
+		lineageTag: 7b87bd95-8338-48d7-a515-b79b0f3fa7ab
+		summarizeBy: none
+		sourceColumn: Type_Of_Work
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jobs
+		dataType: string
+		lineageTag: 042413d2-3efa-4f66-845c-4891284e98b8
+		summarizeBy: none
+		sourceColumn: Jobs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Foreman_or_subcontractor
+		dataType: string
+		lineageTag: 6f891b55-9b99-4fb4-9564-c43ef3ae7322
+		summarizeBy: none
+		sourceColumn: Is_Foreman_or_subcontractor
+
+		annotation SummarizationSetBy = Automatic
+
+	column score
+		dataType: int64
+		formatString: 0%;-0%;0%
+		lineageTag: cfca3856-0154-48d7-99d8-746dc5f80e2b
+		summarizeBy: sum
+		sourceColumn: score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observer_Title
+		dataType: string
+		lineageTag: 08904dbd-44c1-4363-9849-26577b93da12
+		summarizeBy: none
+		sourceColumn: Observer_Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: b0c2a962-7dd5-4aa8-8e97-221d4e1ba062
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Scope_Of_Work
+		dataType: string
+		lineageTag: 5b1c75a4-707b-4e5f-acdb-f30f7ccb7a63
+		summarizeBy: none
+		sourceColumn: Scope_Of_Work
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sats
+		dataType: int64
+		formatString: 0
+		lineageTag: c9d56161-031e-4365-ae61-3fe34a364e19
+		summarizeBy: sum
+		sourceColumn: Sats
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unsats
+		dataType: int64
+		formatString: 0
+		lineageTag: da9cb5b1-b875-4002-b8de-0685e3000f80
+		summarizeBy: sum
+		sourceColumn: Unsats
+
+		annotation SummarizationSetBy = Automatic
+
+	column Job_Number
+		dataType: string
+		lineageTag: 98ee867b-932b-438c-a639-db070139c3bc
+		summarizeBy: none
+		sourceColumn: Job_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WorksiteObservation = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select a.Work_Site_Observation_ID, b.Record_ID as MasterCustomer,CONCAT(c.First_Name, ' ',c.Last_Name) as ForemanName,#(lf)CONCAT(d.First_Name, ' ',d.Last_Name) as ObserverName,CONCAT(e.First_Name, ' ',e.Last_Name) as SupervisorName,a.Contract,a.Type_Of_Work,a.Job_Number ,f.record_id as Jobs,#(lf)a.Is_Foreman_or_subcontractor,a.score,a.Observer_Title,a.Date,a.Scope_Of_Work,a.Sats,A.Unsats#(lf) from Gold.Dim_WSOR a #(lf)left join gold.Dim_customer b #(lf)on a.dw_customer_id =b.dw_mastercustomer_id#(lf)left join gold.Dim_Employee c #(lf)on a.Foreman_employee_id =c.dw_employee_id AND C.IS_ACTIVE=TRUE#(lf)left join gold.Dim_Employee d#(lf)on a.Observer_employee_id =d.dw_employee_id  AND D.IS_ACTIVE=TRUE#(lf)left join gold.Dim_Employee e#(lf)on a.Supervisor_id =e.dw_employee_id  AND E.IS_ACTIVE=TRUE#(lf)left join gold.dim_job f#(lf)on a.dw_job_id =f.dw_job_id and f.is_active=true", null, [EnableFolding=true]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Jobs] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

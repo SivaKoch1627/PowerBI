@@ -1,0 +1,9 @@
+role ols
+	modelPermission: read
+
+	tablePermission 'dm invoiceline'
+
+		columnPermission unitprice = none
+
+	annotation PBI_Id = f764d0a0328f4be0b32002df0e37c46d
+

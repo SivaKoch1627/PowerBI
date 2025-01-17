@@ -1,0 +1,26 @@
+table Numeric_profit
+	lineageTag: 4d7c02fe-fab5-4c19-aa45-de1fcc9d6c93
+
+	measure 'Numeric_profit Value' = SELECTEDVALUE('Numeric_profit'[Numeric_profit])
+		formatString: 0
+		lineageTag: 1ebe32b3-bd38-4dd2-b67a-acd49f7b2fd0
+
+	column Numeric_profit
+		formatString: 0
+		lineageTag: 7403afeb-6040-41f0-8d30-9d50f9f83289
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Numeric_profit = calculated
+		mode: import
+		source = GENERATESERIES(0, 20, 1)
+
+	annotation PBI_Id = 64b95b4caee14309825bcfc9821f86b3
+

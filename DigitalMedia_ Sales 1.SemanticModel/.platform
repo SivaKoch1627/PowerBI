@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DigitalMedia_ Sales 1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "140fd7ac-6bce-436b-b6e7-12e2e18c4a9a"
+  }
+}

@@ -1,0 +1,65 @@
+table Parameter
+	lineageTag: 70b68c73-18ed-4958-bc30-3a9ed1964ffd
+
+	measure 'Null Count' =
+			CALCULATE(
+			    COUNTROWS('dm invoice'),
+			    ISBLANK('dm invoice'[billingstate])
+			)
+		formatString: 0
+		lineageTag: 2685c55b-a9de-49a3-8ecc-92a3155a8501
+
+	measure 'Not Null Count' =
+			CALCULATE(
+			    COUNTROWS('dm invoice'),NOT
+			    (ISBLANK('dm invoice'[billingstate]))
+			)
+		formatString: 0
+		lineageTag: d05eb6b3-1bd7-47fb-a53b-8bd9106cbc7a
+
+	column Parameter
+		lineageTag: 59269444-3538-43a8-9af9-16123de42052
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: ba06ca86-756c-46c6-869b-3eab01a83554
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 5e2c255a-5041-4484-82cb-3aa0330ba8c3
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("Mediatype Name", NAMEOF('dm mediatype'[name]), 0),
+				    ("Genre Name", NAMEOF('dm genre'[name]), 1),
+				    ("Track name", NAMEOF('dm track'[Track name]), 2)
+				}
+
+	annotation PBI_Id = fa4839e0e1de4be38879c5bb7dec9e6a
+

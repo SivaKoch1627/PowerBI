@@ -1,0 +1,90 @@
+table 'dm track'
+	lineageTag: be7bbc93-050d-47a2-a38c-e9a7b9044337
+
+	column trackid
+		dataType: int64
+		formatString: 0
+		lineageTag: b3189f9e-8d74-49f7-b020-914cb60c2caa
+		summarizeBy: none
+		sourceColumn: trackid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Track name'
+		dataType: string
+		lineageTag: bc8deecb-2b4a-49cd-b528-cbeb8b3f149f
+		summarizeBy: none
+		sourceColumn: Track name
+
+		annotation SummarizationSetBy = Automatic
+
+	column albumid
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c5297f0-660e-4f0b-b171-c76d93eb799f
+		summarizeBy: none
+		sourceColumn: albumid
+
+		annotation SummarizationSetBy = Automatic
+
+	column mediatypeid
+		dataType: int64
+		formatString: 0
+		lineageTag: bccae42e-f91a-400d-bc89-1bf5f9617ece
+		summarizeBy: none
+		sourceColumn: mediatypeid
+
+		annotation SummarizationSetBy = Automatic
+
+	column genreid
+		dataType: int64
+		formatString: 0
+		lineageTag: d5dbf8b9-69e9-4cf0-9163-86593cae95f8
+		summarizeBy: none
+		sourceColumn: genreid
+
+		annotation SummarizationSetBy = Automatic
+
+	column composer
+		dataType: string
+		lineageTag: cd897f8c-579a-4583-8d5c-992cd349be41
+		summarizeBy: none
+		sourceColumn: composer
+
+		annotation SummarizationSetBy = Automatic
+
+	column milliseconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 96f2cca8-6f28-47c7-8f09-a0cc11f583ce
+		summarizeBy: sum
+		sourceColumn: milliseconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitprice
+		dataType: double
+		lineageTag: 02f02662-d074-46f1-b048-19a65b07c83b
+		summarizeBy: sum
+		sourceColumn: unitprice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'dm track' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_track = Source{[Schema="dm",Item="track"]}[Data],
+				    #"Filtered Rows2" = Table.SelectRows(dm_track, each [milliseconds] > 500000),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows2",{"bytes"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"name", "Track name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

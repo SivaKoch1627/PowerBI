@@ -1,0 +1,123 @@
+table 'Incident Report'
+	lineageTag: b8a2dac7-c7ef-4f8f-93bc-14a5b73f0be7
+
+	column Job_ID
+		dataType: string
+		lineageTag: 9775cba3-fef0-44ab-9dda-8bdcaf88f3d5
+		summarizeBy: none
+		sourceColumn: Job_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MasterCustomers
+		dataType: string
+		lineageTag: 015be5f8-67e4-46d3-8289-d79704ff3551
+		summarizeBy: none
+		sourceColumn: MasterCustomers
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: 1f3f6895-828a-4fa9-9d88-cb9f53ea54d1
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupervisorName
+		dataType: string
+		lineageTag: 3a8a528e-edb7-4a46-9d04-f5d7842e8b8c
+		summarizeBy: none
+		sourceColumn: SupervisorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IR_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a33c41fb-fa94-42dd-a9a1-2976695758e0
+		summarizeBy: count
+		sourceColumn: IR_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Craft_Or_Trade_Involved
+		dataType: string
+		lineageTag: 0792b7a0-a126-4130-aa28-f77e7144e2e4
+		summarizeBy: none
+		sourceColumn: Craft_Or_Trade_Involved
+
+		annotation SummarizationSetBy = Automatic
+
+	column Liable_Party
+		dataType: string
+		lineageTag: 06462f12-bfa8-45be-b0d5-4b3083dc5814
+		summarizeBy: none
+		sourceColumn: Liable_Party
+
+		annotation SummarizationSetBy = Automatic
+
+	column Incident_Type
+		dataType: string
+		lineageTag: 38ecaefb-819c-47be-aca1-54a0dae65735
+		summarizeBy: none
+		sourceColumn: Incident_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Incident_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 591a6016-cbc0-4b2d-b7eb-81a92960e8e3
+		summarizeBy: none
+		sourceColumn: Incident_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncidentDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: d6cd5ed4-1ca2-46ad-ba71-3c829006e642
+		summarizeBy: none
+		sourceColumn: IncidentDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column is_human_performance_event
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d59b9beb-e1b9-4933-9a16-dd82e73620ea
+		summarizeBy: none
+		sourceColumn: is_human_performance_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_cost_of_Damage
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5e621a38-6d07-4a40-891b-787021786ab2
+		summarizeBy: sum
+		sourceColumn: estimated_cost_of_Damage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Incident Report' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select b.Record_ID  as Job_ID,c.record_id as MasterCustomers, CONCAT(d.First_Name, ' ', d.Last_Name) as ForemanName,#(lf) CONCAT(e.First_Name, ' ', e.Last_Name) as SupervisorName,a.IR_ID,A.Craft_Or_Trade_Involved,a.Liable_Party,a.Incident_Type,#(lf) a.Incident_DateTime,Cast(a.Incident_DateTime as Date) IncidentDate,a.is_human_performance_event,a.estimated_cost_of_Damage#(lf)from Gold.Dim_IncidentReport a#(lf)left join gold.Dim_job b #(lf)on a.dw_job_id = b.dw_job_id and b.is_active=true#(lf)left join Gold.Dim_Customer c#(lf)on a.dw_customer_id =c.dw_mastercustomer_id #(lf)left join Gold.Dim_employee d#(lf)on  a.foreman_id = d.dw_employee_id and d.is_active=true#(lf)left join Gold.Dim_employee e#(lf)on  a.supervisor_id = e.dw_employee_id and e.is_active=true", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"estimated_cost_of_Damage", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

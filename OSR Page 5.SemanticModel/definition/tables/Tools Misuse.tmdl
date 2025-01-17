@@ -1,0 +1,137 @@
+table 'Tools Misuse'
+	lineageTag: 40fadef4-72da-465a-b4b1-a0f034a776ac
+
+	column tool_Name
+		dataType: string
+		lineageTag: 53f0e35d-b072-4c69-9802-e39731864ddd
+		summarizeBy: none
+		sourceColumn: tool_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: 34f3add0-14c2-4ecc-9b14-8ecfbed3a45b
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column toolMisuse_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f0663f4-8a62-4cb2-b098-d60865a507d1
+		summarizeBy: count
+		sourceColumn: toolMisuse_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Repaired_In_Shop
+		dataType: string
+		lineageTag: 2dddde82-bae3-4cc6-a685-b6a1df27dc05
+		summarizeBy: none
+		sourceColumn: Repaired_In_Shop
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost_To_Replace_UnRepairable
+		dataType: double
+		lineageTag: ba962205-0171-4148-b54e-17c32571bf6c
+		summarizeBy: sum
+		sourceColumn: Cost_To_Replace_UnRepairable
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost_if_sent_out_for_repairs
+		dataType: double
+		lineageTag: ae93ae24-6661-4707-b434-2c65c1181a56
+		summarizeBy: sum
+		sourceColumn: cost_if_sent_out_for_repairs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost_Parts_Ordered
+		dataType: double
+		lineageTag: c5bbb099-f197-420b-9484-55e014bd10eb
+		summarizeBy: sum
+		sourceColumn: cost_Parts_Ordered
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dates_Parts_Were_Ordered
+		dataType: dateTime
+		formatString: yyyy-mm-dd h:nn AM/PM
+		lineageTag: e0d155e9-c42a-48f3-883b-fc09501a5268
+		summarizeBy: none
+		sourceColumn: Dates_Parts_Were_Ordered
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 4f223097-3555-47d9-bc61-e0dde373b066
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Serial_Number
+		dataType: string
+		lineageTag: fa64f568-e098-4935-a651-035a0c8af6d5
+		summarizeBy: none
+		sourceColumn: Serial_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Avoidable_Unavoidable_Cost
+		dataType: string
+		lineageTag: 660cf8f2-014b-4cbf-83b6-bc6716989e6f
+		summarizeBy: none
+		sourceColumn: Avoidable_Unavoidable_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column Repaired_In_ShopCost
+		dataType: double
+		lineageTag: 0f6f1c38-5d79-4940-a264-e7b65256c84e
+		summarizeBy: sum
+		sourceColumn: Repaired_In_ShopCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalCost
+		dataType: double
+		lineageTag: 83b93d5a-fa36-4688-bdbc-dfd73d0f502b
+		summarizeBy: sum
+		sourceColumn: TotalCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Tools Misuse' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select b.tool_Name,CONCAT(coalesce(c.First_Name,''), ' ',coalesce(c.Last_Name,'')) as ForemanName,a.toolMisuse_ID,a.Repaired_In_Shop,a.Cost_To_Replace_UnRepairable,#(lf)a.cost_if_sent_out_for_repairs,a.cost_Parts_Ordered,a.Dates_Parts_Were_Ordered,a.Date,a.Serial_Number,A.Avoidable_Unavoidable_Cost,a.Repaired_In_ShopCost,SUM#(lf)(#(lf)COALESCE#(lf)(a.Cost_Parts_Ordered,#(lf)0#(lf)) +#(lf)COALESCE#(lf)(a.Cost_If_Sent_Out_For_Repairs,#(lf)0#(lf)) +#(lf)COALESCE#(lf)(a.Cost_To_Replace_UnRepairable,#(lf)0#(lf)))#(lf)AS#(lf)TotalCost#(lf) from gold.fact_toolmisuse a #(lf)left join gold.dim_tool b#(lf)on a.dw_tool_id = b.dw_tool_id and b.is_active=true#(lf)left join gold.Dim_Employee c #(lf)on a.dw_employee_id =c.dw_employee_id and c.is_active=true#(lf)group by b.tool_Name,c.First_Name,c.Last_Name,a.toolMisuse_ID,a.Repaired_In_Shop,a.Cost_To_Replace_UnRepairable,#(lf)a.cost_if_sent_out_for_repairs,a.cost_Parts_Ordered,a.Dates_Parts_Were_Ordered,a.Date,a.Serial_Number,A.Avoidable_Unavoidable_Cost,a.Repaired_In_ShopCost", null, [EnableFolding=true]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([ForemanName] <> "Warehouse "))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

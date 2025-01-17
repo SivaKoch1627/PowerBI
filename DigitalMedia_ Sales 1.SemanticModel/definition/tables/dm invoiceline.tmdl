@@ -1,0 +1,59 @@
+table 'dm invoiceline'
+	lineageTag: 76153e11-0e26-4cb6-8d4b-648ecf4bc407
+
+	column invoicelineid
+		dataType: int64
+		formatString: 0
+		lineageTag: b9ab8f9b-9fc9-466c-83b4-e7bac95ec045
+		summarizeBy: sum
+		sourceColumn: invoicelineid
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoiceid
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c295626-3bf0-471d-bb84-c713220fa5da
+		summarizeBy: none
+		sourceColumn: invoiceid
+
+		annotation SummarizationSetBy = Automatic
+
+	column trackid
+		dataType: int64
+		formatString: 0
+		lineageTag: c7a5dd76-7a14-456e-9552-63101488ab4a
+		summarizeBy: none
+		sourceColumn: trackid
+
+		annotation SummarizationSetBy = Automatic
+
+	column unitprice
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6837cacd-55ed-4252-b8cb-3e18d8a087e6
+		summarizeBy: sum
+		sourceColumn: unitprice
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 01faa806-8877-4b24-a8e4-4378e44937f7
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm invoiceline' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_invoiceline = Source{[Schema="dm",Item="invoiceline"]}[Data]
+				in
+				    dm_invoiceline
+
+	annotation PBI_ResultType = Table
+

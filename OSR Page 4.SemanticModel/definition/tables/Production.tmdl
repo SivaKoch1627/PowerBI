@@ -1,0 +1,102 @@
+table Production
+	lineageTag: 2e05f423-76c7-4c8d-9b76-1c164e9e522d
+
+	column production_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 84da0dfe-fa37-4e14-b5d1-f1571706a3ba
+		summarizeBy: sum
+		sourceColumn: production_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: c26b82e8-a52d-469f-b611-74fc98a881ef
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reporting_Category
+		dataType: string
+		lineageTag: 55a3caa2-c255-4f36-a2cd-a1370feb325e
+		summarizeBy: none
+		sourceColumn: Reporting_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: 7736dc19-32bd-4916-84ee-06fccad15602
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_entered_actual_production_in_spectrum
+		dataType: string
+		lineageTag: 396b4654-e759-4d40-b072-7a5ef13c33bd
+		summarizeBy: none
+		sourceColumn: is_entered_actual_production_in_spectrum
+
+		annotation SummarizationSetBy = Automatic
+
+	column datetime_entered_in_spectrum
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 567a8582-5403-4e7d-b11c-040080d91fec
+		summarizeBy: none
+		sourceColumn: datetime_entered_in_spectrum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 65e4f0db-6509-466c-b6e6-a51e42c79106
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Job_ID
+		dataType: string
+		lineageTag: e7ee7eb7-f154-4fe7-8ef3-1d4d8c2d91d4
+		summarizeBy: none
+		sourceColumn: Job_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractName
+		dataType: string
+		lineageTag: f8548ee6-0f1d-428b-9f59-3fa76c4da3e5
+		summarizeBy: none
+		sourceColumn: ContractName
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract
+		dataType: string
+		lineageTag: 23ddf1ac-c416-449f-88af-71e0c71e3cf8
+		summarizeBy: none
+		sourceColumn: contract
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Production = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select a.production_id,A.Item,a.Reporting_Category,A.Quantity,A.is_entered_actual_production_in_spectrum,a.datetime_entered_in_spectrum,coalesce(a.Date,cast(a.source_created_date as date)) as Date,b.record_id as Job_ID,c.record_id AS ContractName, c.contract#(lf)from gold.dim_production a #(lf)left join gold.dim_job b #(lf)on a.dw_job_id =b.dw_job_id and b.is_active=true#(lf)left join gold.dim_contract c #(lf)on a.dw_contract_id =c.dw_contract_id", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Quantity", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,33 @@
+table 'dm artist'
+	lineageTag: a005af0c-66da-4903-9643-454807de2d91
+
+	column artistid
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e03fe86-9044-4d39-8ab9-4204bd69addd
+		summarizeBy: none
+		sourceColumn: artistid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 78d699ac-7bb6-419a-bb4e-1bb6cae1cf6f
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm artist' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_artist = Source{[Schema="dm",Item="artist"]}[Data]
+				in
+				    dm_artist
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

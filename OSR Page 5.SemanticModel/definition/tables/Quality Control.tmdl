@@ -1,0 +1,122 @@
+table 'Quality Control'
+	lineageTag: 90859959-b735-497e-98e9-3d87623e0931
+
+	column Job
+		dataType: string
+		lineageTag: 520627c0-4ca2-417f-8ebe-5dcac22f9777
+		summarizeBy: none
+		sourceColumn: Job
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: b1c2245c-680d-4a9c-8b33-3915a42da02b
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractName
+		dataType: string
+		lineageTag: 0f255e31-4ed4-4d21-8b86-815ae02bf9e7
+		summarizeBy: none
+		sourceColumn: ContractName
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract
+		dataType: string
+		lineageTag: 1e251f4e-3f15-42fb-8f41-b1c3b505ca63
+		summarizeBy: none
+		sourceColumn: contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gamsqcinspection_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b5670426-0184-4cd4-bf7c-33d62b123b24
+		summarizeBy: count
+		sourceColumn: Gamsqcinspection_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 8277a82a-e5e4-4f87-82bf-518fcb72b508
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column job_status
+		dataType: string
+		lineageTag: 927c6d35-9e96-4227-9692-8f59fc625276
+		summarizeBy: none
+		sourceColumn: job_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Report_Score
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ebdbd4fe-90f7-49c5-aab4-35a862c6d9fc
+		summarizeBy: sum
+		sourceColumn: Report_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Signed_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f6e2127-f599-4eb6-b5c9-78c753518a4a
+		summarizeBy: none
+		sourceColumn: Signed_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_submit_Report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4de2beb7-6764-4a3c-a7e4-54b5177f8d03
+		summarizeBy: none
+		sourceColumn: Is_submit_Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_Approve_Report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7eecc3c4-1b7f-4ab6-ad7d-c83330d951b3
+		summarizeBy: none
+		sourceColumn: is_Approve_Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column Approved_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 71510121-772e-4a9e-8626-bacaf82db51d
+		summarizeBy: none
+		sourceColumn: Approved_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Quality Control' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select B.record_id as Job ,CONCAT(c.First_Name, ' ',c.Last_Name) as ForemanName, d.record_id as ContractName,d.contract,a.Gamsqcinspection_ID,Cast(a.DateTime as Date) Date,a.job_status,#(lf)a.Report_Score,a.Signed_DateTime,a.Is_submit_Report,a.is_Approve_Report,a.Approved_DateTime#(lf)from Gold.Dim_QC_Inspection a #(lf)left join Gold.Dim_Job b #(lf)on a.DW_Job_id =b.dw_job_id and b.Is_Active = true#(lf)left join gold.Dim_Employee c #(lf)on a.DW_employee_id =c.dw_employee_id and c.is_active =true#(lf)left join gold.Dim_contract d #(lf)on a.DW_contract_id =d.dw_contract_id and c.is_active =true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

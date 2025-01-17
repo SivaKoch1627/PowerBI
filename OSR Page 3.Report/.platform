@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "OSR Page 3"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6d997a4a-39a1-4264-961a-d1eae4cb50d7"
+  }
+}

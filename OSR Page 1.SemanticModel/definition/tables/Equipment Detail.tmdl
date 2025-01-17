@@ -1,0 +1,99 @@
+table 'Equipment Detail'
+	lineageTag: 811498aa-0126-4b5c-a38c-c93e7849d16d
+
+	column Trackvia_Vehicle_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 09186676-ca14-4ec5-965e-7ac25b6d5714
+		summarizeBy: sum
+		sourceColumn: Trackvia_Vehicle_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column samsara_vehicle_id
+		dataType: string
+		lineageTag: 7fd585a9-c568-4c4c-8ffb-3a1b7fec7efb
+		summarizeBy: none
+		sourceColumn: samsara_vehicle_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_number
+		dataType: string
+		lineageTag: 98795acf-2098-42a2-b174-287272b90d98
+		summarizeBy: none
+		sourceColumn: vehicle_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_category
+		dataType: string
+		lineageTag: 4650a82c-a7fc-4d6b-b01d-63564cabe5ae
+		summarizeBy: none
+		sourceColumn: vehicle_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column make
+		dataType: string
+		lineageTag: bf29de79-bba6-45a1-94a1-b3636e7ccbb2
+		summarizeBy: none
+		sourceColumn: make
+
+		annotation SummarizationSetBy = Automatic
+
+	column model
+		dataType: string
+		lineageTag: dd3bb558-6bb2-4eef-806f-22e355eb5647
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: f25663d9-302c-4022-909e-e811ce3858cc
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification
+		dataType: string
+		lineageTag: 44412fb4-f9d0-4555-9d23-cd646288dd07
+		summarizeBy: none
+		sourceColumn: classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 3b29e6f9-36f5-43d6-9b1a-792949cdeab2
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_created_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2e7390d5-8db9-4a4f-8f15-aa989722d6d0
+		summarizeBy: none
+		sourceColumn: source_created_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Equipment Detail' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select Trackvia_Vehicle_id,samsara_vehicle_id,vehicle_number,vehicle_category,make,model,type,classification,status,cast(source_created_date as Date)#(lf)from gold.dim_vehicle#(lf)where  status is not null#(lf)and is_active =true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

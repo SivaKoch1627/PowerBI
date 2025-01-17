@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "OSR Page 4"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a661c393-ead7-4043-bbe8-94394fbb8548"
+  }
+}

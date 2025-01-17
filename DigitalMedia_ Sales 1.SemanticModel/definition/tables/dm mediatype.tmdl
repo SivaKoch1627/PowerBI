@@ -1,0 +1,29 @@
+table 'dm mediatype'
+	lineageTag: e887539b-c053-4c57-820e-38503fe065cd
+
+	column mediatypeid
+		dataType: int64
+		formatString: 0
+		lineageTag: 21756bef-d577-49de-b220-e1e4529df19c
+		summarizeBy: none
+		sourceColumn: mediatypeid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 26105cdf-a3ae-48b9-b2b6-72e5aecb5fea
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm mediatype' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_mediatype = Source{[Schema="dm",Item="mediatype"]}[Data]
+				in
+				    dm_mediatype
+

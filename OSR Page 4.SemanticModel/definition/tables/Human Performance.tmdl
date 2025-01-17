@@ -1,0 +1,108 @@
+table 'Human Performance'
+	lineageTag: 42f60233-b506-4cb2-8eaa-466e74a0d2cb
+
+	column Human_Perf_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fab27c6-0ff5-4264-ae56-d663bf08b155
+		summarizeBy: count
+		sourceColumn: Human_Perf_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Report
+		dataType: string
+		lineageTag: de4b243d-a731-4e21-ae38-d4995617b007
+		summarizeBy: none
+		sourceColumn: Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column Performance_Mode
+		dataType: string
+		lineageTag: ed419550-ccb3-4c83-b2e2-7a9c964f75aa
+		summarizeBy: none
+		sourceColumn: Performance_Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Near_Miss_Or_Good_Catch
+		dataType: string
+		lineageTag: 67624c6a-e7f3-4c01-8de5-b8c7ebd48127
+		summarizeBy: none
+		sourceColumn: Near_Miss_Or_Good_Catch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reported_By
+		dataType: string
+		lineageTag: 9b9d0d95-497a-4b27-ac46-998a1232c489
+		summarizeBy: none
+		sourceColumn: Reported_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Effective_Process
+		dataType: string
+		lineageTag: 5adb098e-f829-4cb5-acc7-067b58544734
+		summarizeBy: none
+		sourceColumn: Effective_Process
+
+		annotation SummarizationSetBy = Automatic
+
+	column Severity_Of_Near_Miss_Good_Catch
+		dataType: string
+		lineageTag: bb5638e5-78f1-4659-9c9d-120d8344d507
+		summarizeBy: none
+		sourceColumn: Severity_Of_Near_Miss_Good_Catch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Approve_Human_Performance_Report
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 746b542f-2a0b-4b3d-8a7f-cb9f9a8d3214
+		summarizeBy: none
+		sourceColumn: Is_Approve_Human_Performance_Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateTime_Reported
+		dataType: dateTime
+		formatString: mm/dd/yyyy h:nn:ss AM/PM
+		lineageTag: 90f859f1-7606-4382-98e1-3c7ff9057d2e
+		summarizeBy: none
+		sourceColumn: DateTime_Reported
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column ForemanName
+		dataType: string
+		lineageTag: a8579a4a-7462-4cb4-a37d-cef8b7a63fea
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column HPFlag
+		dataType: string
+		lineageTag: 08ebb8a1-d8a6-4950-aa3c-2f36e6ddecf0
+		summarizeBy: none
+		sourceColumn: HPFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Human Performance' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "SELECT a.Human_Perf_ID, Report, a.Performance_Mode, a.Near_Miss_Or_Good_Catch, a.Reported_By, a.Effective_Process,#(lf)a.Severity_Of_Near_Miss_Good_Catch, a.Is_Approve_Human_Performance_Report, a.DateTime_Reported, CONCAT(d.First_Name, ' ', d.Last_Name) as ForemanName,#(lf)CASE#(lf)    WHEN a.Severity_Of_Near_Miss_Good_Catch = 'Green - Information Only - No Correction Needed' THEN 'Information Only'#(lf)    WHEN a.Severity_Of_Near_Miss_Good_Catch= 'Yellow - Correction Required' THEN 'Correction Required'#(lf)    WHEN a.Severity_Of_Near_Miss_Good_Catch = 'Red - Serious Condition - Stop Work and Correct' THEN 'Serious Condition'#(lf)    ELSE NULL#(lf)END AS HPFlag#(lf)FROM Gold.Dim_HumanPerformance a#(lf)LEFT JOIN gold.dim_employee d ON a.foreman_id = d.dw_employee_id AND d.is_active =true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

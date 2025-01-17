@@ -1,0 +1,486 @@
+table 'Safety Score'
+	lineageTag: 0d13ed15-aa91-4b80-8f7c-b32d7d1db213
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f46eddbe-1546-400e-86e5-2f8772061e37
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Driver_ID
+		dataType: string
+		lineageTag: 7cd629d3-7b9a-4d48-80fd-9c55f9ec3ee1
+		summarizeBy: none
+		sourceColumn: Driver_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver_Name
+		dataType: string
+		lineageTag: 884d69a1-99d2-4382-86e6-8fb0b06992c5
+		summarizeBy: none
+		sourceColumn: Driver_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rank
+		dataType: string
+		lineageTag: 5f5baa5a-5b9f-4cf3-b935-ed0b33499d26
+		summarizeBy: none
+		sourceColumn: Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver_Tags
+		dataType: string
+		lineageTag: 446334d2-8a9c-4b9e-9d36-e0d02128b50b
+		summarizeBy: none
+		sourceColumn: Driver_Tags
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tag_Paths
+		dataType: string
+		lineageTag: 2e81d072-024d-4c98-8144-553925039a2c
+		summarizeBy: none
+		sourceColumn: Tag_Paths
+
+		annotation SummarizationSetBy = Automatic
+
+	column Username
+		dataType: string
+		lineageTag: be520876-1023-4a3a-85bb-93de401b64c1
+		summarizeBy: none
+		sourceColumn: Username
+
+		annotation SummarizationSetBy = Automatic
+
+	column Safety_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: 057ee487-1ea9-4094-9b75-fcc3cc78ebb3
+		summarizeBy: sum
+		sourceColumn: Safety_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Drive_Time
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f1ef761-b25b-4a5f-9ec8-5a8dfea20a03
+		summarizeBy: sum
+		sourceColumn: Drive_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Distance
+		dataType: double
+		lineageTag: 3aee694e-09f7-4de9-93b7-4715180392fc
+		summarizeBy: sum
+		sourceColumn: Total_Distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Events
+		dataType: int64
+		formatString: 0
+		lineageTag: ec8465fb-397e-41d2-8344-e65cd2e4e382
+		summarizeBy: sum
+		sourceColumn: Total_Events
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Behaviors
+		dataType: int64
+		formatString: 0
+		lineageTag: db0100a3-1e23-4446-a5fd-f654dc58427a
+		summarizeBy: sum
+		sourceColumn: Total_Behaviors
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Over_Speed_Limit_Light
+		dataType: int64
+		formatString: 0
+		lineageTag: ddad9105-6090-4c47-acda-e07182643aa8
+		summarizeBy: sum
+		sourceColumn: Time_Over_Speed_Limit_Light
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Over_Speed_Limit_Moderate
+		dataType: int64
+		formatString: 0
+		lineageTag: b31e616e-f2ac-46d0-abaa-a6268cc05b18
+		summarizeBy: sum
+		sourceColumn: Time_Over_Speed_Limit_Moderate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Over_Speed_Limit_Heavy
+		dataType: int64
+		formatString: 0
+		lineageTag: b83d9cde-c0b0-4bab-ad98-3dca91b02034
+		summarizeBy: sum
+		sourceColumn: Time_Over_Speed_Limit_Heavy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Over_Speed_Limit_Severe
+		dataType: int64
+		formatString: 0
+		lineageTag: 8323be71-d419-452f-b287-0733ff9847a2
+		summarizeBy: sum
+		sourceColumn: Time_Over_Speed_Limit_Severe
+
+		annotation SummarizationSetBy = Automatic
+
+	column Speeding_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 1128f5fd-5fe8-40f8-96c3-b76ebcc30251
+		summarizeBy: sum
+		sourceColumn: Speeding_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Percent_Light_Speeding
+		dataType: double
+		lineageTag: f320d08a-8d93-42ad-88aa-1fd5fcbf7315
+		summarizeBy: sum
+		sourceColumn: Percent_Light_Speeding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Percent_Moderate_Speeding
+		dataType: double
+		lineageTag: 65ade8bb-fa6e-456f-9593-57bc72eff055
+		summarizeBy: sum
+		sourceColumn: Percent_Moderate_Speeding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Percent_Heavy_Speeding
+		dataType: double
+		lineageTag: f9f6d1d9-b67b-4c05-af5e-533998cad8c1
+		summarizeBy: sum
+		sourceColumn: Percent_Heavy_Speeding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Percent_Severe_Speeding
+		dataType: double
+		lineageTag: 164cabe4-dc4e-4734-a671-0ad894ec8224
+		summarizeBy: sum
+		sourceColumn: Percent_Severe_Speeding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Light_Speeding_Events_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 28ec586b-b55f-4f6e-ad92-9b8ece7e3e54
+		summarizeBy: sum
+		sourceColumn: Light_Speeding_Events_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Moderate_Speeding_Events_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 660dd87d-43b2-4581-95f4-ecf4114e4f35
+		summarizeBy: sum
+		sourceColumn: Moderate_Speeding_Events_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Heavy_Speeding_Events_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: f552d387-b88a-4320-ab27-baafc48aff54
+		summarizeBy: sum
+		sourceColumn: Heavy_Speeding_Events_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Severe_Speeding_Events_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 310135d0-84c4-4fe0-9d5a-d7e29d462392
+		summarizeBy: sum
+		sourceColumn: Severe_Speeding_Events_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Max_Speed
+		dataType: double
+		lineageTag: 850f958d-d592-4327-98df-5c05802eba91
+		summarizeBy: sum
+		sourceColumn: Max_Speed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Max_Speed_At
+		dataType: string
+		lineageTag: 402797fe-adf6-4ae5-adf4-e3d486db50b1
+		summarizeBy: none
+		sourceColumn: Max_Speed_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Crash
+		dataType: int64
+		formatString: 0
+		lineageTag: 91b15ec4-5f04-4f50-9227-f2b90f7cbca2
+		summarizeBy: sum
+		sourceColumn: Crash
+
+		annotation SummarizationSetBy = Automatic
+
+	column Following_Distance
+		dataType: int64
+		formatString: 0
+		lineageTag: b4e1d5f5-e52d-40f4-ad54-b532a54ce204
+		summarizeBy: sum
+		sourceColumn: Following_Distance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Following_0_2s_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 0227bda0-43b6-484d-9a3e-14193926efb4
+		summarizeBy: sum
+		sourceColumn: Following_0_2s_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Following_2_4s_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 864f9177-5f6a-4069-8cd6-90c75874811c
+		summarizeBy: sum
+		sourceColumn: Following_2_4s_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Late_Response_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: c96c79dd-37cf-43a9-a88e-770cfa0a5efd
+		summarizeBy: sum
+		sourceColumn: Late_Response_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Defensive_Driving_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: e005d1b9-d75b-4b67-af01-0ccc9f1d77f2
+		summarizeBy: sum
+		sourceColumn: Defensive_Driving_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Near_Collision_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 31a5f44b-62c8-4b7d-94b4-270e2738fabb
+		summarizeBy: sum
+		sourceColumn: Near_Collision_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Harsel_Accel
+		dataType: int64
+		formatString: 0
+		lineageTag: d2d3733d-6ac1-49a8-9d56-5b9b63a93cd1
+		summarizeBy: sum
+		sourceColumn: Harsel_Accel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Harsh_Brake
+		dataType: int64
+		formatString: 0
+		lineageTag: 2942db70-b035-4b63-a18f-8344cf76a8f6
+		summarizeBy: sum
+		sourceColumn: Harsh_Brake
+
+		annotation SummarizationSetBy = Automatic
+
+	column Harsh_Turn
+		dataType: int64
+		formatString: 0
+		lineageTag: 1171745f-413e-47d2-834f-95764704a189
+		summarizeBy: sum
+		sourceColumn: Harsh_Turn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mobile_Usage
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e8dbd6f-5bb0-40b1-9b47-7038ddb89481
+		summarizeBy: sum
+		sourceColumn: Mobile_Usage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inattentive_Driving
+		dataType: int64
+		formatString: 0
+		lineageTag: e27a8063-d554-414f-ac70-acfe8d30a483
+		summarizeBy: sum
+		sourceColumn: Inattentive_Driving
+
+		annotation SummarizationSetBy = Automatic
+
+	column Drowsy_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c0386fc-8929-4c3d-ad45-37cc02302fd6
+		summarizeBy: sum
+		sourceColumn: Drowsy_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rolling_Stop
+		dataType: int64
+		formatString: 0
+		lineageTag: ccb267b3-1812-4a6b-82e2-0f3dad4d0c70
+		summarizeBy: sum
+		sourceColumn: Rolling_Stop
+
+		annotation SummarizationSetBy = Automatic
+
+	column Did_Not_Yield_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 04e43b52-06fc-4f85-942c-b2023b3698d5
+		summarizeBy: sum
+		sourceColumn: Did_Not_Yield_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ran_Red_Light_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: c1a32c32-108d-4e17-8636-fc521e240b44
+		summarizeBy: sum
+		sourceColumn: Ran_Red_Light_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lane_Departure_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ab4fc59-e6ef-4782-a2b7-f01f3104e779
+		summarizeBy: sum
+		sourceColumn: Lane_Departure_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Obstructed_Camera_Automatic
+		dataType: int64
+		formatString: 0
+		lineageTag: fb99232d-f838-4713-9ae7-14d670556ee7
+		summarizeBy: sum
+		sourceColumn: Obstructed_Camera_Automatic
+
+		annotation SummarizationSetBy = Automatic
+
+	column Obstructed_Camera_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e9498ac-59e7-4980-8f9d-e725ae61e488
+		summarizeBy: sum
+		sourceColumn: Obstructed_Camera_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Eating_Drinking_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cfa89a0-f8ef-4229-8bc5-023d5a38250b
+		summarizeBy: sum
+		sourceColumn: Eating_Drinking_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Smoking_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: acd59501-3bf1-43b9-9cfc-eaa3185d7195
+		summarizeBy: sum
+		sourceColumn: Smoking_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column No_Seat_Belt
+		dataType: int64
+		formatString: 0
+		lineageTag: 9edde6cb-a718-4bde-aa38-b94533bf8e15
+		summarizeBy: sum
+		sourceColumn: No_Seat_Belt
+
+		annotation SummarizationSetBy = Automatic
+
+	column No_Mask_Automatic
+		dataType: int64
+		formatString: 0
+		lineageTag: 75364781-d8da-4636-a4ec-8b0810ac2175
+		summarizeBy: sum
+		sourceColumn: No_Mask_Automatic
+
+		annotation SummarizationSetBy = Automatic
+
+	column No_Mask_Manual
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d920472-56a7-4e7e-82bf-b9721e09734b
+		summarizeBy: sum
+		sourceColumn: No_Mask_Manual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Forward_Collision_Warning
+		dataType: int64
+		formatString: 0
+		lineageTag: e1fbcb7d-5b8d-4416-bbe2-1957edd3a5b9
+		summarizeBy: sum
+		sourceColumn: Forward_Collision_Warning
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Safety Score' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select * from gold.fact_safetyscore", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Calendar_Date", type date}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"DW_SafetyScore_ID", "DW_Created_By", "DW_Created_Date", "DW_Modified_By", "DW_Modified_Date"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

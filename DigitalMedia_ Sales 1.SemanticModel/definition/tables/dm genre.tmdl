@@ -1,0 +1,42 @@
+table 'dm genre'
+	lineageTag: dc4ee688-4cc6-4e76-9a77-7db31e420399
+
+	measure 'UnitPrice of Genre' =
+			
+			CALCULATE(
+			    SUM('dm track'[unitprice]),
+			    VALUES('dm track'[genreid])
+			)
+		lineageTag: dc219bda-5713-471e-a6ad-ab4d51a1ad6c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column name
+		dataType: string
+		lineageTag: f81097b8-4d17-482a-be3e-182cd3aba8d6
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column genreid
+		dataType: int64
+		formatString: 0
+		lineageTag: 37e1bd00-1ed8-411d-a7a5-793dac87245e
+		summarizeBy: none
+		sourceColumn: genreid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm genre' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(PostgreSQL.Database("localhost:5432", "DigitalMedia"), "select * from dm.genre", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

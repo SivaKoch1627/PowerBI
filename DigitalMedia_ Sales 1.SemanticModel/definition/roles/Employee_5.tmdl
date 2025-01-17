@@ -1,0 +1,10 @@
+role Employee_5
+	modelPermission: read
+
+	tablePermission 'dm customer' = [supportrepid] == 5
+
+	tablePermission 'dm invoiceline'
+		metadataPermission: none
+
+	annotation PBI_Id = 43ac0d7598f145858bffab638fb1fc60
+

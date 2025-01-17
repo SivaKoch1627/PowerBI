@@ -1,0 +1,168 @@
+table 'dm employee'
+	lineageTag: 5fe2831d-652e-421a-b9e3-3da0ca417b78
+
+	column employeeid
+		dataType: int64
+		formatString: 0
+		lineageTag: 1db0ddca-c2e9-47fa-8ab9-19e9891ba793
+		summarizeBy: sum
+		sourceColumn: employeeid
+
+		annotation SummarizationSetBy = Automatic
+
+	column lastname
+		dataType: string
+		lineageTag: aba160a7-7cc2-47ee-9ac0-e7649fd39e0b
+		summarizeBy: none
+		sourceColumn: lastname
+
+		annotation SummarizationSetBy = Automatic
+
+	column firstname
+		dataType: string
+		lineageTag: a27c240e-a127-4dbd-9884-73dc847e4a65
+		summarizeBy: none
+		sourceColumn: firstname
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 7980129d-0acd-460e-8ca7-483dd73ffa5c
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportsto
+		dataType: int64
+		formatString: 0
+		lineageTag: 0aa60973-c7b6-4ee2-8929-05d22670c083
+		summarizeBy: sum
+		sourceColumn: reportsto
+
+		annotation SummarizationSetBy = Automatic
+
+	column birthdate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0e2f6a32-bef5-482a-a7bf-c57f6f30e25b
+		summarizeBy: none
+		sourceColumn: birthdate
+
+		variation Variation
+			isDefault
+			relationship: 9df4a893-696e-4b3a-94ec-6a5719edbe07
+			defaultHierarchy: LocalDateTable_ca5a2a1e-7902-4e9d-a4c1-9b778cbb15fb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column hiredate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3788600c-7435-484d-96b0-e495460bd99d
+		summarizeBy: none
+		sourceColumn: hiredate
+
+		variation Variation
+			isDefault
+			relationship: 9bc646d9-6eaa-46fc-a313-5526d4fac59a
+			defaultHierarchy: LocalDateTable_7b4f414d-1d6f-4b8d-8505-6a9eaf649a69.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 1063514f-7724-44bd-8c12-a67b7ae9fef9
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: df74bed5-0834-4ac4-aae5-fb52b8b06b78
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 1bab9446-7a91-48e1-be44-6185a69e53de
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 854ac0d7-2e09-4afa-9e87-f94d2e1dcf1d
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column postalcode
+		dataType: string
+		lineageTag: 51bbbb36-2213-4f9e-be8e-d1f6d40af048
+		summarizeBy: none
+		sourceColumn: postalcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 3d405aa8-4126-4e5c-a19a-0d17cb7c46ae
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column fax
+		dataType: string
+		lineageTag: 3445d7a4-36b5-4914-b543-dcd1df85e44e
+		summarizeBy: none
+		sourceColumn: fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: e5f443f8-2236-42fd-a05c-8b426d0019f3
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee Name'
+		dataType: string
+		lineageTag: be70f26b-94d1-4f18-9f18-bff876d8cd00
+		summarizeBy: none
+		sourceColumn: Employee Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reporting person'
+		dataType: string
+		lineageTag: 222314d2-defc-440c-8e4f-af66603b830d
+		summarizeBy: none
+		sourceColumn: Reporting person
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm employee' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "DigitalMedia"),
+				    dm_employee = Source{[Schema="dm",Item="employee"]}[Data],
+				    #"Inserted Merged Column" = Table.AddColumn(dm_employee, "Employee Name", each Text.Combine({[firstname], [lastname]}, " "), type text),
+				    #"Added Conditional Column" = Table.AddColumn(#"Inserted Merged Column", "Reporting person", each if [reportsto] = 1 then [#"dm.employee(reportsto)"] else if [reportsto] = 2 then [#"dm.employee(reportsto)"] else if [reportsto] = 3 then [employeeid] else if [reportsto] = 4 then [employeeid] else if [reportsto] = 5 then [employeeid] else if [reportsto] = 6 then [employeeid] else if [reportsto] = 7 then [employeeid] else "Independent")
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

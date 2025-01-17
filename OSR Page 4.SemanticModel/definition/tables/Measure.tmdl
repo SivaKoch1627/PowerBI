@@ -1,0 +1,2578 @@
+table Measure
+	lineageTag: 39f689dc-503f-4079-b1ce-996f94b14087
+
+	measure 'WSOR Audit Percentage MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date]  >= S && JobDetail[Received_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT(WorksiteObservation[Jobs]),WorksiteObservation[Date] >= S && WorksiteObservation[Date] <= E)
+			Return DIVIDE(b,a,0)
+		formatString: 0%;-0%;0%
+		lineageTag: 6abb84e1-6eeb-4091-a99b-bb1b225b038b
+
+	measure 'WSOR Audit Percentage WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date] >= S && JobDetail[Received_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT(WorksiteObservation[Jobs]),WorksiteObservation[Date] >= S && WorksiteObservation[Date] <= E)
+			Return DIVIDE(b,a,0)
+		lineageTag: 15bdfb8a-6fd6-4010-91ec-ccc53917e0c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WSOR Audit Percentage YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date] >= S && JobDetail[Received_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT(WorksiteObservation[Jobs]),WorksiteObservation[Date] >= S && WorksiteObservation[Date] <= E)
+			Return divide(b,a,0)
+		formatString: 0
+		lineageTag: fe4b05ba-a77f-424b-b186-93be221b89f8
+
+	measure 'WSOR Audit Percentage Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [WSOR Audit Percentage WTD],
+			    "MTD", [WSOR Audit Percentage MTD],
+			    "YTD", [WSOR Audit Percentage YTD]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d3814d55-5a79-44cc-9110-0e625dcbfeb5
+
+	measure 'QC Audit Percentage WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date]>= S && JobDetail[Received_Date]<= E)
+			Var B = CALCULATE(DISTINCTCOUNT('Quality Control'[Job]),'Quality Control'[Date] >= S && 'Quality Control'[Date] <= E)
+			Return DIVIDE(b,a,0)
+		lineageTag: 5f9d2091-f7c4-4933-a46f-f9cc2f06740a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'QC Audit Percentage MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date] >= S && JobDetail[Received_Date]<= E)
+			Var B = CALCULATE(DISTINCTCOUNT('Quality Control'[Job]),'Quality Control'[Date] >= S && 'Quality Control'[Date] <= E)
+			Return DIVIDE(b,a,0)
+		lineageTag: b8e91206-14bf-415c-aacd-f5a344ea3d8b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'QC Audit Percentage YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Status] in {"Open","Active"},JobDetail[Received_Date] >= S && JobDetail[Received_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT('Quality Control'[Job]),'Quality Control'[Date] >= S && 'Quality Control'[Date] <= E)
+			Return divide(b,a,0)
+		formatString: 0
+		lineageTag: a2cc0d4a-9fe6-4534-9c0a-d9fce833b787
+
+	measure 'QC Audit Percentage Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [QC Audit Percentage WTD],
+			    "MTD", [QC Audit Percentage MTD],
+			    "YTD", [QC Audit Percentage YTD]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9701292d-92a2-4209-880b-04bebaacfb24
+
+	measure 'Safety Education Meeting MTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Safety Meeting" && 'Safety Education'[Date]>=[MTD Start Date] && 'Safety Education'[Date]<=[MTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: 84942a19-0750-449e-b7b4-ec88eeeb01bc
+
+	measure 'Safety Education Meeting WTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Safety Meeting" && 'Safety Education'[Date]>=[WTD Start Date] && 'Safety Education'[Date]<=[WTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: 00bddce6-f3fc-424f-bbf4-574876da7bf2
+
+	measure 'Safety Education Meeting YTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Safety Meeting" && 'Safety Education'[Date]>=[YTD Start Date] && 'Safety Education'[Date]<=[YTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: b117118a-828b-4128-b228-dd3f31939a10
+
+	measure 'Safety Education Meeting Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Safety Education Meeting WTD],
+			    "MTD", [Safety Education Meeting MTD],
+			    "YTD", [Safety Education Meeting YTD]
+			)
+		formatString: 0
+		lineageTag: ce13f3cb-1038-4218-a195-39c296a82c9d
+
+	measure 'Safety Education Training WTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Training Class" && 'Safety Education'[Date]>=[WTD Start Date] && 'Safety Education'[Date]<=[WTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: c95d3bd0-5331-480c-941c-3ff7baaebe90
+
+	measure 'Safety Education Training MTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Training Class" && 'Safety Education'[Date]>=[MTD Start Date] && 'Safety Education'[Date]<=[MTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: 48d93ff2-f943-450d-ac5b-67d86cad058c
+
+	measure 'Safety Education Training YTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Safety Education'[Safety_Education_ID]),FILTER('Safety Education','Safety Education'[Type]="Training Class" && 'Safety Education'[Date]>=[YTD Start Date] && 'Safety Education'[Date]<=[YTD End Date]))
+			RETURN A+0
+		formatString: 0
+		lineageTag: 8c931dc5-0ad8-40ea-aeee-d9ce5a6caf7a
+
+	measure 'Safety Education Training Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Safety Education Training WTD],
+			    "MTD", [Safety Education Training MTD],
+			    "YTD", [Safety Education Training YTD]
+			)
+		formatString: 0
+		lineageTag: 456fd117-8bdf-4741-80fe-657294572d85
+
+	measure 'Unsatisfactory Events WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Unsatisfactory Events'[Unsat_Event_ID]),'Unsatisfactory Events','Unsatisfactory Events'[Date] >= S && 'Unsatisfactory Events'[Date] <= E)
+			Return A
+		formatString: 0
+		lineageTag: b447a14b-6c72-42cd-9d4b-d6c316b59638
+
+	measure 'Unsatisfactory Events MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Unsatisfactory Events'[Unsat_Event_ID]),'Unsatisfactory Events','Unsatisfactory Events'[Date] >= S && 'Unsatisfactory Events'[Date] <= E)
+			Return A
+		formatString: 0
+		lineageTag: 84b5a219-d2d2-41b3-b66a-7862607b4ee1
+
+	measure 'Unsatisfactory Events YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Unsatisfactory Events'[Unsat_Event_ID]),'Unsatisfactory Events','Unsatisfactory Events'[Date] >= S && 'Unsatisfactory Events'[Date] <= E)
+			Return A
+		formatString: 0
+		lineageTag: 9a22795d-96a1-40d5-a601-0e0e4306f4f3
+
+	measure 'Unsatisfactory Events Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Unsatisfactory Events WTD],
+			    "MTD", [Unsatisfactory Events MTD],
+			    "YTD", [Unsatisfactory Events YTD]
+			)
+		formatString: 0
+		lineageTag: 16c1a156-01dd-4058-beed-4b59143ef263
+
+	measure 'Tools Avoidable Cost WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Broken in Field")
+			Return A
+		lineageTag: 03f93e25-10d0-43c9-8a8a-71cdffc67c4f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Avoidable Cost MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Broken in Field")
+			Return A
+		lineageTag: e087eaba-d9a4-4e15-b59b-17bbfb196f1c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Avoidable Cost YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Broken in Field")
+			Return A
+		lineageTag: 8e09ce6a-5182-4063-83f6-21eb3f8e48e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Avoidable Cost Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools Avoidable Cost WTD],
+			    "MTD", [Tools Avoidable Cost MTD],
+			    "YTD", [Tools Avoidable Cost YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 8289cd56-827f-4492-a7ff-2bfbe3b651ea
+
+	measure 'Tools unavoidable Cost WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Wear and Tear")
+			Return A
+		lineageTag: 81ac2dbf-673d-48a1-8b9c-f23f0e3d1215
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools unavoidable Cost MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Wear and Tear")
+			Return A
+		lineageTag: b06a6930-95b2-4d4f-8ece-4f1bbcfaf313
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools unavoidable Cost YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]="Wear and Tear")
+			Return A
+		lineageTag: a2f81886-dffe-435d-965c-8a5e9a3c5f2c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools unavoidable Cost Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools unavoidable Cost WTD],
+			    "MTD", [Tools unavoidable Cost MTD],
+			    "YTD", [Tools unavoidable Cost YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 21be969d-0ca8-4bcd-afbd-9e0727acef2d
+
+	measure 'Tools Needsupdated Cost WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]=" ")
+			Return A
+		lineageTag: e3ad43e0-36eb-49c3-bf40-a7731241e0b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Needsupdated Cost YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]=" ")
+			Return A
+		lineageTag: 52a34ca2-95af-42a8-b0f4-b9d30df95d54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Needsupdated Cost MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E && 'Tools Misuse'[Avoidable_Unavoidable_Cost]=" ")
+			Return A
+		lineageTag: b65fe309-9066-47aa-be5f-a04173a463d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Needs updated Cost Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools Needsupdated Cost WTD],
+			    "MTD", [Tools Needsupdated Cost MTD],
+			    "YTD", [Tools Needsupdated Cost YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 9c4db254-6e49-4556-8bff-808c8e04b401
+
+	measure 'Tools Misue Cost MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E)
+			Return A
+		lineageTag: 7a74513e-d289-4806-8f86-3207ec046b11
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Misue Cost WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E)
+			Return A
+		lineageTag: a5c01bef-7cb5-4ded-9eec-fea70efa8ab4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Misue Cost YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(SUM('Tools Misuse'[TotalCost]),'Tools Misuse','Tools Misuse'[Date] >= S && 'Tools Misuse'[Date] <= E)
+			Return A
+		lineageTag: eb7eae32-3db5-49de-b385-bd82ac4177dd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tools Misuse Cost Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools Misue Cost WTD],
+			    "MTD", [Tools Misue Cost MTD],
+			    "YTD", [Tools Misue Cost YTD]
+			)
+		lineageTag: aa00c3a6-9816-4392-82be-972148f9798a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Claims Trend over months' =
+			
+			Var A = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]))
+			Return A+0
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 00ba36e0-a785-4fb3-abbb-66867cdb91a0
+
+	measure RollBack = ```
+			
+			 
+			var X = CALCULATE(max('DimDate2'[Calendar_Date]),FILTER('DimDate2',
+			(((YEAR('DimDate2'[Calendar_Date])) = YEAR([Refresh Date])) &&
+			((MONTH('DimDate2'[Calendar_Date])) = MONTH([Refresh Date]))) &&
+			((DAY('DimDate2'[Calendar_Date]) <= DAY([Refresh Date])))))
+			 
+			var Y = CALCULATE(max('DimDate2'[Calendar_Date]))
+			
+			Var anyslicerselected = ISFILTERED(DimDate2[Calendar_Date])
+			 
+			Var F = IF(AnySlicerSelected = TRUE(), Y,X)+1
+			 
+			var b = F-180
+			 
+			Var Temp2 = CALCULATE(MAX('Calendar'[Calendar_Date]))
+			
+			 
+			var d = if(Temp2>b && Temp2<=F,1,0)
+			 
+			return d
+			```
+		formatString: 0
+		displayFolder: Filters
+		lineageTag: 3f03887f-f55e-4342-b614-3588e4734d44
+
+	measure 'Timesheet Avg Days MTD' =
+			
+			Var A = CALCULATE(AVERAGE('Timesheet'[Daydiff]),FILTER('Timesheet','Timesheet'[Supervisorflag]="0" && 'Timesheet'[PMFlag]="0" && Timesheet[date]>=[MTD Start Date] && 'Timesheet'[date]<=[MTD End Date] && 'Timesheet'[Daydiff]<>0))
+			RETURN A+0
+		formatString: 0.0
+		lineageTag: 4af26616-0575-423c-b756-c8d199ef2cfe
+
+	measure 'Timesheet Supervisor outstanding MTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNTNOBLANK('Timesheet'[TimesheetIDNew]),FILTER('Timesheet','Timesheet'[Supervisorflag]="1" && Timesheet[date]>=[MTD Start Date] && 'Timesheet'[date]<=[MTD End Date]  ))
+			RETURN A
+		formatString: 0
+		lineageTag: ccc4a506-ace3-4949-b2df-4dae8a72c807
+
+	measure 'Timesheet ProjectManager outstanding MTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNTNOBLANK('Timesheet'[TimesheetIDNew]),FILTER('Timesheet','Timesheet'[PMFlag]="1" && Timesheet[date]>=[MTD Start Date] && 'Timesheet'[date]<=[MTD End Date]  ))
+			RETURN A
+		formatString: 0
+		lineageTag: 9cbdd71b-d617-4c48-b47e-dcc9a9ed102c
+
+	measure 'Timesheet Supervisor & PM outstanding MTD' =
+			
+			Var A = CALCULATE(DISTINCTCOUNTNOBLANK('Timesheet'[TimesheetIDNew]),FILTER('Timesheet','Timesheet'[Supervisorflag]="1" && 'Timesheet'[PMFlag]="1" && Timesheet[date]>=[MTD Start Date] && 'Timesheet'[date]<=[MTD End Date]  ))
+			RETURN A+0
+		formatString: 0
+		lineageTag: f3df2c6d-f780-43df-8ed2-763fe03cde3c
+
+	measure 'Jobs Received Today' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>=[Base Date] &&  'JobDetail'[Received_Date]<=[Base Date] && 'JobDetail'[Status] in {"Open","Active"}))
+			return A+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 3c7027a1-d9c8-4ab9-806c-54c368d7e21a
+
+	measure 'Jobs Received WTD' =
+			
+			Var A =[WTD Start Date]
+			VAR B =[WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B ))
+			return C+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 37e1866a-09d5-4783-b494-3af44b2a9320
+
+	measure 'Jobs Received MTD' =
+			
+			Var A =[MTD Start Date]
+			VAR B =[MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B ))
+			return C+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 16405bd8-c210-400c-ac90-13dfac688c89
+
+	measure 'Jobs Received YTD' =
+			
+			Var A =[YTD Start Date]
+			VAR B =[YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B ))
+			return C+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 79e8b32a-6ef7-427b-b55d-31f84fca2918
+
+	measure 'Past Due Jobs' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"} &&'JobDetail'[Pastdueflag]="1" && 'JobDetail'[Received_Date]>=[YTD Start Date] && 'JobDetail'[Received_Date]<=[YTD End Date] ))
+			return A+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: ae395535-d20e-4672-8e5d-9199868b4a91
+
+	measure 'Past Due Jobs %' =
+			
+			Var A =[YTD Start Date]
+			vAR b =[YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"} &&'JobDetail'[Pastdueflag]="1" && 'JobDetail'[Received_Date]>=A && 'JobDetail'[Received_Date]<=B ))
+			VAR  D = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"} && 'JobDetail'[Received_Date]>=A && 'JobDetail'[Received_Date]<=B))
+			return divide(c,d,0)+0
+		formatString: 0%;-0%;0%
+		displayFolder: Jobs
+		lineageTag: 6ca408bc-c994-4eda-92a1-80bf76e347ad
+
+	measure 'Jobs Received WTD Variance' =
+			
+			Var A =[WTD Start Date]
+			VAR B =[WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B  ))
+			Var D =[WTD Start Date Prev]
+			Var E =[WTD End Date Prev]
+			Var F = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= D &&  'JobDetail'[Received_Date]<=E ))
+			Var G = C-F
+			Return G
+		displayFolder: Jobs
+		lineageTag: d863677e-f1be-4f11-b8d8-b2deb04b582e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Color WTD Variance' =
+			
+			Var A = IF([Jobs Received WTD Variance]>=0,"#48c594","#FF5055")
+			Return A
+		lineageTag: 19bb9d8d-5479-42fd-a78a-7947eaca27a8
+
+	measure 'Jobs Received WTD Variance_con' = ```
+			
+			Var e =[Jobs Received WTD Variance]
+			Var A = if(e=0,0, format([Jobs Received WTD Variance],  "#,##0" & UNICHAR ( 160 ) & ";(#,##0);-" 
+			    & UNICHAR( 160 )))
+			
+			Var B = IF([Jobs Received WTD Variance]>= 0,8593,8595)
+			Var c = UNICHAR(B)
+			Var d = concatenate("Var",concatenate(" ",CONCATENATE(A,concatenate(" ",c))))
+			Return d
+			```
+		displayFolder: Jobs
+		lineageTag: 76acb5e2-fb2c-4516-ab59-c5cd34716b4c
+
+	measure 'Jobs Received MTD Variance' =
+			
+			Var A =[MTD Start Date]
+			VAR B =[MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B ))
+			Var D =[MTD Start Date Prev]
+			Var E =[MTD End Date Prev]
+			Var F = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= D &&  'JobDetail'[Received_Date]<=E ))
+			Var G = C-F
+			Return G
+		formatString: 0
+		displayFolder: Jobs
+		lineageTag: b95ac55b-1f49-4c2d-ad12-14791412efb5
+
+	measure 'Color MTD Variance' =
+			
+			Var A = IF([Jobs Received MTD Variance]>=0,"#48c594","#FF5055")
+			Return A
+		lineageTag: 9c3bc45e-4206-49ce-9149-864da3cab5b0
+
+	measure 'Jobs Received MTD Variance_con' = ```
+			
+			Var e =[Jobs Received MTD Variance]
+			Var A = if(e=0,0,format([Jobs Received MTD Variance],  "#,##0" & UNICHAR ( 160 ) & ";(#,##0);-" 
+			    & UNICHAR( 160 )))
+			
+			Var B = IF([Jobs Received MTD Variance]>= 0,8593,8595)
+			Var c = UNICHAR(B)
+			Var d = concatenate("Var",concatenate(" ",CONCATENATE(A,concatenate(" ",c))))
+			Return d
+			```
+		displayFolder: Jobs
+		lineageTag: e2d75bed-5afb-486a-8f23-bdf4faf9511d
+
+	measure 'Jobs Received YTD Variance' =
+			
+			Var A =[YTD Start Date]
+			VAR B =[YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= A &&  'JobDetail'[Received_Date]<=B))
+			Var D =[YTD Start Date Prev]
+			Var E =[YTD End Date Prev]
+			Var F = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Received_Date]>= D &&  'JobDetail'[Received_Date]<=E ))
+			Var G = C-F
+			Return G
+		formatString: 0
+		displayFolder: Jobs
+		lineageTag: b79fae76-2fc6-4fe0-a9a7-7751d29a49c3
+
+	measure 'Color YTD Variance' =
+			
+			Var A = IF([Jobs Received YTD Variance]>=0,"#48c594","#FF5055")
+			Return A
+		lineageTag: 4d8ed820-4ba4-403f-ac0f-86b7435a44d2
+
+	measure 'Jobs Received YTD Variance_con' = ```
+			
+			Var e =[Jobs Received YTD Variance]
+			Var A = if(e=0,0,format([Jobs Received YTD Variance],  "#,##0" & UNICHAR ( 160 ) & ";(#,##0);-" 
+			    & UNICHAR( 160 )))
+			
+			Var B = IF([Jobs Received YTD Variance]>= 0,8593,8595)
+			Var c = UNICHAR(B)
+			Var d = concatenate("Var",concatenate(" ",CONCATENATE(A,concatenate(" ",c))))
+			Return d
+			```
+		displayFolder: Jobs
+		lineageTag: 206594e5-8dce-4456-ac05-681e377c51df
+
+	measure 'Open Jobs' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"} && 'JobDetail'[Pastdueflag]="0"))
+			Return A+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 8eb6ae7e-867e-4e0b-9d62-c2a8cc89b1ea
+
+	measure 'Closed Jobs' =
+			
+			Var A =min('Calendar'[Calendar_Date])
+			Var B =Max('Calendar'[Calendar_Date])
+			Var C = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Closed","Inactive"} && 'JobDetail'[Date_Closed]>= A && 'JobDetail'[Date_Closed]<= B))
+			Return C+0
+		formatString: 0
+		lineageTag: 63fb273b-d610-4ccc-9194-d7e4e8f8004d
+
+	measure 'Received Jobs Mom Trend' =
+			
+			Var A = min('Calendar'[Calendar_Date])
+			Var B =Max('Calendar'[Calendar_Date])
+			Var C =CALCULATE(DISTINCTCOUNT(JobDetail[Job_ID]),'JobDetail'[Received_Date]>=A && 'JobDetail'[Received_Date]<=B)
+			Return C+0
+		formatString: 0
+		lineageTag: 208e8ecd-0ef6-4ac2-ba58-56430e861a90
+
+	measure Refreshdatetime = MAX('RefreshDateTime'[RefreshDatetime])
+		formatString: General Date
+		lineageTag: 3997a4ed-2cb9-4fbf-adec-01b136219973
+
+	measure 'Refresh Date Title' =
+			
+			Var a = [Refreshdatetime]
+			Var RefreshTitle = CONCATENATE("Refresh Date/Time - ",a)
+			Return RefreshTitle
+		lineageTag: fe856074-1390-4059-8f48-efb3308da4ee
+
+	measure 'Human Performance by Severity MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Human Performance'[Human_Perf_ID]),'Human Performance','Human Performance'[DateTime_Reported] >= S && 'Human Performance'[DateTime_Reported] <= E)
+			Return A
+		formatString: 0
+		lineageTag: bac8940a-6d03-4274-9b7b-b04221127495
+
+	measure 'Human Performance by Severity WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Human Performance'[Human_Perf_ID]),'Human Performance','Human Performance'[DateTime_Reported] >= S && 'Human Performance'[DateTime_Reported] <= E)
+			Return A
+		formatString: 0
+		lineageTag: 2bcdc308-e85f-46f7-9652-27cd04002772
+
+	measure 'Human Performance by Severity YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Human Performance'[Human_Perf_ID]),'Human Performance','Human Performance'[DateTime_Reported] >= S && 'Human Performance'[DateTime_Reported] <= E)
+			Return A
+		formatString: 0
+		lineageTag: 14a75e12-6e7d-410b-82a6-923c79e2eef5
+
+	measure 'Total AtFault Auto Incidents Percentage Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total Auto Atfault Percentage WTD],
+			    "MTD", [Total Auto Atfault Percentage MTD],
+			    "YTD", [Total Auto Atfault Percentage YTD]
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: c82ce484-7861-4d31-8a12-eccfe3952e7d
+
+	measure 'Total WC MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B= [MTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 969f0a97-c9a2-48f6-bdf6-3e93f6337635
+
+	measure 'Total WC YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B= [YTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 42991ec1-548c-4077-9d6c-8ff18d349c5f
+
+	measure 'Total WC WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B= [WTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 52ab8316-71ad-4bc7-9000-a5e4258cc980
+
+	measure 'Total WC Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total WC WTD],
+			    "MTD", [Total WC MTD],
+			    "YTD", [Total WC YTD]
+			)
+		formatString: 0
+		lineageTag: 737eab7f-aa50-4888-b6cf-94b8dcacd3a1
+
+	measure 'Auto Incidents Total WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),'Vehicle Incidents','Vehicle Incidents'[IncidentDate]>= S && 'Vehicle Incidents'[IncidentDate] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 74f4cee3-bc36-4c19-9efd-a0e459bd0f71
+
+	measure 'Auto Incidents Total MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),'Vehicle Incidents','Vehicle Incidents'[IncidentDate]>= S && 'Vehicle Incidents'[IncidentDate] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: f754fdec-a9ee-4de4-bcb1-137d0f55ce5a
+
+	measure 'Auto Incidents Total YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),'Vehicle Incidents','Vehicle Incidents'[IncidentDate]>= S && 'Vehicle Incidents'[IncidentDate] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 64680037-dd17-4bd3-8850-0e93048f90d0
+
+	measure 'Auto Incidents Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Auto Incidents Total WTD],
+			    "MTD", [Auto Incidents Total MTD],
+			    "YTD", [Auto Incidents Total YTD]
+			)
+		formatString: 0
+		lineageTag: 0a6eeff8-a518-4a24-a7bb-c2be1298e2d0
+
+	measure 'Total Auto Atfault Percentage YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B = [YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=True() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN E
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 74be6c3a-2862-4a19-8b27-1785bdf558f1
+
+	measure 'Total Auto NotAtfault Percentage YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B = [YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN e
+		formatString: 0%;-0%;0%
+		lineageTag: 84c29cce-333b-4be6-983d-02ae4999a301
+
+	measure 'Total Auto Atfault Percentage MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B = [MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=True() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN E
+		formatString: 0%;-0%;0%
+		lineageTag: f3e205be-7c5f-46cb-91dc-cef827b91b71
+
+	measure 'Total Auto Atfault Percentage WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B = [WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=True() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN E
+		formatString: 0%;-0%;0%
+		lineageTag: 94cb6976-c692-4488-b9aa-ef23b42b6d45
+
+	measure 'Total Auto NotAtfault Percentage WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B = [WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN C
+		formatString: 0
+		lineageTag: 586ba64a-3b8a-496a-beef-d7efb74fa9cd
+
+	measure 'Total Auto NotAtfault Percentage MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B = [MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			Var D = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			VAR E = DIVIDE(C,D,0)
+			RETURN C
+		formatString: 0
+		lineageTag: 9bc14713-0b3a-43d1-a463-98d566b18c62
+
+	measure 'Total NotAtFault Auto Incidents Percentage Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total Auto NotAtfault Percentage WTD],
+			    "MTD", [Total Auto NotAtfault Percentage MTD],
+			    "YTD", [Total Auto NotAtfault Percentage YTD]
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 877b855b-9618-411a-b9fc-24d415589c43
+
+	measure 'Total Auto NotAtfault WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B = [WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: 7ad50404-2755-422f-9e76-9ff03b96db38
+
+	measure 'Total Auto NotAtfault MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B = [MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: 99bcd3b1-0749-4d07-a88f-28df0bdcaed3
+
+	measure 'Total Auto NotAtfault YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B = [YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=FALSE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: 24b4fa8d-52a1-4782-a8fb-0fc7eded376c
+
+	measure 'Total NotAtFault Auto Incidents Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total Auto NotAtfault WTD],
+			    "MTD", [Total Auto NotAtfault MTD],
+			    "YTD", [Total Auto NotAtfault YTD]
+			)
+		formatString: 0
+		lineageTag: 0bb884cd-4eb9-45cc-bcda-6c62ffbed06e
+
+	measure 'Total Auto Atfault WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B = [WTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=TRUE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: c9124d78-ab48-47ec-a9a2-795c90254efa
+
+	measure 'Total Auto Atfault MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B = [MTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=TRUE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: cb3911f5-a820-43da-a468-b5a305e4943c
+
+	measure 'Total Auto Atfault YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B = [YTD End Date]
+			Var C = CALCULATE(DISTINCTCOUNT('Vehicle Incidents'[IRVehicle_Accidents_ID]),FILTER('Vehicle Incidents','Vehicle Incidents'[Is_This_Human_Performance_Event]=TRUE() && 'Vehicle Incidents'[IncidentDate]>=A && 'Vehicle Incidents'[IncidentDate]<=B))
+			RETURN C+0
+		formatString: 0
+		lineageTag: 369dc1f8-c745-42db-a675-41202be1a83d
+
+	measure 'Total AtFault Auto Incidents Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total Auto Atfault WTD],
+			    "MTD", [Total Auto Atfault MTD],
+			    "YTD", [Total Auto Atfault YTD]
+			)
+		formatString: 0
+		lineageTag: e22695be-f23a-4c1f-93d6-831901679849
+
+	measure 'General Incidents Total WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			Var A = CALCULATE(DISTINCTCOUNT('Incident Report'[IR_ID]),'Incident Report','Incident Report'[IncidentDate]>= S && 'Incident Report'[IncidentDate]<= E && 'Incident Report'[Incident_Type] ="General Liability")
+			Return A+0
+		formatString: 0
+		lineageTag: 9d8ffcfd-baa8-4012-b3fe-19b32399a431
+
+	measure 'General Incidents Total MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			Var A = CALCULATE(DISTINCTCOUNT('Incident Report'[IR_ID]),'Incident Report','Incident Report'[IncidentDate]>= S && 'Incident Report'[IncidentDate]<= E && 'Incident Report'[Incident_Type] ="General Liability")
+			Return A+0
+		formatString: 0
+		lineageTag: 4d334729-8814-4704-85bf-c10aee05f298
+
+	measure 'General Incidents Total YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			Var A = CALCULATE(DISTINCTCOUNT('Incident Report'[IR_ID]),'Incident Report','Incident Report'[IncidentDate]>= S && 'Incident Report'[IncidentDate]<= E && 'Incident Report'[Incident_Type] ="General Liability")
+			Return A+0
+		formatString: 0
+		lineageTag: a62f1f60-5513-44d8-b394-b752abd0baf6
+
+	measure 'General Incidents Total Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [General Incidents Total WTD],
+			    "MTD", [General Incidents Total MTD],
+			    "YTD", [General Incidents Total YTD]
+			)
+		formatString: 0
+		lineageTag: 8dbdc9f2-de15-48bf-abe2-1e54a0985a8d
+
+	measure 'General IR Claims WTD' = ```
+			
+			 Var A =[WTD Start Date]
+			 Var B =[WTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="General Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e2181aab-aafa-4a8d-9a73-38ffa497fd92
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'General IR Claims MTD' = ```
+			
+			 Var A =[MTD Start Date]
+			 Var B =[MTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="General Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ddddc2ca-5858-43b4-b3b9-3b47736ac161
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'General IR Claims YTD' = ```
+			
+			 Var A =[YTD Start Date]
+			 Var B =[YTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="General Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 700066f7-9691-46ed-8e87-37fe9ebaa2ee
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'General IR Claims Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [General IR Claims WTD],
+			    "MTD", [General IR Claims MTD],
+			    "YTD", [General IR Claims YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 642fbb7c-665a-4730-809c-5e9de89a4d73
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Auto IR Claims WTD' = ```
+			
+			 Var A =[WTD Start Date]
+			 Var B =[WTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="Auto Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f33c630e-5ea7-459f-acd9-62c51b391ab1
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Auto IR Claims MTD' = ```
+			
+			 Var A =[MTD Start Date]
+			 Var B =[MTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="Auto Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0267c072-5539-4249-a030-77495906a48f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Auto IR Claims YTD' = ```
+			
+			 Var A =[YTD Start Date]
+			 Var B =[YTD End Date]
+			 Var C = CALCULATE(SUM('Incident Report'[estimated_cost_of_Damage]),FILTER('Incident Report','Incident Report'[Incident_Type]="Auto Liability" && 'Incident Report'[IncidentDate]>=a && 'Incident Report'[IncidentDate]<=b))
+			Return C+0
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1bdb2dd0-2669-4f66-ad1b-e9815f57ea27
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Auto IR Claims Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Auto IR Claims WTD],
+			    "MTD", [Auto IR Claims MTD],
+			    "YTD", [Auto IR Claims YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 2a7be0a6-55ac-470f-ac4b-6283a502cabc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'HumanPerformance by Severity Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Human Performance by Severity WTD],
+			    "MTD", [Human Performance by Severity MTD],
+			    "YTD", [Human Performance by Severity YTD]
+			)
+		formatString: 0
+		lineageTag: 5f98c454-886f-4122-ae88-b90d57b26187
+
+	measure 'DCI TotalRequest WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(Sum('DCITools'[Quantity]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: b955c1d5-fb44-44a7-8d72-a6a115ae8fe5
+
+	measure 'DCI TotalRequest MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(Sum('DCITools'[Quantity]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: a925f183-37ab-4597-9996-2ec616897006
+
+	measure 'DCI TotalRequest YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(Sum('DCITools'[Quantity]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 35038d48-2957-42d6-9a93-40b659f02db4
+
+	measure 'DCI TotalRequest Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [DCI TotalRequest WTD],
+			    "MTD", [DCI TotalRequest MTD],
+			    "YTD", [DCI TotalRequest YTD]
+			)
+		formatString: 0
+		lineageTag: 3c0a067e-9126-4495-ab1e-89c3d84f047d
+
+	measure 'DCI Preparation WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PreparationDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A/24+0
+		formatString: 0
+		lineageTag: e53a6999-4b32-45a3-9402-8fbdacdcf916
+
+	measure 'DCI Preparation MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PreparationDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A/24+0
+		lineageTag: 1732a659-3b17-4003-ac01-4a74b85911a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DCI Preparation YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PreparationDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			
+			Return A/24+0
+		lineageTag: 196db9a7-4c55-4305-a6de-0c4172facc1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DCI Preparation Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [DCI Preparation WTD],
+			    "MTD", [DCI Preparation MTD],
+			    "YTD", [DCI Preparation YTD]
+			)
+		formatString: 0
+		lineageTag: eb4bd30d-fabd-469a-8128-7de19c5e4c19
+
+	measure 'DCI Pickup WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PickupDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A/24+0
+		formatString: 0
+		lineageTag: a062350e-d2bb-464e-9c92-6030caa72554
+
+	measure 'DCI Pickup MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PickupDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A/24+0
+		lineageTag: c7b00bc9-9c61-4a0b-9c1f-f6d3cb866a83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DCI Pickup YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('DCITools'[PickupDiff]),'DCITools','DCITools'[Source_Created_Date]>= S && 'DCITools'[Source_Created_Date] <= E)
+			Return A/24+0
+		lineageTag: 6ba96d53-8776-41cc-a889-1270c31ab488
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DCI Pickup Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [DCI Pickup WTD],
+			    "MTD", [DCI Pickup MTD],
+			    "YTD", [DCI Pickup YTD]
+			)
+		formatString: 0
+		lineageTag: 220a3587-8e37-4d07-a9cc-d9fe95d1f923
+
+	measure 'Average Production WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(Average('Production'[Quantity]),'Production','Production'[Date]>= S && 'Production'[Date] <= E)
+			Return A
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5ff77b00-6d80-405e-839b-2fb68dbb54b1
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Average Production MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(Average('Production'[Quantity]),'Production','Production'[Date]>= S && 'Production'[Date] <= E)
+			Return A
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c1841f04-eb8a-4806-a5c8-f581e6e2d605
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Average Production YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(Average('Production'[Quantity]),'Production','Production'[Date]>= S && 'Production'[Date] <= E)
+			Return A
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 895cdcb5-f547-43dd-a321-057a3a5c9f48
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Average Production Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Average Production WTD],
+			    "MTD", [Average Production MTD],
+			    "YTD", [Average Production YTD]
+			)
+		formatString: #,0.00
+		lineageTag: 88d3d5b6-6b43-453c-bdc8-0cff568b54ae
+
+	measure 'Gateway Analysis WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Gateway Analysis'[Name]),'Gateway Analysis','Gateway Analysis'[Calendar_Date]>= S && 'Gateway Analysis'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 034f4dfa-4037-47c0-841c-66b34d83470f
+
+	measure 'Equipment Utilization Percentage WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(Sum('TimesheetLineItems'[total_hours]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var C = B*[Total Hours WTD]
+			Return DIVIDE(A,C,0)
+		lineageTag: ac80bcb1-46bd-4114-b616-95b991c6a632
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Hours YTD' =
+			
+			Var A = CALCULATE(sum('Calendar'[WorkingHours]),FILTER('Calendar','CALENDAR'[Calendar_Date]>=[YTD Start Date] && 'Calendar'[Calendar_Date]<=[YTD End Date]))
+			RETURN A
+		formatString: 0
+		lineageTag: 8a33f40f-a3a6-40f2-8a0c-5a4df8daf704
+
+	measure 'Total Hours WTD' =
+			
+			Var A  = [WTD Start Date]
+			Var B  = CALCULATE(MAX('DimDate3'[Calendar_Date]),FILTER('DimDate3',
+			(((YEAR('DimDate3'[Calendar_Date])) = YEAR([Base Date])) &&
+			((MONTH('DimDate3'[Calendar_Date])) = MONTH([Base Date]))) &&
+			((WEEKNUM('DimDate3'[Calendar_Date],2)) = WEEKNUM([Base Date],2))))
+			
+			Var e =  if((WEEKDAY(b,2))>5 && (WEEKDAY(b,2))<=6,date(year(b),MONTH(b),day(b)-1),if((WEEKDAY(b,2))>6 && (WEEKDAY(b,2))<=7,date(year(b),MONTH(b),day(b)-2),b))
+			var c = DATEDIFF(a,e,DAY)+1
+			Var D = c*8
+			
+			Var F = CALCULATE(sum('Calendar'[WorkingHours]),FILTER('Calendar','CALENDAR'[Calendar_Date]>=[WTD Start Date] && 'Calendar'[Calendar_Date]<=[WTD End Date]))
+			RETURN F
+		formatString: 0
+		lineageTag: 96b33ee2-5903-4015-8b98-25e927305c8d
+
+	measure 'Total Hours MTD' =
+			
+			Var A = CALCULATE(sum('Calendar'[WorkingHours]),FILTER('Calendar','CALENDAR'[Calendar_Date]>=[MTD Start Date] && 'Calendar'[Calendar_Date]<=[MTD End Date]))
+			RETURN A
+		formatString: 0
+		lineageTag: fcf40137-86ff-449a-9795-27cde78639e3
+
+	measure 'Equipment Utilization Percentage MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(Sum('TimesheetLineItems'[total_hours]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var C = B*[Total Hours MTD]
+			Return DIVIDE(A,C,0)
+		lineageTag: 8c6209b5-1e14-4cb0-8a49-3f80f33ca68a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Equipment Utilization Percentage YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(Sum('TimesheetLineItems'[total_hours]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			Var C = B*[Total Hours YTD]
+			Return DIVIDE(A,C,0)
+		lineageTag: a39ff11a-da64-4448-8554-9bb1ea40d60f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Equipment Utilization Percentage Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Equipment Utilization Percentage WTD],
+			    "MTD", [Equipment Utilization Percentage MTD],
+			    "YTD", [Equipment Utilization Percentage YTD]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0a85fcb9-cf81-4003-927a-e4bb291e50c1
+
+	measure 'Active Equipments' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Equipment Detail'[vehicle_number]),'Equipment Detail','Equipment Detail'[status]="Active")
+			Return A+0
+		formatString: 0
+		lineageTag: a5a28357-da5c-4123-832c-44a32799d8b3
+
+	measure 'PurchaseOrder AvgPurchased WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[PurchasedDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		formatString: 0
+		lineageTag: b181b2a2-05c1-47cd-a20a-279936c4895f
+
+	measure 'PurchaseOrder AvgEnteredinspectrum WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[Entered_In_SpectrumDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		lineageTag: 0f82800f-7e99-4cde-8c0e-acb72e7cda25
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PurchaseOrder AvgPurchased MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[PurchasedDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		lineageTag: 26dc5f21-9baf-445e-bf18-2c5bfb4819c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PurchaseOrder AvgPurchased YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[PurchasedDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		lineageTag: 904da9f1-2823-4798-bbb4-9e57a1f8d267
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase Order AvgPurchased Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", round([PurchaseOrder AvgPurchased WTD],0),
+			    "MTD", round([PurchaseOrder AvgPurchased MTD],0),
+			    "YTD", round([PurchaseOrder AvgPurchased YTD],0)
+			)
+		formatString: 0
+		lineageTag: 7c9cfb4a-6682-4ee6-9e0c-446cd120ec20
+
+	measure 'PurchaseOrder AvgEnteredinspectrum MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[Entered_In_SpectrumDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		lineageTag: 8a12972a-41fe-4bca-b62e-c997174c5ebe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PurchaseOrder AvgEnteredinspectrum YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(Average('Purchase Order'[Entered_In_SpectrumDiff]),'Purchase Order','Purchase Order'[Source_Created_Date]>= S && 'Purchase Order'[Source_Created_Date] <= E)
+			Return A
+		lineageTag: 10e74903-157c-443e-825e-8b7bce6d21d3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase Order AvgEnteredinSpectrum Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [PurchaseOrder AvgEnteredinspectrum WTD],
+			    "MTD", [PurchaseOrder AvgEnteredinspectrum MTD],
+			    "YTD", [PurchaseOrder AvgEnteredinspectrum YTD]
+			)
+		formatString: 0
+		lineageTag: eb40fe32-e030-4304-b616-2c829bade816
+
+	measure 'On Timesheets' = ```
+			
+			 Var A = [Past 2 Weeks Start Date]
+			 Var B = [Past 2 Weeks End Date]
+			 Var C = CALCULATE(DISTINCTCOUNT('Equipment Summary'[Vehicle_Name]),FILTER('Equipment Summary','Equipment Summary'[Calendar_Date]>=a && 'Equipment Summary'[Calendar_Date]<=b && 'Equipment Summary'[Flag] ="OnTimesheets"))
+			Return C+0
+			```
+		formatString: 0
+		lineageTag: ffbeabb4-3cd5-4fbd-9c85-c820a830ed5a
+
+	measure 'In Samsara,Not in Timesheets' = ```
+			
+			 Var A = [Past 2 Weeks Start Date]
+			 Var B = [Past 2 Weeks End Date]
+			 Var C = CALCULATE(DISTINCTCOUNT('Equipment Summary'[Vehicle_Name]),FILTER('Equipment Summary','Equipment Summary'[Calendar_Date]>=a && 'Equipment Summary'[Calendar_Date]<=b && 'Equipment Summary'[Flag] ="InSamsara,NotinTimesheets"))
+			Return C+0
+			```
+		formatString: 0
+		lineageTag: db0dddde-5f37-413a-a540-ec593d394426
+
+	measure 'In Timesheets,Not in Samsara' = ```
+			
+			 Var A = [Past 2 Weeks Start Date]
+			 Var B = [Past 2 Weeks End Date]
+			 Var C = CALCULATE(DISTINCTCOUNT('Equipment Summary'[Vehicle_Name]),FILTER('Equipment Summary','Equipment Summary'[Calendar_Date]>=a && 'Equipment Summary'[Calendar_Date]<=b && 'Equipment Summary'[Flag] ="InTimesheets,NotinSamsara"))
+			Return C+0
+			```
+		formatString: 0
+		lineageTag: 9b5f58a6-26bb-4920-a022-d11ca7af91e7
+
+	measure 'Gateway Analysis MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Gateway Analysis'[Name]),'Gateway Analysis','Gateway Analysis'[Calendar_Date]>= S && 'Gateway Analysis'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: ce43dbb5-390f-41b6-8cad-66668cd96088
+
+	measure 'Gateway Analysis YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Gateway Analysis'[Name]),'Gateway Analysis','Gateway Analysis'[Calendar_Date]>= S && 'Gateway Analysis'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 8e3bca8d-b688-4b57-b811-06d74f9dfe61
+
+	measure 'GatewayAnalysis Total Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Gateway Analysis WTD],
+			    "MTD", [Gateway Analysis MTD],
+			    "YTD", [Gateway Analysis YTD]
+			)
+		formatString: 0
+		lineageTag: ce27d6e2-55f9-493f-90c6-ceb299ebcc38
+
+	measure 'Tools Avoidable Cost Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools Avoidable Cost WTD]+0,
+			    "MTD", [Tools Avoidable Cost MTD]+0,
+			    "YTD", [Tools Avoidable Cost YTD]+0
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4c545bd9-8aa6-4daa-a6c2-1714caabdea4
+
+	measure 'Tools unavoidable Cost Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools unavoidable Cost WTD]+0,
+			    "MTD", [Tools unavoidable Cost MTD]+0,
+			    "YTD", [Tools unavoidable Cost YTD]+0
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 210f752c-f68e-45ac-84bc-453dcc0d9aec
+
+	measure 'Tools Needs updated Cost Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Tools Needsupdated Cost WTD]+0,
+			    "MTD", [Tools Needsupdated Cost MTD]+0,
+			    "YTD", [Tools Needsupdated Cost YTD]+0
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e5e2894c-539a-4209-88ad-ed7dcbb3b46d
+
+	measure 'Total WC osha WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B= [WTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=true))
+			RETURN c+0
+		formatString: 0
+		lineageTag: a528d4d1-d63c-49a1-943c-bb3cf8c6cb78
+
+	measure 'Total WC nonosha WTD' =
+			
+			Var A = [WTD Start Date]
+			Var B= [WTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=false))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 2105793c-5699-4ed2-99d0-0083107b85cd
+
+	measure 'Total WC osha MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B= [MTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=true))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 17ea02ec-16fc-4663-9266-98db8037f7ad
+
+	measure 'Total WC nonosha MTD' =
+			
+			Var A = [MTD Start Date]
+			Var B= [MTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=false))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 018001be-11a3-4bb8-9444-00fcbd580249
+
+	measure 'Total WC osha YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B= [YTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=true))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 09d8e000-71ff-4219-ae42-8b72b834e9c8
+
+	measure 'Total WC nonosha YTD' =
+			
+			Var A = [YTD Start Date]
+			Var B= [YTD End Date]
+			Var c = CALCULATE(DISTINCTCOUNT('Workers Compensation'[IRWC_ID]),FILTER('Workers Compensation','Workers Compensation'[INCIDENT_Date]>=a && 'Workers Compensation'[INCIDENT_Date]<= b && 'Workers Compensation'[Is_this_an_OSHA_Reportable_Injury]=false))
+			RETURN c+0
+		formatString: 0
+		lineageTag: 36caf0c5-0705-4311-b51b-e309145f4140
+
+	measure 'Total WC osha Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total WC osha WTD],
+			    "MTD", [Total WC osha MTD],
+			    "YTD", [Total WC osha YTD]
+			)
+		formatString: 0
+		lineageTag: 9b91642c-a34b-47b1-807a-4b5912fc67a8
+
+	measure 'Total WC nonosha Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total WC nonosha WTD],
+			    "MTD", [Total WC nonosha MTD],
+			    "YTD", [Total WC nonosha YTD]
+			)
+		formatString: 0
+		lineageTag: b2caf428-7a3c-4fb5-b52f-f43d6c7fcc49
+
+	measure 'HumanPerformance by Severity Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Human Performance by Severity WTD]+0,
+			    "MTD", [Human Performance by Severity MTD]+0,
+			    "YTD", [Human Performance by Severity YTD]+0
+			)
+		formatString: 0
+		lineageTag: 72908573-5108-4db3-9386-439a762d9248
+
+	measure 'Average Production Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Average Production WTD],
+			    "MTD", [Average Production MTD],
+			    "YTD", [Average Production YTD]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 39597db0-9de8-4318-931b-5d1c212bf8d5
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Open Jobs_cardAging' =
+			
+			Var A = CALCULATE(count('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"}))
+			Return A+0
+		formatString: #,0
+		displayFolder: Jobs
+		lineageTag: 0eecb14d-b7b5-4fc6-9bc4-6ee4f51bf0c9
+
+	measure 'Timesheet total outstanding MTD' =
+			
+			Var A = [Timesheet Supervisor outstanding MTD]+[Timesheet ProjectManager outstanding MTD]
+			RETURN A
+		formatString: 0
+		lineageTag: 2dd029ef-1f14-4e8c-bb75-4caff3ff2e7f
+
+	measure 'Past Due Jobs by Contract' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('JobDetail'[Job_ID]),FILTER('JobDetail','JobDetail'[Status] IN {"Open","Active"} && 'JobDetail'[Pastdueflag]="1"))
+			Return A+0
+		formatString: 0
+		displayFolder: Jobs
+		lineageTag: e263d826-4a8d-4819-ab7c-e97a0a8e1e46
+
+	measure 'Equipment Utilization Unitcount WTD' = ```
+			
+			Var S =[WTD Start Date]
+			Var E =[WTD End Date]
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			RETURN B+0  
+			
+			```
+		formatString: 0
+		lineageTag: 2faa080b-a7bc-41ea-87e2-3ea950e7ddea
+
+	measure 'Equipment Utilization Unitcount MTD' = ```
+			
+			Var S =[MTD Start Date]
+			Var E =[MTD End Date]
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			RETURN B+0  
+			```
+		formatString: 0
+		lineageTag: 53721442-b3c1-45a5-bb93-fd8de258582f
+
+	measure 'Equipment Utilization Unitcount YTD' = ```
+			
+			Var S =[YTD Start Date]
+			Var E =[YTD End Date]
+			Var B = CALCULATE(DISTINCTCOUNT('TimesheetLineItems'[vehicle_Number]),'TimesheetLineItems','TimesheetLineItems'[source_created_Date]>= S && 'TimesheetLineItems'[source_created_Date] <= E)
+			RETURN B+0  
+			```
+		formatString: 0
+		lineageTag: 730ab9a1-410f-47f8-9c02-2ce69e331f2d
+
+	measure 'Equipment Utilization Unitcount Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Equipment Utilization Unitcount WTD],
+			    "MTD", [Equipment Utilization Unitcount MTD],
+			    "YTD", [Equipment Utilization Unitcount YTD]
+			)
+		formatString: 0
+		lineageTag: 8c72c34d-74b8-4d38-8f04-0f5fe6430998
+
+	measure 'Overall Safety Score WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] ="All Drivers")
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] ="All Drivers" && 'Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E)
+			Return a+0
+		formatString: 0
+		lineageTag: 9cae6c8c-40c7-4275-9269-977dd1145f1c
+
+	measure 'Overall Safety Score MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] ="All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] ="All Drivers")
+			Return a+0
+		formatString: 0
+		lineageTag: 411e6c5d-cbd4-4e99-9d12-c44772afe5d7
+
+	measure 'Overall Safety Score YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] ="All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] ="All Drivers")
+			Return A+0
+		lineageTag: ec477a60-f052-4ba7-8364-9cab8fd64f89
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Overall Safety Score Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Overall Safety Score WTD],
+			    "MTD", [Overall Safety Score MTD],
+			    "YTD", [Overall Safety Score YTD]
+			)
+		lineageTag: 98dc4d8c-9ff6-4401-a93d-605c0e75af44
+
+	measure 'Safety Score WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return round(A,0)+0
+		formatString: 0
+		lineageTag: 0c3b4731-9c44-451a-b04b-162ee3fdf15d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Coaching Effectiveness Repeated WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 02070efe-d09f-43d1-ad51-91f391729050
+
+	measure 'Coaching Effectiveness Repeated MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 24b95761-d95c-4af3-9411-6b5816b04fc5
+
+	measure 'Coaching Effectiveness Repeated YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: b2233b5e-77d6-49e6-be92-70ffe3890e6d
+
+	measure 'Coaching Effectiveness Repeated Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Coaching Effectiveness Repeated WTD],
+			    "MTD", [Coaching Effectiveness Repeated MTD],
+			    "YTD", [Coaching Effectiveness Repeated YTD]
+			)
+		formatString: 0
+		lineageTag: 39cec307-6f03-4c0a-bdc1-6e8e611a238d
+
+	measure 'Coaching Effectiveness Total WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: fbd52a16-5930-4c15-85bb-a35d6c12fd41
+
+	measure 'Coaching Effectiveness Total MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: c04e8838-72e2-4f08-8acc-4f651671d409
+
+	measure 'Coaching Effectiveness Total YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return A+0
+		formatString: 0
+		lineageTag: bd6f73ba-6fef-4672-91c5-72a2d059990f
+
+	measure 'Coaching Effectiveness Total Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Coaching Effectiveness Total WTD],
+			    "MTD", [Coaching Effectiveness Total MTD],
+			    "YTD", [Coaching Effectiveness Total YTD]
+			)
+		formatString: 0
+		lineageTag: 95d45a40-d008-48ba-a9fe-f588724a4c94
+
+	measure 'Event Resolution TotalEvents WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 566413cb-78ab-4cf0-88ed-4837503f3c81
+
+	measure 'Event Resolution TotalEvents MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: d68a68b9-dfc8-4fab-93f6-986dd4490143
+
+	measure 'Event Resolution TotalEvents YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: e42dfaee-9d06-4448-b974-bd52b1af843b
+
+	measure 'Event Resolution TotalEvents Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution TotalEvents WTD],
+			    "MTD", [Event Resolution TotalEvents MTD],
+			    "YTD", [Event Resolution TotalEvents YTD]
+			)
+		formatString: 0
+		lineageTag: 4d6beba8-c027-488d-826f-17447fd1af71
+
+	measure 'Event Resolution Unresolved WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 1c0c55ca-1382-40f4-9c03-859594704ecb
+
+	measure 'Event Resolution Unresolved MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 0decdc25-fa2b-4a13-9963-684645aa87b8
+
+	measure 'Event Resolution Unresolved YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return A+0
+		formatString: 0
+		lineageTag: 171cbed4-1847-4481-aff5-a5005ddb1ec7
+
+	measure 'Event Resolution Unresolved Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution Unresolved WTD],
+			    "MTD", [Event Resolution Unresolved MTD],
+			    "YTD", [Event Resolution Unresolved YTD]
+			)
+		formatString: 0
+		lineageTag: 767a43be-1a0b-4f9b-96db-e914e7a12f5a
+
+	measure 'Event Resolution Unresolved % WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		formatString: 0%;-0%;0%
+		lineageTag: 1d81cdbf-1f50-4d6f-b243-00f8bc7e46f3
+
+	measure 'Event Resolution Unresolved % MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b74bf50e-f8dc-45a0-8aed-a133b3569b6a
+
+	measure 'Event Resolution Unresolved % YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 59b78306-3906-4c1c-88dd-552e424c2e18
+
+	measure 'Event Resolution Unresolved % Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution Unresolved % WTD],
+			    "MTD", [Event Resolution Unresolved % MTD],
+			    "YTD", [Event Resolution Unresolved % YTD]
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 80b3baf6-b04f-4983-b92f-5455c02619d0
+
+	measure 'Assigned Faces Driver WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Driver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: c9832788-99ab-4cc7-b2c5-706c64371e71
+
+	measure 'Assigned Faces Driver MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Driver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 6e44bd9c-85d5-4895-84d7-e3cd9acf49a6
+
+	measure 'Assigned Faces Driver YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Driver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 15cc9e3a-4134-43f2-b2a1-cdc2907200ed
+
+	measure 'Assigned Faces Driver Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Assigned Faces Driver WTD],
+			    "MTD", [Assigned Faces Driver MTD],
+			    "YTD", [Assigned Faces Driver YTD]
+			)
+		formatString: 0
+		lineageTag: b37cfa42-ed4a-4046-9f01-142dcbf19c4d
+
+	measure 'Assigned Faces Vehicles WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 77647a97-a683-4990-b4c3-e212f86cb6de
+
+	measure 'Assigned Faces Vehicles MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 7631ffe9-d4a7-40b8-a118-7492f036367b
+
+	measure 'Assigned Faces Vehicles YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]<>"Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: e3523ec1-3e0d-4beb-bb00-cb45ceb9ed87
+
+	measure 'Assigned Faces Vehicle Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Assigned Faces Vehicles WTD],
+			    "MTD", [Assigned Faces Vehicles MTD],
+			    "YTD", [Assigned Faces Vehicles YTD]
+			)
+		formatString: 0
+		lineageTag: a3c820e0-3a73-46cc-815f-71f1c3bb2ace
+
+	measure 'Unassigned Faces Vehicles WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: a507a068-4134-41b8-be68-8ba4038dfa07
+
+	measure 'Unassigned Faces Vehicles MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 458dcee6-989a-4ac9-98e9-78e557c7c7da
+
+	measure 'Unassigned Faces Vehicles YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehicle]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: 93767a8c-692e-4fee-8cbd-717acb0a48d8
+
+	measure 'Unassigned Faces Vehicles Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Unassigned Faces Vehicles WTD],
+			    "MTD", [Unassigned Faces Vehicles MTD],
+			    "YTD", [Unassigned Faces Vehicles YTD]
+			)
+		formatString: 0
+		lineageTag: ac075024-2651-453a-8faa-14713d3a85a9
+
+	measure 'Unassigned Faces Driver WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehciledriver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: a76ce9c9-2091-4f10-9cdf-dc89e1054d23
+
+	measure 'Unassigned Faces Driver MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehciledriver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: a5ea053f-23fa-4478-9633-6994e7aa175f
+
+	measure 'Unassigned Faces Driver YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(DISTINCTCOUNT('Trip History'[Vehciledriver]),'Trip History','Trip History'[Calendar_Date]>= S && 'Trip History'[Calendar_Date]<= E && 'Trip History'[Driver]="Unassigned")
+			Return A+0
+		formatString: 0
+		lineageTag: e75b74c2-7ac4-41b7-8d46-f97569de1b6a
+
+	measure 'Unassigned Faces Driver Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Unassigned Faces Driver WTD],
+			    "MTD", [Unassigned Faces Driver MTD],
+			    "YTD", [Unassigned Faces Driver YTD]
+			)
+		formatString: 0
+		lineageTag: 6976a07e-cad6-40f1-a6b2-807b116579a5
+
+	measure 'Average Time to Coach Incidents WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(SUM('Coaching Timeliness'[AverageHours]),'Coaching Timeliness','Coaching Timeliness'[Calendar_Date]>= S && 'Coaching Timeliness'[Calendar_Date]<= E)
+			Return divide(A,24,0)+0
+		lineageTag: 80232cd2-e852-4380-aa03-92d84ee3f67b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Time to Coach Incidents MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(SUM('Coaching Timeliness'[AverageHours]),'Coaching Timeliness','Coaching Timeliness'[Calendar_Date]>= S && 'Coaching Timeliness'[Calendar_Date]<= E)
+			Return divide(A,24,0)+0
+		lineageTag: 7d8d9315-f7d0-4040-b3ef-6e93107dfc66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Time to Coach Incidents YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(SUM('Coaching Timeliness'[AverageHours]),'Coaching Timeliness','Coaching Timeliness'[Calendar_Date]>= S && 'Coaching Timeliness'[Calendar_Date]<= E)
+			Return divide(A,24,0)+0
+		lineageTag: 0ac27070-ea2b-4b00-8c54-f225f8f75801
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Time to Coach Incidents Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Average Time to Coach Incidents WTD],
+			    "MTD", [Average Time to Coach Incidents MTD],
+			    "YTD", [Average Time to Coach Incidents YTD]
+			)
+		lineageTag: 4b397395-e1a6-4a6f-8781-5ebfa3d088d3
+
+	measure 'Riskfactors WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Safety Score Unpivot_Sub'[RiskCount]),'Safety Score Unpivot_Sub','Safety Score Unpivot_Sub'[Calendar_Date]>= S && 'Safety Score Unpivot_Sub'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: 3ddbfa45-1329-42f2-a4c4-3ad57dbc3eab
+
+	measure 'Riskfactors MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Safety Score Unpivot_Sub'[RiskCount]),'Safety Score Unpivot_Sub','Safety Score Unpivot_Sub'[Calendar_Date]>= S && 'Safety Score Unpivot_Sub'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: e82cf0f9-9622-4f02-babf-87b2176039ff
+
+	measure 'Riskfactors YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Safety Score Unpivot_Sub'[RiskCount]),'Safety Score Unpivot_Sub','Safety Score Unpivot_Sub'[Calendar_Date]>= S && 'Safety Score Unpivot_Sub'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: 4018000d-753a-48c9-b5ca-6008bd48278c
+
+	measure 'Risk Factors Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Riskfactors WTD],
+			    "MTD", [Riskfactors MTD],
+			    "YTD", [Riskfactors YTD]
+			)
+		formatString: 0
+		lineageTag: 56fc81de-3268-4635-9a96-ff6d5ff52da4
+
+	measure 'Riskfactors Trend' =
+			
+			Var A = CALCULATE(sum('Safety Score Unpivot'[RiskCount] ))
+			Return A+0
+		formatString: 0
+		lineageTag: 9fae77c7-adb9-441f-919e-15b83980d1fe
+
+	measure 'Event Resolution resolved % WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Resolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: 0c0fa18f-8409-41ac-a1cf-1a63697a20fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution resolved % MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Resolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: eb7169ca-ab3c-4a0f-ae41-4dc6c99c5593
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution resolved % YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Resolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: dd91515b-2d73-404d-99eb-7c600d032250
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution Resolved % Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution resolved % WTD],
+			    "MTD", [Event Resolution resolved % MTD],
+			    "YTD", [Event Resolution resolved % YTD]
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: d608df43-0732-4bbc-85d0-158d3ed07fb0
+
+	measure 'Event Resolution Dismissed % WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Dismissed]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: 14bf4a38-1240-474f-bc07-b49ab69db54a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution Dismissed % MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Dismissed]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: 79afde57-495e-4187-8f77-3fe5b7ca86b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution Dismissed % YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Dismissed]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Return divide(a,b,0)+0
+		lineageTag: 3b962dc1-8cec-427e-88fe-22ac63cc0a55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Event Resolution Dismissed % Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution Dismissed % WTD],
+			    "MTD", [Event Resolution Dismissed % MTD],
+			    "YTD", [Event Resolution Dismissed % WTD]
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 02182eed-d1e8-4f88-b63a-c7f5a5a6b52c
+
+	measure 'Safety Score MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return round(A,0)+0
+		lineageTag: a3ca5a50-75ac-491a-bf7d-f20840cb70c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Safety Score YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return round(A,0)+0
+		lineageTag: c4693465-6eb3-4401-82d7-ab82f8be2eb4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Safety Score Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Safety Score WTD],
+			    "MTD", [Safety Score MTD],
+			    "YTD", [Safety Score YTD]
+			)
+		formatString: 0
+		lineageTag: 5e517379-6615-49c2-ad6f-0a46645c6a50
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Event Resolution Unresolved % YTD_Card' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var c = divide(a,b,0)+0
+			return "("&" "&format(c,"0.0%")&" "&")"
+		lineageTag: a959b8d9-89ce-40c1-8110-b74e8314fa2b
+
+	measure 'Event Resolution Unresolved % WTD_Card' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var c = divide(a,b,0)+0
+			return "("&" "&format(c,"0.0%")&" "&")"
+		lineageTag: 654fae35-149f-4c0f-9da4-9a7cbf9fb2ba
+
+	measure 'Event Resolution Unresolved % MTD_Card' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Event Resolution'[Unresolved]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var b = CALCULATE(sum('Event Resolution'[Total_Events]),'Event Resolution','Event Resolution'[Calendar_Date]>= S && 'Event Resolution'[Calendar_Date]<= E)
+			Var c = divide(a,b,0)+0
+			return "("&" "&format(c,"0.0%")&" "&")"
+		lineageTag: 8e42fbb0-e1ee-4138-9c60-5cab682f0236
+
+	measure 'Event Resolution Unresolved % Switch_Card' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Event Resolution Unresolved % WTD_Card],
+			    "MTD", [Event Resolution Unresolved % MTD_Card],
+			    "YTD", [Event Resolution Unresolved % YTD_Card]
+			)
+		lineageTag: 473960eb-8e69-4512-a8c7-41c603456df5
+
+	measure 'Total Miles WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			Var A = CALCULATE(sum('Safety Score'[Total_Distance]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return if(A=0,BLANK(),A)
+		lineageTag: 46080483-bd94-4b47-aaf8-1e72ea3e9d55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Miles MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			Var A = CALCULATE(sum('Safety Score'[Total_Distance]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return if(A=0,BLANK(),A)
+		lineageTag: ecf48d7e-571c-4bcc-9785-0e42893ca5a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Miles YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			Var A = CALCULATE(sum('Safety Score'[Total_Distance]),'Safety Score','Safety Score'[Calendar_Date]>= S && 'Safety Score'[Calendar_Date]<= E && 'Safety Score'[Driver_Name] <> "All Drivers")
+			--Var A = CALCULATE(AVERAGE('Safety Score'[Safety_Score]),'Safety Score','Safety Score'[Driver_Name] <>"All Drivers" )
+			Return if(A=0,BLANK(),A)
+		lineageTag: f6d02a4a-96f9-4b94-8f01-3b6f256c7c6c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Miles Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Total Miles WTD],
+			    "MTD", [Total Miles MTD],
+			    "YTD", [Total Miles YTD]
+			)
+		lineageTag: 0e5fa52f-47fb-4f4c-89b1-23dbbd3223a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Ranks =
+			
+			Var A =  ADDCOLUMNS('Safety Score',"drivername",[Driver_Name],"SafetyScore",[Safety Score Switch],"Milesdriven",[Total Miles Switch])
+			
+			var b=rank(DENSE,a,ORDERBY([Safety Score Switch],desc,[Total Miles Switch],desc),,,,)
+			RETURN b
+		formatString: 0
+		lineageTag: e8801ab0-8a06-4053-b1a4-b016918b7f35
+
+	measure Rankm =
+			
+			Var A = rankx(all('Safety Score'),[Total Miles Switch],,DESC,Dense)
+			RETURN A
+		formatString: 0
+		lineageTag: 6211318b-0cc5-4540-b6e1-60487d3b8b18
+
+	measure 'Repeated Events WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness Unpivot'[RiskCount]),'Coaching Effectiveness Unpivot','Coaching Effectiveness Unpivot'[Calendar_Date]>= S && 'Coaching Effectiveness Unpivot'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: ad2f4bba-78c6-4f2a-92d5-a8135f9494a1
+
+	measure 'Repeated Events MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness Unpivot'[RiskCount]),'Coaching Effectiveness Unpivot','Coaching Effectiveness Unpivot'[Calendar_Date]>= S && 'Coaching Effectiveness Unpivot'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: 8c08d622-38de-4780-a9e7-ceb195ca003d
+
+	measure 'Repeated Events YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness Unpivot'[RiskCount]),'Coaching Effectiveness Unpivot','Coaching Effectiveness Unpivot'[Calendar_Date]>= S && 'Coaching Effectiveness Unpivot'[Calendar_Date]<= E )
+			Return if(A=0,blank(),A)
+		formatString: 0
+		lineageTag: a91e7a07-ed0a-44b2-b887-3f5312ace11f
+
+	measure 'Repeated Events Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Repeated Events WTD],
+			    "MTD", [Repeated Events MTD],
+			    "YTD", [Repeated Events YTD]
+			)
+		formatString: 0
+		lineageTag: e8e28f99-d92f-493f-9783-fbaa1733d54d
+
+	measure 'Coaching Effectiveness Repeated Rate WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (DIVIDE(a,b,0)*1000)+0
+		lineageTag: 9973b6d7-8daf-4a69-9533-c104a9e158bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Repeated Rate MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (divide(a,b,0)*1000)+0
+		lineageTag: f0bcf8fd-9a17-41c7-ae0c-42c10eb863ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Repeated Rate YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Repeat_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (divide(a,b,0)*1000)+0
+		lineageTag: d6875ae8-2e8b-47ba-8ee5-389d3e06537c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Repeated Rate Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Coaching Effectiveness Repeated Rate WTD],
+			    "MTD", [Coaching Effectiveness Repeated Rate MTD],
+			    "YTD", [Coaching Effectiveness Repeated Rate YTD]
+			)
+		lineageTag: 8341f748-841e-4e8f-9a52-8c9244d1a5c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Total Rate WTD' =
+			
+			Var S = [WTD Start Date]
+			Var E = [WTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (DIVIDE(a,b,0)*1000)+0
+		lineageTag: 1d1fa65b-bee8-4b24-ba25-1c977f2bca45
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Total Rate MTD' =
+			
+			Var S = [MTD Start Date]
+			Var E = [MTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (DIVIDE(a,b,0)*1000)+0
+		lineageTag: 73d86bc0-e2cd-47a9-8a83-7f4e3288e48c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Total Rate YTD' =
+			
+			Var S = [YTD Start Date]
+			Var E = [YTD End Date]
+			
+			Var A = CALCULATE(sum('Coaching Effectiveness'[Total_Behaviors_Count]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Var B = CALCULATE(sum('Coaching Effectiveness'[Total_Distance]),'Coaching Effectiveness','Coaching Effectiveness'[Calendar_Date]>= S && 'Coaching Effectiveness'[Calendar_Date] <= E)
+			Return (DIVIDE(a,b,0)*1000)+0
+		lineageTag: d2225a36-921a-4e58-950c-e58cc87be1df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Coaching Effectiveness Total Rate Switch' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Timeperiod'[Timeperiod]),
+			    "WTD", [Coaching Effectiveness Total Rate WTD],
+			    "MTD", [Coaching Effectiveness Total Rate MTD],
+			    "YTD", [Coaching Effectiveness Total Rate YTD]
+			)
+		lineageTag: bccdbf5f-e698-40e5-ad3f-23fa6765c74a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		formatString: 0
+		lineageTag: f38e496a-87df-4eb4-834e-65bcd343fbf0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measure = calculated
+		mode: import
+		source = {0}
+
+	annotation PBI_Id = 01a9ba3e75124bca843802c661a99320
+

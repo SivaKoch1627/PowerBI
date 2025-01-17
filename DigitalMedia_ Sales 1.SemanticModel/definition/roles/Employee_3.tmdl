@@ -1,0 +1,7 @@
+role Employee_3
+	modelPermission: read
+
+	tablePermission 'dm customer' = [supportrepid] == 3
+
+	annotation PBI_Id = 77953dc8256945349c9984dcc37c5f0c
+

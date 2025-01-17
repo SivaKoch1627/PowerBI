@@ -1,0 +1,63 @@
+table 'Track Description'
+	lineageTag: c7f6b5be-de1d-4735-a38e-ac6c708ed569
+
+	column billingcountry
+		dataType: string
+		lineageTag: 30c9ec47-d6b4-4eff-9034-2be7e3746126
+		summarizeBy: none
+		sourceColumn: billingcountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column track_name
+		dataType: string
+		lineageTag: 68a3f4c9-99d0-453f-87eb-53ddf59f84be
+		summarizeBy: none
+		sourceColumn: track_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column album_title
+		dataType: string
+		lineageTag: 256b1ed5-25d8-4980-8192-62a45adb6ea9
+		summarizeBy: none
+		sourceColumn: album_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column genre_name
+		dataType: string
+		lineageTag: 93380267-c9d3-4e3a-9835-aa2ae9aa7c6a
+		summarizeBy: none
+		sourceColumn: genre_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column mediatype_name
+		dataType: string
+		lineageTag: 22d9c0f7-0a2d-45cb-9891-6b9322004ba2
+		summarizeBy: none
+		sourceColumn: mediatype_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column bill
+		dataType: double
+		lineageTag: 30b6ab82-7803-42f3-82fc-0439e97e61cd
+		summarizeBy: none
+		sourceColumn: bill
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Track Description' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(PostgreSQL.Database("localhost:5432", "DigitalMedia"), "select highest.billingcountry,highest.name as track_Name ,highest.title as Album_title,highest.genre as Genre_name, highest.mediatype as mediatype_name, highest.bill from#(lf)#(tab)(select f.name as mediatype, e.name as genre,  a.billingcountry,c.name,d.title, sum(b.unitprice) as bill , row_number () over(partition by a.billingcountry order by sum(b.unitprice) desc) as top from dm.invoice a #(lf)inner join dm.Invoiceline b on a.InvoiceId=b.InvoiceId#(lf)inner join dm.Track c on b.trackId=c.Trackid#(lf)inner join dm.album d on c.albumid=d.albumid#(lf)inner join dm.genre e on c.genreid=e.genreid#(lf)inner join dm.mediatype f on c.mediatypeid=f.mediatypeid#(lf)group by f.name, e.name, c.name, a.billingcountry,d.title)as highest#(lf)where highest.top =1", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

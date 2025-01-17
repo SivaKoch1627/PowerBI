@@ -1,0 +1,43 @@
+table 'Coaching Effectiveness Unpivot'
+	lineageTag: 0024d00c-a5d9-49ca-992c-8bfdaa0b8829
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 60df73fe-1fa0-4746-95e1-cb31421d363f
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column RiskCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 11c5c851-1377-465b-82e8-497d20a26bf7
+		summarizeBy: sum
+		sourceColumn: RiskCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column RiskFactors
+		dataType: string
+		lineageTag: 4de2d2bb-2247-446a-b23f-f89b569d16d1
+		summarizeBy: none
+		sourceColumn: RiskFactors
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Coaching Effectiveness Unpivot' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "with CoachingEffectiveness as (#(lf) select Calendar_date,#(lf) sum(Crash_Repeat_Behavior_Count) as Crash,#(lf) sum(Following_Distance_Repeat_Behavior_Count) as Following_Distance,#(lf) sum(Following_of_2_4s_Repeat_Behavior_Count) as Following_of_2_4s,#(lf) sum(Following_of_0_2s_Repeat_Behavior_Count) as Following_of_0_2s,#(lf) sum(Late_Response_Repeat_Behavior_Count) as Late_Response,#(lf) sum(Defensive_Driving_Repeat_Behavior_Count) as Defensive_Driving,#(lf)sum(Near_Collision_Repeat_Behavior_Count) as Near_Collision,#(lf)sum(Forward_Collision_Warning_Repeat_Behavior_Count) as Forward_Collision,#(lf)sum(Harsh_Accel_Repeat_Behavior_Count) as Harsh_Accel,#(lf)sum(Harsh_Brake_Repeat_Behavior_Count) AS Harsh_Brake,#(lf)Sum(Harsh_Turn_Repeat_Behavior_Count) as Harsh_Turn,#(lf)sum(Mobile_Usage_Repeat_Behavior_Count) as Mobile_Usage,#(lf)sum(Inattentive_Driving_Repeat_Behavior_Count) as Inattentive_Driving,#(lf)sum(Drowsy_Repeat_Behavior_Count) as Drowsy,#(lf)sum(Rolling_stop_Repeat_Behavior_Count) as Rolling_Stop,#(lf)sum(Did_Not_Yield_Repeat_Behavior_Count) as Did_Not_Yield,#(lf)sum(Ran_Red_Light_Repeat_Behavior_Count) as Ran_Red_Light,#(lf)sum(Lane_Departure_Repeat_Behavior_Count) as Lane_Departure,#(lf)sum(Obstructed_Camera_Repeat_Behavior_Count) as Obstructed_Camera,#(lf)sum(Eating_Drinking_Repeat_Behavior_Count) as Eating_Drinking,#(lf)sum(Smoking_Repeat_Behavior_Count) as Smoking,#(lf)sum(No_Seat_Belt_Repeat_Behavior_count) as No_Seat_Belt,#(lf)sum(No_Mask_Repeat_Behavior_Count) as No_Mask,#(lf)sum(Speeding_Repeat_Behavior_Count) as Speeding#(lf)from gold.fact_coachingeffectiveness #(lf)where #(lf)group by Calendar_date#(lf)),#(lf)consolidate(#(lf)select cast(Calendar_Date as Date),RiskCount,RiskFactors#(lf)from coachingeffectiveness#(lf)UNPIVOT #(lf)( RiskCount#(lf)  for RiskFactors in (Crash,Following_Distance,Following_of_2_4s,Following_of_0_2s,Late_Response,Defensive_Driving,Near_Collision,Forward_Collision,Harsh_Accel,Harsh_Brake,Harsh_Turn,Mobile_Usage,#(lf)  Inattentive_Driving,Drowsy,Rolling_Stop,Did_Not_Yield,Ran_Red_Light,Lane_Departure,Obstructed_Camera,Eating_Drinking,Smoking,No_Seat_Belt,No_Mask,Speeding)#(lf)) as Unpivotex#(lf))#(lf)select *#(lf) --sum(riskcount) as riskcount,riskfactors#(lf)FROM cONSOLIDATE", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

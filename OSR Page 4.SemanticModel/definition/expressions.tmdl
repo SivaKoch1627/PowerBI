@@ -1,0 +1,21 @@
+expression 'Server hostname' = "dbc-82761d12-34eb.cloud.databricks.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 51ed6e31-8fa9-4fa2-8707-0356eb492cc3
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression 'HTTP Path' = "/sql/1.0/warehouses/6809937c930ffe21" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 1efa6ba2-efdd-443a-81ce-9d3dd1efa013
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression 'Catalogue Name' = "danellaqa" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 45edc32d-5b38-46cd-bbca-7c77b4f5c1f3
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

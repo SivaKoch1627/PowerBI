@@ -1,0 +1,119 @@
+table DCITools
+	lineageTag: 55a8c806-3fce-47c0-8f6f-6cddeefe7215
+
+	column DailyLogRequests_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 05ce9563-6575-4b59-9c4d-856352f20fd5
+		summarizeBy: count
+		sourceColumn: DailyLogRequests_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Action
+		dataType: string
+		lineageTag: 4fd6de1f-27d7-4dd9-8f3a-5dfa4065c85c
+		summarizeBy: none
+		sourceColumn: Action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_and_time_ready_for_Pickup
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9c55d88c-f3a2-4c5b-90f2-1ce73e353761
+		summarizeBy: none
+		sourceColumn: Date_and_time_ready_for_Pickup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 10a174b8-553d-4bf9-ac73-8788434368ab
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 82a51fd6-0f29-486e-91d4-919447e1229e
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Condition
+		dataType: string
+		lineageTag: 0192fc68-13e6-4049-9827-41229d1887f7
+		summarizeBy: none
+		sourceColumn: Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scan_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9e63a469-2d8f-43f3-bafd-a4a691c6148c
+		summarizeBy: none
+		sourceColumn: Scan_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_and_Time_Picked_Up
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c3fffd74-2c93-4876-88fd-f69d3da6199d
+		summarizeBy: none
+		sourceColumn: Date_and_Time_Picked_Up
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source_Created_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 79c15cd5-b6d4-473a-8190-1749a51347ae
+		summarizeBy: none
+		sourceColumn: Source_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: 7a27153a-c6a4-43dd-b892-8b95377e3b9a
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PreparationDiff
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a74e497-6674-414f-ba36-53402ce99cfa
+		summarizeBy: sum
+		sourceColumn: PreparationDiff
+
+		annotation SummarizationSetBy = Automatic
+
+	column PickupDiff
+		dataType: int64
+		formatString: 0
+		lineageTag: cbebef39-5641-4ffd-95c5-850233e48554
+		summarizeBy: sum
+		sourceColumn: PickupDiff
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DCITools = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select a.DailyLogRequests_ID,a.Action,a.Date_and_time_ready_for_Pickup,a.Quantity,a.Status,a.Condition,a.Scan_Date,a.Date_and_Time_Picked_Up,a.Source_Created_Date#(lf),CONCAT(b.First_Name, ' ', b.Last_Name) as ForemanName, #(lf)abs(Datediff(hour,a.Date_And_Time_Ready_For_Pickup,a.Source_Created_Date)) as PreparationDiff#(lf), abs(Datediff(hour,a.Date_And_Time_Picked_Up,a.Source_Created_Date)) as PickupDiff#(lf)from gold.fact_dailylogrequests a#(lf)left join gold.dim_employee b#(lf)on a.dw_employee_id = b.dw_employee_id and b.is_active=true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

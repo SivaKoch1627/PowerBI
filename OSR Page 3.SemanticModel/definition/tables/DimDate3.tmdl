@@ -1,0 +1,311 @@
+table DimDate3
+	lineageTag: 378358a8-0c88-4cf4-ab3e-b0f828413b88
+
+	column Date_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cbce168-a472-4c8c-9fde-9b72a0600b71
+		summarizeBy: count
+		sourceColumn: Date_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 88ed0c48-2cd0-4579-88ce-4edaba5debff
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Calendar_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: b1e403bf-9b79-4328-bef8-d78d7108eb13
+		summarizeBy: sum
+		sourceColumn: Calendar_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Month
+		dataType: string
+		lineageTag: bdacc349-1d6b-466e-a2c0-1f2df58f71c2
+		summarizeBy: none
+		sourceColumn: Calendar_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Of_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ca43f697-cf91-418a-bf52-f87792c0032e
+		summarizeBy: sum
+		sourceColumn: Month_Of_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Day
+		dataType: string
+		lineageTag: 5d1561a6-e37a-4800-8761-acb9136c17d6
+		summarizeBy: none
+		sourceColumn: Calendar_Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Week
+		dataType: int64
+		formatString: 0
+		lineageTag: ba27a003-705a-4c66-af54-eeeda00edfec
+		summarizeBy: sum
+		sourceColumn: Day_Of_Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Week_Start_Monday
+		dataType: int64
+		formatString: 0
+		lineageTag: e266cb3d-b433-4d1b-a004-353dc97ae3f8
+		summarizeBy: sum
+		sourceColumn: Day_Of_Week_Start_Monday
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Week_Day
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 821d3b00-f809-4264-87f9-7356d751dbe6
+		summarizeBy: none
+		sourceColumn: Is_Week_Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: b0954d37-c108-4952-8bdd-a5484f4467c6
+		summarizeBy: sum
+		sourceColumn: Day_Of_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Last_Day_Of_Month
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 30a25e4e-d883-4f61-a204-40f8c48561bb
+		summarizeBy: none
+		sourceColumn: Is_Last_Day_Of_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day_Of_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 10ec7b3e-fb97-4588-a41f-18c2a6bd794d
+		summarizeBy: sum
+		sourceColumn: Day_Of_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Of_Year_ISO
+		dataType: int64
+		formatString: 0
+		lineageTag: bbc5265c-401f-4d21-a9de-e61aa8085747
+		summarizeBy: sum
+		sourceColumn: Week_Of_Year_ISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Of_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e6ce214-2c0b-4dff-b3ef-a68374281b17
+		summarizeBy: sum
+		sourceColumn: Quarter_Of_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Year_Oct_To_Sep
+		dataType: int64
+		formatString: 0
+		lineageTag: 081d9937-d1d5-4e4e-aa0f-ebf89f9074bf
+		summarizeBy: sum
+		sourceColumn: Fiscal_Year_Oct_To_Sep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Month_Oct_To_Sep
+		dataType: int64
+		formatString: 0
+		lineageTag: f318b74d-c9cc-4b04-975d-8eda1d7613b6
+		summarizeBy: sum
+		sourceColumn: Fiscal_Month_Oct_To_Sep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Year_Jul_To_Jun
+		dataType: int64
+		formatString: 0
+		lineageTag: 22b2290a-c30b-4119-ac22-b97f00558daf
+		summarizeBy: sum
+		sourceColumn: Fiscal_Year_Jul_To_Jun
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fiscal_Month_Jul_To_Jun
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d675625-4ad7-4793-ab16-39ed3fc912a5
+		summarizeBy: sum
+		sourceColumn: Fiscal_Month_Jul_To_Jun
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_End_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4849469c-4d20-4fd7-8371-4dc76bf577a8
+		summarizeBy: none
+		sourceColumn: Month_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Week_End_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59a32f20-4298-42bf-9013-926e2955bd72
+		summarizeBy: none
+		sourceColumn: Week_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year_Month
+		dataType: string
+		lineageTag: 0f18fa11-36e9-4729-aef7-f71effecd982
+		summarizeBy: none
+		sourceColumn: Year_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Day
+		dataType: string
+		lineageTag: 8e5e29f5-aaec-4bf4-8386-735002d10f00
+		summarizeBy: none
+		sourceColumn: Week_Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Number
+		dataType: int64
+		formatString: 0
+		lineageTag: 346e1c8b-3bcf-44a0-96f8-e7a807d5c8a7
+		summarizeBy: sum
+		sourceColumn: Week_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week_Start_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8925bd8b-ce45-40b2-b246-177aafcb5f9e
+		summarizeBy: none
+		sourceColumn: Week_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month_Start_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5358846a-72e3-4cb7-a141-57eab6e13d09
+		summarizeBy: none
+		sourceColumn: Month_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month_Number
+		dataType: int64
+		formatString: 0
+		lineageTag: ce176480-596d-4965-b888-6dd1be6f445e
+		summarizeBy: sum
+		sourceColumn: Month_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Number
+		dataType: int64
+		formatString: 0
+		lineageTag: ffb34bdc-d068-4ba0-8db8-8f48f88fea7f
+		summarizeBy: sum
+		sourceColumn: Quarter_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Name
+		dataType: string
+		lineageTag: 449ec97f-a5c6-4817-aa27-7c4e9fe51931
+		summarizeBy: none
+		sourceColumn: Quarter_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Begin_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f766d95a-850d-4e54-b6e5-4504405d84ba
+		summarizeBy: none
+		sourceColumn: Quarter_Begin_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Quarter_End_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7201bd2f-acd7-467e-9718-68495ed6d074
+		summarizeBy: none
+		sourceColumn: Quarter_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthAbb
+		dataType: string
+		lineageTag: 31180849-d14c-43cd-8b96-8cb48326b74d
+		summarizeBy: none
+		sourceColumn: MonthAbb
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkingHours
+		dataType: int64
+		formatString: 0
+		lineageTag: b3733924-fa7c-458f-9dc4-41bf2a52ccef
+		summarizeBy: sum
+		sourceColumn: WorkingHours
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate3 = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select *,Concat(left(Calendar_Month,3),""-"",right(Calendar_year,2)) as MonthAbb,case when is_week_day=true then 8 else 0 end as WorkingHours#(lf)FROM gold.dim_calendar#(lf)where Calendar_Year>2015", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

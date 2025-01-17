@@ -1,0 +1,86 @@
+table TimesheetLineItems
+	lineageTag: a21331df-c6c3-4479-a5e4-4899cc0d54cc
+
+	column TS_LINE_ITEM_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: eca6aee1-c51b-40c9-88df-653ebbae840b
+		summarizeBy: count
+		sourceColumn: TS_LINE_ITEM_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_tIME
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ce8f0451-9b28-4ef0-9938-2ff63c1df6d1
+		summarizeBy: none
+		sourceColumn: START_tIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3425d284-0714-42f0-b99b-82fdf6aa25ce
+		summarizeBy: none
+		sourceColumn: end_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_type
+		dataType: string
+		lineageTag: a4d2f097-50ad-4012-b997-67911fb03a8a
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_hours
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c4906fc-6f0b-4d7b-b6bf-40cf914624ff
+		summarizeBy: sum
+		sourceColumn: total_hours
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_created_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3f5e26e-de1f-4a54-9f55-76b577846060
+		summarizeBy: none
+		sourceColumn: source_created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vehicle_Number
+		dataType: string
+		lineageTag: bdfd3f68-a78a-4ed7-afc4-afcf6a33b4e4
+		summarizeBy: none
+		sourceColumn: vehicle_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeName
+		dataType: string
+		lineageTag: acb561e5-ba05-47aa-9222-3195cda187d8
+		summarizeBy: none
+		sourceColumn: EmployeeName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TimesheetLineItems = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select a.TS_LINE_ITEM_ID,a.START_tIME,a.end_time,a.vehicle_type,a.total_hours,cast(a.source_created_Date as Date),b.vehicle_Number,CONCAT(c.First_Name, ' ',c.Last_Name) as EmployeeName#(lf)from Gold.Dim_TSLineItem a #(lf)left join Gold.Dim_vehicle b  #(lf)on a.dw_vehicle_id = b.dw_vehicle_id#(lf)left join gold.Dim_employee c#(lf)on a.dw_employee_id =c.dw_employee_id and c.is_active=true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,114 @@
+table 'dm customer'
+	lineageTag: 0f25e2b6-2b2b-4cb9-ab37-09332d0fc512
+
+	measure 'Total Invoice Count by Customer' = ```
+			
+			    CALCULATE(
+			        COUNT('dm invoice'[invoiceid]),
+			        VALUES('dm invoice'[customerid])
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 84f8ea48-8f05-4fbb-a6bc-9e6cac35c751
+
+	measure 'Total Revenue' = ```
+			
+			    CALCULATE(
+			        sum('dm invoice'[total]),
+			        VALUES('dm invoice'[customerid])
+			    )
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7f9f844b-4a42-4694-b4d8-08d125606fb2
+
+	column customerid
+		dataType: int64
+		formatString: 0
+		lineageTag: d32e2f2c-fd0d-44ff-9253-21b81b709314
+		summarizeBy: none
+		sourceColumn: customerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column company
+		dataType: string
+		lineageTag: 887f3754-d9b3-418e-8290-b69bc18bdb8d
+		summarizeBy: none
+		sourceColumn: company
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: fa2a11a6-e14f-4c29-85c6-fa15fdbf2418
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 020e5803-b300-4131-81c3-b69f302dbd31
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: fbd7494d-e348-437b-945c-a4157c74eaf6
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_name
+		dataType: string
+		lineageTag: f7e3d552-d4ae-4510-8fc6-f58816c016d7
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: afbf5987-616a-41f6-b457-5de6856280dc
+		summarizeBy: none
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_invoices
+		dataType: int64
+		formatString: 0
+		lineageTag: 29e2045f-2986-4e8b-8c4f-a361ebbbda2d
+		summarizeBy: none
+		sourceColumn: total_invoices
+
+		annotation SummarizationSetBy = Automatic
+
+	column supportrepid
+		dataType: int64
+		formatString: 0
+		lineageTag: 99bc2212-e98b-4501-8b68-e703febf4f00
+		summarizeBy: none
+		sourceColumn: supportrepid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dm customer' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(PostgreSQL.Database("localhost:5432", "DigitalMedia"), "select a.customerId, CONCAT(a.firstname,' ',a.lastname) as full_name,a.company,a.country, a.phone, a.email, a.supportrepid, sum(b.total) as total_revenue, count(b.InvoiceId) as total_invoices from dm.customer a#(lf)inner join dm.Invoice b on a.customerid=b.customerid#(lf)group by a.customerId,full_name,a.company,a.country, a.phone, a.email", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

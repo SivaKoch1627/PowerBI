@@ -1,0 +1,108 @@
+table 'Coaching Timeliness'
+	lineageTag: 1e6ec21f-03eb-4d21-8615-ec7b5d940ef2
+
+	column Calendar_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8bc286f8-c6c9-495a-ba6f-1697043bbc12
+		summarizeBy: none
+		sourceColumn: Calendar_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tag_Name
+		dataType: string
+		lineageTag: dd2e6f94-b0fe-423f-9294-733ef8e6e1dc
+		summarizeBy: none
+		sourceColumn: Tag_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Timeliness_Percentage
+		dataType: string
+		lineageTag: ed939a10-944f-4b4f-91e9-4d087e738347
+		summarizeBy: none
+		sourceColumn: Timeliness_Percentage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Behaviors_Coached
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e7d160c-e822-4054-8fe1-f13515eb3037
+		summarizeBy: sum
+		sourceColumn: Total_Behaviors_Coached
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coachable_Behaviors
+		dataType: int64
+		formatString: 0
+		lineageTag: 145daa94-614b-4be7-a039-28ada0008c26
+		summarizeBy: sum
+		sourceColumn: Coachable_Behaviors
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coached_On_Time
+		dataType: int64
+		formatString: 0
+		lineageTag: 182fc5b7-1470-4c58-a9f9-addcd7c96cb5
+		summarizeBy: sum
+		sourceColumn: Coached_On_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coached_Late
+		dataType: int64
+		formatString: 0
+		lineageTag: e9f8d7da-5cfe-4642-a6c0-1634c6ac70da
+		summarizeBy: sum
+		sourceColumn: Coached_Late
+
+		annotation SummarizationSetBy = Automatic
+
+	column Past_Due
+		dataType: int64
+		formatString: 0
+		lineageTag: 26d0bcac-0a00-4b56-a187-451aa452d03e
+		summarizeBy: sum
+		sourceColumn: Past_Due
+
+		annotation SummarizationSetBy = Automatic
+
+	column Average_Time_To_Coach
+		dataType: int64
+		formatString: 0
+		lineageTag: 439ea8c7-b793-42f7-b948-13ceb570e218
+		summarizeBy: sum
+		sourceColumn: Average_Time_To_Coach
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageHours
+		dataType: double
+		lineageTag: 0663e8a9-1b97-4cf9-97f1-1e906c4966ec
+		summarizeBy: sum
+		sourceColumn: AverageHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Coaching Timeliness' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "Select *,(Average_Time_To_Coach/3600) as AverageHours from gold.Fact_AvgTimeToCoachIncident#(lf)where Tag_Name ='DCCPA - 100'", null, [EnableFolding=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Calendar_Date", type date}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"DW_Coach_ID", "DW_Created_By", "DW_Created_Date", "DW_Modified_By", "DW_Modified_Date"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

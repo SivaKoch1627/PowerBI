@@ -1,0 +1,24 @@
+table RefreshDateTime
+	lineageTag: 5136ff9f-f37a-4404-bb4f-e61472127148
+
+	column RefreshDatetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5cc2f7d7-10ac-44f9-abcf-9b6f190a217d
+		summarizeBy: none
+		sourceColumn: RefreshDatetime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RefreshDateTime = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "SELECT from_utc_timestamp(current_timestamp(), 'America/New_York') AS RefreshDatetime", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

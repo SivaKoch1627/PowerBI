@@ -1,0 +1,114 @@
+table 'Workers Compensation'
+	lineageTag: 8993b839-7cfb-499b-ac26-8890748a7b00
+
+	column IRWC_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d312c094-6d45-4f68-8eb1-03e58553685f
+		summarizeBy: count
+		sourceColumn: IRWC_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INCIDENT_Datetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 17696838-6011-4a20-a717-15ec4e0c6eb6
+		summarizeBy: none
+		sourceColumn: INCIDENT_Datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Complete
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b547af63-12df-4faf-9075-403e07abd589
+		summarizeBy: none
+		sourceColumn: Is_Complete
+
+		annotation SummarizationSetBy = Automatic
+
+	column injury_Classification
+		dataType: string
+		lineageTag: c9a9f9b2-051b-4998-aa2a-c67ccad30df7
+		summarizeBy: none
+		sourceColumn: injury_Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column injury_Cause
+		dataType: string
+		lineageTag: b3367c4f-c88f-4b32-877e-5b114d611e5b
+		summarizeBy: none
+		sourceColumn: injury_Cause
+
+		annotation SummarizationSetBy = Automatic
+
+	column Injury_Type
+		dataType: string
+		lineageTag: ced82594-6ca6-43e1-b637-662cf62bcac9
+		summarizeBy: none
+		sourceColumn: Injury_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Body_Part_Injury
+		dataType: string
+		lineageTag: 2feec63d-6af9-4d90-9519-2be56e788e05
+		summarizeBy: none
+		sourceColumn: Body_Part_Injury
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_activity
+		dataType: string
+		lineageTag: e98a8df9-7271-4128-84e5-165a3335634c
+		summarizeBy: none
+		sourceColumn: action_activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_this_an_OSHA_Reportable_Injury
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ad1e8160-922d-4eb7-9f91-99f5326e0628
+		summarizeBy: none
+		sourceColumn: Is_this_an_OSHA_Reportable_Injury
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Submit
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a3500262-55a1-4a18-9c9e-13700d7567cc
+		summarizeBy: none
+		sourceColumn: Is_Submit
+
+		annotation SummarizationSetBy = Automatic
+
+	column INCIDENT_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d96318c-b854-4c3d-912d-f518fd0c0031
+		summarizeBy: none
+		sourceColumn: INCIDENT_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Workers Compensation' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select A.IRWC_ID,A.INCIDENT_Datetime,a.Is_Complete,a.injury_Classification,a.injury_Cause,A.Injury_Type,a.Body_Part_Injury,#(lf)a.action_activity,a.Is_this_an_OSHA_Reportable_Injury,a.Is_Submit#(lf)from Gold.Dim_IRWC a#(lf)LEFT JOIN gold.dim_employee d ON a.dw_employee_id = d.dw_employee_id AND d.is_active = true", null, [EnableFolding=true]),
+				    #"Duplicated Column" = Table.DuplicateColumn(Source, "INCIDENT_Datetime", "INCIDENT_Datetime - Copy"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Duplicated Column",{{"INCIDENT_Datetime - Copy", type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"INCIDENT_Datetime - Copy", "INCIDENT_Date"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

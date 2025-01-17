@@ -1,0 +1,108 @@
+table 'Purchase Order'
+	lineageTag: 4326ec40-9e58-4410-ba28-40a7d3ed10a5
+
+	column Job_ID
+		dataType: string
+		lineageTag: dd845643-890a-48d9-8628-b958e5c9a836
+		summarizeBy: none
+		sourceColumn: Job_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForemanName
+		dataType: string
+		lineageTag: bc15017d-0b4c-46fa-81e0-9f78451e2c59
+		summarizeBy: none
+		sourceColumn: ForemanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorName
+		dataType: string
+		lineageTag: bdf81918-62e1-4118-bd97-7a96928d6a5c
+		summarizeBy: none
+		sourceColumn: VendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Material_Purchased
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: ad753359-5048-463c-8ad8-42e0e5985db4
+		summarizeBy: none
+		sourceColumn: Date_Material_Purchased
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Purchase_Order_Number
+		dataType: string
+		lineageTag: 5ba783a0-89a9-48ad-8236-5ec810b074bc
+		summarizeBy: none
+		sourceColumn: Purchase_Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTERED_IN_SPECTRUM
+		dataType: string
+		lineageTag: 7c2fa8a6-5066-4904-9e32-ec721d01f7b2
+		summarizeBy: none
+		sourceColumn: ENTERED_IN_SPECTRUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateTime_Entered_In_Spectrum
+		dataType: dateTime
+		formatString: mm/dd/yyyy h:nn AM/PM
+		lineageTag: 72071589-b0f1-4f1c-9a2e-123cd802cab5
+		summarizeBy: none
+		sourceColumn: DateTime_Entered_In_Spectrum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Source_Created_Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 43164a6d-7f90-41c2-8e34-371d954bef24
+		summarizeBy: none
+		sourceColumn: Source_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column PurchasedDiff
+		dataType: int64
+		formatString: 0
+		lineageTag: 2383ae0f-7503-4b58-a452-763830c6ab20
+		summarizeBy: sum
+		sourceColumn: PurchasedDiff
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entered_In_SpectrumDiff
+		dataType: int64
+		formatString: 0
+		lineageTag: 6016195a-5cb1-4e91-8036-b20537a6d3c4
+		summarizeBy: sum
+		sourceColumn: Entered_In_SpectrumDiff
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Purchase Order' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(DatabricksMultiCloud.Catalogs(#"Server hostname", #"HTTP Path", [Catalog=#"Catalogue Name", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="danellaqa",Kind="Database"]}[Data], "select b.record_id as Job_ID,CONCAT(c.First_Name, ' ',c.Last_Name) as ForemanName,d.name as VendorName,a.Date_Material_Purchased,#(lf)a.Purchase_Order_Number,a.ENTERED_IN_SPECTRUM,a.DateTime_Entered_In_Spectrum,cast(a.source_created_Date as Date) Source_Created_Date#(lf),abs(datediff(day,a.Date_Material_Purchased,a.Source_Created_Date)) as PurchasedDiff ,abs(datediff(day,a.Datetime_Entered_IN_sPECTRUM,a.Source_Created_Date)) as Entered_In_SpectrumDiff#(lf)from gold.dim_purchaseorder a #(lf)left join gold.dim_job  b #(lf)on a.dw_job_id = b.dw_job_id and b.is_active=true#(lf)left join gold.dim_employee c#(lf)on a.dw_employee_id =c.dw_employee_id and c.is_active=true#(lf)left join gold.dim_vendor d #(lf)on a.dw_vendor_id =d.dw_vendor_id#(lf)where a.Is_Active = true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
