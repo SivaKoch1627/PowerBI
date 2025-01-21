@@ -1,0 +1,13 @@
+relationship 36f2901d-8f13-4524-b166-e0ee7bdfb40f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tutor.date_of_birth
+	toColumn: LocalDateTable_c969b450-0ba4-4cc8-906c-f516e1a31556.Date
+
+relationship 41d0ad52-b7b5-4a57-a130-7a2c9b5e8745
+	fromColumn: student.'Course ID'
+	toColumn: course.'Course id'
+
+relationship f6aa6653-2148-7300-564f-e849281fc57b
+	fromColumn: tutor.'Course id'
+	toColumn: course.'Course id'
+

@@ -1,0 +1,90 @@
+table tutor
+	lineageTag: 9bc13184-8403-492f-b2ea-198061cfbae8
+
+	column 'Course id'
+		dataType: string
+		lineageTag: ccdb237a-7c8f-4b41-ae27-06d686ee4573
+		summarizeBy: none
+		sourceColumn: Course id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tutor_id
+		dataType: string
+		lineageTag: 6cb618db-257a-4192-af9a-691f52c44bfc
+		summarizeBy: none
+		sourceColumn: tutor_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7dbebe9d-81bf-4b64-953d-45b6ac290715
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 4860ed11-fb30-480e-8293-8bca89ee3be9
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_birth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 41811220-9602-49bb-9f79-23c8065e8109
+		summarizeBy: none
+		sourceColumn: date_of_birth
+
+		variation Variation
+			isDefault
+			relationship: 36f2901d-8f13-4524-b166-e0ee7bdfb40f
+			defaultHierarchy: LocalDateTable_c969b450-0ba4-4cc8-906c-f516e1a31556.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column email
+		dataType: string
+		lineageTag: 492ab58e-a324-4c35-9341-1ca6e82e4b38
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: c872088a-59a6-492a-a031-a5f6479a9873
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column specialization
+		dataType: string
+		lineageTag: 15b5a6fc-e715-4ed1-b25c-7c0dfffd4470
+		summarizeBy: none
+		sourceColumn: specialization
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tutor = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-201068313543333.13.azuredatabricks.net", "/sql/1.0/warehouses/b0a66af24d7401a1", [Catalog="reportinghub", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    reportinghub_Database = Source{[Name="reportinghub",Kind="Database"]}[Data],
+				    default_Schema = reportinghub_Database{[Name="default",Kind="Schema"]}[Data],
+				    tutor_Table = default_Schema{[Name="tutor",Kind="Table"]}[Data]
+				in
+				    tutor_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,86 @@
+table student
+	lineageTag: c8bd41a4-57dd-4993-82db-496c1209051a
+
+	measure studentC = COUNT(student[Student ID])
+		formatString: 0
+		lineageTag: d827beaa-3705-41db-828f-e85b00116dc0
+
+	measure 'No of tutors' = DISTINCTCOUNT(tutor[tutor_id])
+		formatString: 0
+		lineageTag: 01028894-3893-4e91-8663-5d1cebd84175
+
+	measure 'Avg Attendance %' = AVERAGE(student[Attendance Percentage])
+		formatString: 0
+		lineageTag: 54608ec9-7d86-49a4-a1a5-7a84992919f2
+
+	column 'Student ID'
+		dataType: string
+		lineageTag: c71e0024-ff55-47d9-b85f-5734760e631b
+		summarizeBy: none
+		sourceColumn: Student ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Course ID'
+		dataType: string
+		lineageTag: bfdf6c69-64be-457e-838a-94dc5c8ef90d
+		summarizeBy: none
+		sourceColumn: Course ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Student Name'
+		dataType: string
+		lineageTag: de38fdf0-4d63-45e6-8004-2179630b15c9
+		summarizeBy: none
+		sourceColumn: Student Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 9afeded3-dc71-4d92-ac38-771cb76dfcc7
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Attendance Percentage'
+		dataType: int64
+		lineageTag: c0f0f66b-fb92-4f55-8855-dca5a09ad2a5
+		summarizeBy: none
+		sourceColumn: Attendance Percentage
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CGPA
+		dataType: double
+		lineageTag: e1172496-28ac-4f07-bf9c-57f0851d895c
+		summarizeBy: sum
+		sourceColumn: CGPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition student = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-201068313543333.13.azuredatabricks.net", "/sql/1.0/warehouses/b0a66af24d7401a1", [Catalog="reportinghub", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    reportinghub_Database = Source{[Name="reportinghub",Kind="Database"]}[Data],
+				    default_Schema = reportinghub_Database{[Name="default",Kind="Schema"]}[Data],
+				    student_Table = default_Schema{[Name="student",Kind="Table"]}[Data],
+				    #"Split Column by Delimiter" = Table.SplitColumn(student_Table, "Attendance Percentage", Splitter.SplitTextByDelimiter("%", QuoteStyle.Csv), {"Attendance Percentage.1", "Attendance Percentage.2"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Attendance Percentage.1", Int64.Type}, {"Attendance Percentage.2", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Attendance Percentage.1", "Attendance Percentage"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"Attendance Percentage.2"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
