@@ -1,0 +1,2096 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1629.1139240506329,
+        "y": 1115.1898734177214
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 6275.9626932336614,
+            "y": 347.47223258135466
+          },
+          "nodeIndex": "Timeperiod",
+          "nodeLineageTag": "ee31e190-1f57-45c8-87d1-fe09a40bded0",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 9392.4091583529589,
+            "y": 1068.8881765627184
+          },
+          "nodeIndex": "JobDetail",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1624.0508479870762,
+            "y": 356.52269356310512
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2489.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "DimDate2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2773.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "DimDate3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 474.38959529897238,
+            "y": 1423.7925047412423
+          },
+          "nodeIndex": "Safety Education",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2395.6647358230575,
+            "y": 1183.1481911974295
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3057.6185096102827,
+            "y": 912.76095040696237
+          },
+          "nodeIndex": "RefreshDateTime",
+          "nodeLineageTag": "5136ff9f-f37a-4404-bb4f-e61472127148",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 329.56043382239557,
+            "y": 1072.6704538461695
+          },
+          "nodeIndex": "Human Performance",
+          "nodeLineageTag": "42f60233-b506-4cb2-8eaa-466e74a0d2cb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3341.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Workers Compensation",
+          "nodeLineageTag": "8993b839-7cfb-499b-ac26-8890748a7b00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3625.6185096102827,
+            "y": 864.76095040696237
+          },
+          "nodeIndex": "Vehicle Incidents",
+          "nodeLineageTag": "06792c15-8fda-4d4e-ae22-efafef9ff3fc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1050.5795670507139,
+            "y": 1430.72092047725
+          },
+          "nodeIndex": "Incident Report",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2887.3183912974037,
+            "y": 249.45205724755323
+          },
+          "nodeIndex": "Unsatisfactory Events",
+          "nodeLineageTag": "06534d9c-3976-4e81-9526-8d8a7647d162",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4193.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "DCITools",
+          "nodeLineageTag": "55a8c806-3fce-47c0-8f6f-6cddeefe7215",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1931.6185096102827,
+            "y": 1343.3078079930474
+          },
+          "nodeIndex": "Production",
+          "nodeLineageTag": "2e05f423-76c7-4c8d-9b76-1c164e9e522d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 941.12452220272849,
+            "y": 716.18327868483607
+          },
+          "nodeIndex": "Gateway Analysis",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1629.2615856073985,
+            "y": 1558.2493317585252
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4076.7154965810996,
+            "y": 352.37266877699005
+          },
+          "nodeIndex": "TimesheetLineItems",
+          "nodeLineageTag": "a21331df-c6c3-4479-a5e4-4899cc0d54cc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 258.07632168181044
+          },
+          "nodeIndex": "Equipment Detail",
+          "nodeLineageTag": "811498aa-0126-4b5c-a38c-c93e7849d16d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 229.32739301616391,
+            "y": -10
+          },
+          "nodeIndex": "Equipment Summary",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 760.72805536716362,
+            "y": 1619.5219008139247
+          },
+          "nodeIndex": "Purchase Order",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1292.8823627022027,
+            "y": 843.02904156952729
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1340.5152601404109,
+            "y": 1200.1798420687091
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 43.480127711073806,
+            "y": 797.414800001829
+          },
+          "nodeIndex": "Tools Misuse",
+          "nodeLineageTag": "40fadef4-72da-465a-b4b1-a0f034a776ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4761.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Safety Score",
+          "nodeLineageTag": "0d13ed15-aa91-4b80-8f7c-b32d7d1db213",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5045.6185096102827,
+            "y": 852.76095040696237
+          },
+          "nodeIndex": "Coaching Effectiveness",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5329.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Event Resolution",
+          "nodeLineageTag": "d1c64ce8-9134-4f08-9d47-ae3ce6858394",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5613.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Trip History",
+          "nodeLineageTag": "c04aa635-a3ae-4a79-aa91-523c3ee35c19",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5897.6185096102827,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Coaching Timeliness",
+          "nodeLineageTag": "1e6ec21f-03eb-4d21-8615-ec7b5d940ef2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 297.67674948289027,
+            "y": 589.73415984692292
+          },
+          "nodeIndex": "Safety Score Unpivot",
+          "nodeLineageTag": "f0224f0d-aac4-4e0c-a4a0-2cdbc58c4ec4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6181.6185096102827,
+            "y": 888.76095040696237
+          },
+          "nodeIndex": "Safety Score Unpivot_Sub",
+          "nodeLineageTag": "ee6ed3d3-faf7-4fea-a487-a30ed08f79b9",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6465.6185096102827,
+            "y": 888.76095040696237
+          },
+          "nodeIndex": "Coaching Effectiveness Unpivot",
+          "nodeLineageTag": "0024d00c-a5d9-49ca-992c-8bfdaa0b8829",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8909.0226518155068,
+            "y": 369.6067769910876
+          },
+          "nodeIndex": "DatePeriod",
+          "nodeLineageTag": "fff7419b-5ce2-4fb5-86e2-4f86ef1f9e14",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 9950.4091583529589,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "DriverSafetyScore",
+          "nodeLineageTag": "4aee75fd-90a7-4e73-9fe2-e06936471c00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10224.409158352959,
+            "y": 912.76095040696237
+          },
+          "nodeIndex": "Dim_Employee New",
+          "nodeLineageTag": "c518ac8f-1012-4639-a346-b6286d2fe14c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2205.6185096102827,
+            "y": 864.76095040696237
+          },
+          "nodeIndex": "Measure",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10782.409158352959,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Fact_Trip History",
+          "nodeLineageTag": "43aa0fb5-ad1d-4404-bd92-406eba18c29c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 11056.409158352959,
+            "y": 816.76095040696237
+          },
+          "nodeIndex": "Safetey Instructor",
+          "nodeLineageTag": "71ceb364-bb1b-455c-8290-c0facdf9e45e",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 11330.409158352959,
+            "y": 814.76095040696237
+          },
+          "nodeIndex": "Fact_Vehicle_Idling",
+          "nodeLineageTag": "355b3adc-7e96-4182-a5d2-4b6b8b0d0daa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 11898.409158352959,
+            "y": 828.76095040696237
+          },
+          "nodeIndex": "Job without Billing",
+          "nodeLineageTag": "72359710-3908-44ca-9b5f-9dcbf097e892",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 12182.409158352959,
+            "y": 900.76095040696237
+          },
+          "nodeIndex": "Vehicle Assigment in Trackvia and Spectrum",
+          "nodeLineageTag": "eaa0ca07-6d0c-4b19-9cac-e8a310f26161",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 12456.409158352959,
+            "y": 852.76095040696237
+          },
+          "nodeIndex": "In Samsara, not moved in Timesheet",
+          "nodeLineageTag": "6d6ee048-827e-46c9-aee3-3d953492a30c",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 12740.409158352959,
+            "y": 828.76095040696237
+          },
+          "nodeIndex": "In Timesheets, not moved in Samsara",
+          "nodeLineageTag": "dc84d408-88af-4f0b-92ed-ae559e89416c",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 13024.409158352959,
+            "y": 864.76095040696237
+          },
+          "nodeIndex": "Vehicle Assignment",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 9904.6240354304209,
+            "y": 190.48985863737539
+          },
+          "nodeIndex": "Dim_Employee",
+          "nodeLineageTag": "2e0bfb26-cb1a-4598-b44e-c93491074718",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 13298.409158352959,
+            "y": 912.76095040696237
+          },
+          "nodeIndex": "Dim_Employee Foreman",
+          "nodeLineageTag": "b468a37c-d895-4f5a-a491-e906f743771e",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Production_Smart_Meter_Installation",
+          "nodeLineageTag": "e1f4f03e-b42a-4387-86a3-e8fe3d281337",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Smart_Meter_Production_Per_Day",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Smart_Meter_Production_Per_Day_Foreman",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Camera Health Analysis",
+          "nodeLineageTag": "a3cf0ea6-e5ac-4298-8060-1aa551e5945f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 11614.409158352959,
+            "y": 852.76095040696237
+          },
+          "nodeIndex": "Job with Status in Spectrum",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 79,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 720
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 321.18729622720343
+          },
+          "nodeIndex": "JobDetail",
+          "nodeLineageTag": "27fc5d72-4cb9-4804-9996-357fb47767e9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 522.36468354584781,
+            "y": 17.305345994807471
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 827.346382305346,
+            "y": 439.9349289226605
+          },
+          "nodeIndex": "Safety Education",
+          "nodeLineageTag": "cbbab952-b0e9-4171-abc3-9948f3339774",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 826.1804917453577,
+            "y": 21.666666666666671
+          },
+          "nodeIndex": "DimDate2",
+          "nodeLineageTag": "c95f10a2-88bb-4048-8682-43b2df7e0f5d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 337.77432626790142,
+            "y": 427.62144904318558
+          },
+          "nodeIndex": "Incident Report",
+          "nodeLineageTag": "b8a2dac7-c7ef-4f8f-93bc-14a5b73f0be7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 291.62673694841482,
+            "y": 0
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 5.7684486649358249
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 79.347826078776563,
+            "y": 641.9770049529825
+          },
+          "nodeIndex": "Equipment Detail",
+          "nodeLineageTag": "811498aa-0126-4b5c-a38c-c93e7849d16d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 826.05275587972949,
+            "y": 751.69476244511873
+          },
+          "nodeIndex": "Gateway Analysis",
+          "nodeLineageTag": "09f8b332-f2d6-43f2-9b0d-3eacc7ac5049",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 468.141266095451,
+            "y": 772.57467920634792
+          },
+          "nodeIndex": "Purchase Order",
+          "nodeLineageTag": "4326ec40-9e58-4410-ba28-40a7d3ed10a5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 164.72086631982671,
+            "y": 989.23759697821083
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 660.80745150430755,
+            "y": 1115.2205299035356
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 351.6186030637474,
+            "y": 1239.1268353926105
+          },
+          "nodeIndex": "Human Performance",
+          "nodeLineageTag": "42f60233-b506-4cb2-8eaa-466e74a0d2cb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": -40.635906151888577,
+            "y": 1196.4403152720854
+          },
+          "nodeIndex": "Tools Misuse",
+          "nodeLineageTag": "40fadef4-72da-465a-b4b1-a0f034a776ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 2,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 481.20000076293945,
+            "y": 36
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 202.20000076293945,
+            "y": 321
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 595.20000076293945,
+            "y": 322
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 97
+          },
+          "nodeIndex": "Equipment Detail",
+          "nodeLineageTag": "811498aa-0126-4b5c-a38c-c93e7849d16d",
+          "size": {
+            "height": 324,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 309.20000076293945,
+            "y": 0
+          },
+          "nodeIndex": "Equipment Summary",
+          "nodeLineageTag": "fd4d347c-0440-462c-818c-20ebfec03314",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 4
+        }
+      ],
+      "name": "Layout 2",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 3,
+      "scrollPosition": {
+        "x": 162.39999389648438,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 305
+          },
+          "nodeIndex": "JobDetail",
+          "nodeLineageTag": "27fc5d72-4cb9-4804-9996-357fb47767e9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 531.20000076293945,
+            "y": 48
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 283.20000076293945,
+            "y": -25
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 3",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 4,
+      "scrollPosition": {
+        "x": 0,
+        "y": 188
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 230.20000076293945,
+            "y": 34
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 163.20000076293945,
+            "y": 245
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 4",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 5,
+      "scrollPosition": {
+        "x": 0,
+        "y": 24
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 523.20000076293945,
+            "y": 37
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 292.20000076293945,
+            "y": 0
+          },
+          "nodeIndex": "Safety Score Unpivot",
+          "nodeLineageTag": "f0224f0d-aac4-4e0c-a4a0-2cdbc58c4ec4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 420
+          },
+          "nodeIndex": "Coaching Effectiveness",
+          "nodeLineageTag": "b8774066-c24c-4843-a147-217523108768",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 319.20000076293945,
+            "y": 384
+          },
+          "nodeIndex": "Safety Score",
+          "nodeLineageTag": "0d13ed15-aa91-4b80-8f7c-b32d7d1db213",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Event Resolution",
+          "nodeLineageTag": "d1c64ce8-9134-4f08-9d47-ae3ce6858394",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 5",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 6,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 495.20000076293945,
+            "y": 34
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 275.20000076293945,
+            "y": 330
+          },
+          "nodeIndex": "TimesheetLineItems",
+          "nodeLineageTag": "a21331df-c6c3-4479-a5e4-4899cc0d54cc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": -5.7999992370605469,
+            "y": 3
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 279.20000076293945,
+            "y": -21
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 6",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 7,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 101.20000076293945,
+            "y": 359
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 379.20000076293945,
+            "y": 320
+          },
+          "nodeIndex": "Tools Misuse",
+          "nodeLineageTag": "40fadef4-72da-465a-b4b1-a0f034a776ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 378.20000076293945,
+            "y": 0
+          },
+          "nodeIndex": "DCITools",
+          "nodeLineageTag": "55a8c806-3fce-47c0-8f6f-6cddeefe7215",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 633.20000076293945,
+            "y": 31
+          },
+          "nodeIndex": "Timeperiod",
+          "nodeLineageTag": "ee31e190-1f57-45c8-87d1-fe09a40bded0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 615.20000076293945,
+            "y": 379
+          },
+          "nodeIndex": "DatePeriod",
+          "nodeLineageTag": "fff7419b-5ce2-4fb5-86e2-4f86ef1f9e14",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Job with Status in Spectrum",
+          "nodeLineageTag": "29a6105d-607e-4236-b76c-af85b86f1618",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Layout 7",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 8,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 215.20000076293945,
+            "y": 148
+          },
+          "nodeIndex": "DatePeriod",
+          "nodeLineageTag": "fff7419b-5ce2-4fb5-86e2-4f86ef1f9e14",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 584.20000076293945,
+            "y": 31
+          },
+          "nodeIndex": "Timeperiod",
+          "nodeLineageTag": "ee31e190-1f57-45c8-87d1-fe09a40bded0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 8",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 9,
+      "scrollPosition": {
+        "x": 828.57142857142867,
+        "y": 262.85714285714289
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 590.92857142857156,
+            "y": 584.39285714285711
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 647.14285714285722,
+            "y": 115.71428571428572
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 309.24999999999994,
+            "y": 586.78571428571422
+          },
+          "nodeIndex": "Safety Education",
+          "nodeLineageTag": "cbbab952-b0e9-4171-abc3-9948f3339774",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 44.857142857142861,
+            "y": 580
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1302.464285714286,
+            "y": 116.24999999999997
+          },
+          "nodeIndex": "Dim_Employee New",
+          "nodeLineageTag": "c518ac8f-1012-4639-a346-b6286d2fe14c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1451.75,
+            "y": 597.14285714285711
+          },
+          "nodeIndex": "Unsatisfactory Events",
+          "nodeLineageTag": "06534d9c-3976-4e81-9526-8d8a7647d162",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 912.28571428571422,
+            "y": 593.57142857142856
+          },
+          "nodeIndex": "Incident Report",
+          "nodeLineageTag": "b8a2dac7-c7ef-4f8f-93bc-14a5b73f0be7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1182.2857142857144,
+            "y": 595.00000000000011
+          },
+          "nodeIndex": "Production",
+          "nodeLineageTag": "2e05f423-76c7-4c8d-9b76-1c164e9e522d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1625.1428571428571,
+            "y": 322.14285714285717
+          },
+          "nodeIndex": "Dim_Employee",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 9",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 10,
+      "scrollPosition": {
+        "x": 0,
+        "y": 61.25
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 115.75,
+            "y": 201.5
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 422,
+            "y": -22
+          },
+          "nodeIndex": "DimDate2",
+          "nodeLineageTag": "c95f10a2-88bb-4048-8682-43b2df7e0f5d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 685.5,
+            "y": 65
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 541.75,
+            "y": 383.75
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 10",
+      "zoomValue": 80,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 11,
+      "scrollPosition": {
+        "x": 318.33333333333337,
+        "y": 503.33333333333337
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 481.66666666666663,
+            "y": 86.666666666666671
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "2a4d5bab-3e73-4c43-986e-09342b67d6d6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 820.33333333333337,
+            "y": 60.000000000000007
+          },
+          "nodeIndex": "Vehicle Incidents",
+          "nodeLineageTag": "06792c15-8fda-4d4e-ae22-efafef9ff3fc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 68
+          },
+          "nodeIndex": "Incident Report",
+          "nodeLineageTag": "b8a2dac7-c7ef-4f8f-93bc-14a5b73f0be7",
+          "size": {
+            "height": 290,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 281.33333333333337,
+            "y": 438.33333333333337
+          },
+          "nodeIndex": "Workers Compensation",
+          "nodeLineageTag": "8993b839-7cfb-499b-ac26-8890748a7b00",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 843,
+            "y": 480
+          },
+          "nodeIndex": "Coaching Effectiveness",
+          "nodeLineageTag": "b8774066-c24c-4843-a147-217523108768",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 614.66666666666663,
+            "y": 736.66666666666663
+          },
+          "nodeIndex": "Event Resolution",
+          "nodeLineageTag": "d1c64ce8-9134-4f08-9d47-ae3ce6858394",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 204.66666666666674,
+            "y": 811.66666666666674
+          },
+          "nodeIndex": "Safety Score",
+          "nodeLineageTag": "0d13ed15-aa91-4b80-8f7c-b32d7d1db213",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 914.66666666666652,
+            "y": 761.66666666666674
+          },
+          "nodeIndex": "Coaching Timeliness",
+          "nodeLineageTag": "1e6ec21f-03eb-4d21-8615-ec7b5d940ef2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1206,
+            "y": 253
+          },
+          "nodeIndex": "JobDetail",
+          "nodeLineageTag": "27fc5d72-4cb9-4804-9996-357fb47767e9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1190.7848101265824,
+            "y": 669.55696202531647
+          },
+          "nodeIndex": "Job without Billing",
+          "nodeLineageTag": "72359710-3908-44ca-9b5f-9dcbf097e892",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1539.666666666667,
+            "y": 256.66666666666669
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1166,
+            "y": 0
+          },
+          "nodeIndex": "Job with Status in Spectrum",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 11",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 12,
+      "scrollPosition": {
+        "x": 128.57142857142858,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 248.14285714285711,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Employee New",
+          "nodeLineageTag": "c518ac8f-1012-4639-a346-b6286d2fe14c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 5.7142857142857082,
+            "y": 493.14285714285717
+          },
+          "nodeIndex": "Safety Education",
+          "nodeLineageTag": "cbbab952-b0e9-4171-abc3-9948f3339774",
+          "size": {
+            "height": 179,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 395.42857142857144,
+            "y": 234.57142857142856
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 691.42857142857156,
+            "y": 239.14285714285714
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": -47.714285714285694,
+            "y": -19.285714285714278
+          },
+          "nodeIndex": "Safetey Instructor",
+          "nodeLineageTag": "71ceb364-bb1b-455c-8290-c0facdf9e45e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 626.57142857142867,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Employee",
+          "nodeLineageTag": "2e0bfb26-cb1a-4598-b44e-c93491074718",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 910.85714285714266,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Employee Foreman",
+          "nodeLineageTag": "b468a37c-d895-4f5a-a491-e906f743771e",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 12",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 13,
+      "scrollPosition": {
+        "x": 0,
+        "y": 89
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 361.80218441418032,
+            "y": 439.53090850400815
+          },
+          "nodeIndex": "Contract",
+          "nodeLineageTag": "4abe2c11-846d-4804-abc8-87bec9ba5b6b",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 767.89356762257489,
+            "y": 335.01516483885587
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 439.62720993681751
+          },
+          "nodeIndex": "JobDetail",
+          "nodeLineageTag": "27fc5d72-4cb9-4804-9996-357fb47767e9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 645.967468183579,
+            "y": 685.24036296261761
+          },
+          "nodeIndex": "Production",
+          "nodeLineageTag": "2e05f423-76c7-4c8d-9b76-1c164e9e522d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 483.72551097962258,
+            "y": -10
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 78.823791512541447,
+            "y": 89.345244159403364
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 252.11128352878177,
+            "y": 780.97125798468835
+          },
+          "nodeIndex": "Job without Billing",
+          "nodeLineageTag": "72359710-3908-44ca-9b5f-9dcbf097e892",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Contract",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 14,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 262,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Employee Foreman",
+          "nodeLineageTag": "b468a37c-d895-4f5a-a491-e906f743771e",
+          "size": {
+            "height": 153,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 518,
+            "y": 0
+          },
+          "nodeIndex": "WorksiteObservation",
+          "nodeLineageTag": "1f44c167-aadc-4d09-8713-be9162a99b20",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Quality Control",
+          "nodeLineageTag": "90859959-b735-497e-98e9-3d87623e0931",
+          "size": {
+            "height": 515,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 249,
+            "y": 184
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "PO by Foreman",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 15,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [],
+      "name": "Layout 14",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 16,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [],
+      "name": "Layout 15",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 17,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 300,
+            "y": 232
+          },
+          "nodeIndex": "Smart_Meter_Production_Per_Day_Foreman",
+          "nodeLineageTag": "1c7b6ba1-b89e-4158-891c-3939b898b4f6",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 302,
+            "y": 0
+          },
+          "nodeIndex": "Smart_Meter_Production_Per_Day",
+          "nodeLineageTag": "51f00a68-49b2-4e4b-93b3-f41cdb435574",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 19,
+            "y": 4
+          },
+          "nodeIndex": "Production_Smart_Meter_Installation",
+          "nodeLineageTag": "e1f4f03e-b42a-4387-86a3-e8fe3d281337",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Layout 13",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 18,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 88,
+            "y": 25
+          },
+          "nodeIndex": "Timesheet",
+          "nodeLineageTag": "8356b902-9fb2-4133-a8ef-353dd8267514",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 398,
+            "y": 16
+          },
+          "nodeIndex": "Dim_Employee Foreman",
+          "nodeLineageTag": "b468a37c-d895-4f5a-a491-e906f743771e",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 16",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Layout 7",
+  "defaultDiagram": "All tables"
+}
