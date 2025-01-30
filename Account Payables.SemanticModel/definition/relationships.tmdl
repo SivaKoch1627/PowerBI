@@ -1,0 +1,23 @@
+relationship 384f734d-7b45-4aad-bae3-473927e80ee6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Dim Date'.Date
+	toColumn: LocalDateTable_26b9a8da-d17e-4f92-b08e-98a26469140b.Date
+
+relationship 0d5df426-bb4a-4a01-b664-d9b7d7f886eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInvoice.'Invoice Date'
+	toColumn: LocalDateTable_a9f8aef1-55af-46dd-9c13-bc68f0034d6d.Date
+
+relationship 3e1d17fd-5615-44e6-8839-029aeda5f222
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactInvoice.'Payment Date'
+	toColumn: LocalDateTable_e87f8299-69ec-4e1b-bd56-650735166c49.Date
+
+relationship b845f536-3653-4287-a2b2-8e94aa4e19fe
+	fromColumn: FactInvoice.DueDate
+	toColumn: 'Dim Date'.Date
+
+relationship 422ed256-0e0c-4337-9c4b-31ef0dae7b58
+	fromColumn: FactInvoice.'Aging Range'
+	toColumn: 'Aging Range'.'Aging Range'
+
