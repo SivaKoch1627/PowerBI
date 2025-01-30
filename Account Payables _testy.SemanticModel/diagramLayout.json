@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 64
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 994,
+            "y": 584.5
+          },
+          "nodeIndex": "Measure Table",
+          "nodeLineageTag": "76b5b8ec-2805-47f5-a5d6-c9d6d5e5fbb2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 164.5
+          },
+          "nodeIndex": "Dim Date",
+          "nodeLineageTag": "928088d9-dae5-468c-a2e5-536728274af5",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 344,
+            "y": 122.5
+          },
+          "nodeIndex": "FactInvoice",
+          "nodeLineageTag": "b239ef31-777f-4045-bd42-42541b4530f8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 717,
+            "y": 200.5
+          },
+          "nodeIndex": "Aging Range",
+          "nodeLineageTag": "eeb3c815-dcec-4d59-a065-7fa4535c24f3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

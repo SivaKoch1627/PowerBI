@@ -1,0 +1,2581 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Measure Table\",\"Dim Date\",\"FactInvoice\",\"Aging Range\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.139.1678.0 (24.12)+2a034ab280bddf891eb7bb9ebfe6996f9c3a3196"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "measure_table": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "measure table": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "measure tabletop": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.5
+                    }
+                  },
+                  {
+                    "measure bench": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure board": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure counter": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure stand": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure slab": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure desk": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure stall": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure table top": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "measure spreadsheet": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.475
+                    }
+                  }
+                ]
+              },
+              "measure_table.average_AP": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "Average AP"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "average AP": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "AP": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.current_due": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "Current Due"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "current due": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "due": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "latest due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.727
+                    }
+                  },
+                  {
+                    "contemporary due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.727
+                    }
+                  },
+                  {
+                    "present due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.727
+                    }
+                  },
+                  {
+                    "present day due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.589
+                    }
+                  },
+                  {
+                    "up to date due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.524
+                    }
+                  },
+                  {
+                    "owing": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  },
+                  {
+                    "outstanding": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  },
+                  {
+                    "payable": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  }
+                ]
+              },
+              "measure_table.dpo": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "DPO"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "dpo": {
+                      "State": "Generated"
+                    }
+                  }
+                ]
+              },
+              "measure_table.past_due": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "Past Due"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "past due": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "due": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "owing": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  },
+                  {
+                    "outstanding": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  },
+                  {
+                    "payable": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  },
+                  {
+                    "history due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.451
+                    }
+                  },
+                  {
+                    "antiquity due": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.451
+                    }
+                  }
+                ]
+              },
+              "measure_table.payment_closure_period": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "PaymentClosurePeriod"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "payment closure period": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "PaymentClosurePeriod": {
+                      "State": "Generated",
+                      "Type": "Noun",
+                      "Weight": 0.99
+                    }
+                  },
+                  {
+                    "period": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "closure period": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "payment closure era": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.482
+                    }
+                  },
+                  {
+                    "payment closure epoch": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.482
+                    }
+                  },
+                  {
+                    "closure era": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.475
+                    }
+                  },
+                  {
+                    "closure epoch": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.475
+                    }
+                  },
+                  {
+                    "payment closure age": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.468
+                    }
+                  },
+                  {
+                    "payment closure stage": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.468
+                    }
+                  },
+                  {
+                    "payment closure phase": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.468
+                    }
+                  },
+                  {
+                    "era": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.466
+                    }
+                  },
+                  {
+                    "epoch": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.466
+                    }
+                  },
+                  {
+                    "closure age": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.461
+                    }
+                  }
+                ]
+              },
+              "measure_table.total_account_payables": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "Total Account Payables"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "total account payables": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "payables": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "account payables": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "aggregate account payable": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.591
+                    }
+                  },
+                  {
+                    "overall account payable": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.591
+                    }
+                  }
+                ]
+              },
+              "measure_table.total_cogs": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "Total Cogs"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "total cogs": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "cogs": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  },
+                  {
+                    "aggregate cog": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.582
+                    }
+                  },
+                  {
+                    "overall cog": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.582
+                    }
+                  },
+                  {
+                    "total mechanism": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.5
+                    }
+                  },
+                  {
+                    "total device": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.5
+                    }
+                  },
+                  {
+                    "total workings": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.5
+                    }
+                  },
+                  {
+                    "mechanism": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.491
+                    }
+                  },
+                  {
+                    "device": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.491
+                    }
+                  },
+                  {
+                    "workings": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.491
+                    }
+                  },
+                  {
+                    "total works": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.485
+                    }
+                  },
+                  {
+                    "works": {
+                      "Source": {
+                        "Agent": "OfficeThesaurus"
+                      },
+                      "State": "Suggested",
+                      "Type": "Noun",
+                      "Weight": 0.476
+                    }
+                  }
+                ]
+              },
+              "measure_table.v181_365_Days_Pastterms181365_days_pastterms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "181-365 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "181-365 days pastterms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "181 365 days pastterms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v1_30_Days_PastTerms130_days_PastTerms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "1-30 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "1-30 days PastTerms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "1 30 days PastTerms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v31_60_Days_PastTerms3160_days_PastTerms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "31-60 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "31-60 days PastTerms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "31 60 days PastTerms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v46_60_Days_PastTerms4660_days_PastTerms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "46-60 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "46-60 days PastTerms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "46 60 days PastTerms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v61_90_Days_Pastterms6190_days_pastterms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "61-90 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "61-90 days pastterms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "61 90 days pastterms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v91_180_Days_Pastterms91180_days_pastterms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "91-180 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "91-180 days pastterms": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "91 180 days pastterms": {
+                      "State": "Generated",
+                      "Weight": 0.97
+                    }
+                  }
+                ]
+              },
+              "measure_table.v__365_Days_Pastterms365_days_pastterms": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Measure Table",
+                    "ConceptualProperty": "> 365 Days Past Terms"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "> 365 days pastterms": {
+                      "State": "Generated"
+                    }
+                  }
+                ]
+              },
+              "vpo_measures.avg_carrier_cost": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "VPO Measures",
+                    "ConceptualProperty": "Avg Carrier Cost"
+                  }
+                },
+                "State": "Generated"
+              },
+              "vpo_measures.mode_shipments_vpo_carrier": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "VPO Measures",
+                    "ConceptualProperty": "MODE Shipments_VPO_Carrier"
+                  }
+                },
+                "State": "Generated"
+              },
+              "vpo_measures.percentage": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "VPO Measures",
+                    "ConceptualProperty": "Percentage"
+                  }
+                },
+                "State": "Generated"
+              },
+              "vpo_measures.projected_increase": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "VPO Measures",
+                    "ConceptualProperty": "Projected increase"
+                  }
+                },
+                "State": "Generated"
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "384f734d-7b45-4aad-bae3-473927e80ee6",
+        "fromColumn": "Date",
+        "fromTable": "Dim Date",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_26b9a8da-d17e-4f92-b08e-98a26469140b"
+      },
+      {
+        "name": "0d5df426-bb4a-4a01-b664-d9b7d7f886eb",
+        "fromColumn": "Invoice Date",
+        "fromTable": "FactInvoice",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_a9f8aef1-55af-46dd-9c13-bc68f0034d6d"
+      },
+      {
+        "name": "3e1d17fd-5615-44e6-8839-029aeda5f222",
+        "fromColumn": "Payment Date",
+        "fromTable": "FactInvoice",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_e87f8299-69ec-4e1b-bd56-650735166c49"
+      },
+      {
+        "name": "b845f536-3653-4287-a2b2-8e94aa4e19fe",
+        "fromColumn": "DueDate",
+        "fromTable": "FactInvoice",
+        "toColumn": "Date",
+        "toTable": "Dim Date"
+      },
+      {
+        "name": "422ed256-0e0c-4337-9c4b-31ef0dae7b58",
+        "fromColumn": "Aging Range",
+        "fromTable": "FactInvoice",
+        "toColumn": "Aging Range",
+        "toTable": "Aging Range"
+      }
+    ],
+    "sourceQueryCulture": "en-IN",
+    "tables": [
+      {
+        "name": "DateTableTemplate_9b9a2f9c-b0f1-4193-b82d-3302ee493f07",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "53e5c593-de11-4ba3-9e5b-fe47e15e9abd",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "3c719703-e220-475f-adfd-2af80b4e90c2",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "6327f3fb-b856-4b35-bf21-c1f88fc6a4f8",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "45da2c0c-0454-486c-8e2c-0b472bb31df8",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "f8b8ffb3-c894-41a8-96cd-2cd53b2a3b64",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "45dc8fa7-5a6a-4832-b5f5-5ade3ffedeae",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "01324ce5-d8e1-4351-981a-32f64b68e00b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "32a9ab8d-9632-4b5f-a071-e0f2b876850b",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "2d592d36-7739-481e-ade0-9abb235de409",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "28b17612-a24b-41fe-bb60-941251ba47ad",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "b471c3b3-ade3-4fa1-a7ac-95be4eaa6894",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "3001f412-2e84-4811-8c11-6fbecff22d01"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "dbbd20f4-aefd-4a4e-bf26-4ffd451070f0",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_9b9a2f9c-b0f1-4193-b82d-3302ee493f07",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Measure Table",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "76b5b8ec-2805-47f5-a5d6-c9d6d5e5fbb2",
+        "measures": [
+          {
+            "name": "Average AP",
+            "expression": [
+              "",
+              "Var carrier_amount = SUM(FactInvoice[CarrierInvoiceAmount])",
+              "var invoice_Count = DISTINCTCOUNT(FactInvoice[InvoiceNumber])",
+              "var AP = carrier_amount/invoice_Count",
+              "Return AP+0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "745a8d37-eb07-423a-879c-acccfa0e4ab4"
+          },
+          {
+            "name": "Current Due",
+            "expression": [
+              "",
+              "VAR Current_Payables = [Total Account Payables] - [Past Due]",
+              "RETURN Current_Payables+ 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "6f05b97c-0b6b-4302-a76e-854b933bb7f1"
+          },
+          {
+            "name": "Past Due",
+            "expression": [
+              "",
+              "VAR Past_Payables= Calculate(Sum('FactInvoice'[BalanceDue]),keepfilters('FactInvoice'[Aging Range] <> \"< 0\" ))",
+              "return Past_Payables+0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "c71e60ac-b951-417b-8f29-55b3ffee5138"
+          },
+          {
+            "name": "Total Account Payables",
+            "expression": [
+              "",
+              "VAR Account_Payables = SUM(FactInvoice[BalanceDue])",
+              "RETURN Account_Payables+ 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "cb493c21-31ac-4c29-a07c-593fc67cca6f"
+          },
+          {
+            "name": "PaymentClosurePeriod",
+            "expression": [
+              "",
+              "VAR a = SUM(FactInvoice[Closure Days])",
+              "VAR b = CALCULATE(DISTINCTCOUNT(FactInvoice[InvoiceNumber]), FactInvoice[Open / Closed] = \"Closed\")",
+              "VAR c = ROUND(DIVIDE(a, b),0)",
+              "RETURN c & \" Days\""
+            ],
+            "lineageTag": "7a4c6d84-5031-483a-bd91-8546f332f841"
+          },
+          {
+            "name": "DPO",
+            "expression": [
+              "Var accountPayables = [Total Account Payables]",
+              "var COGS = [Total Cogs]",
+              "var c = ROUND((accountPayables/COGS),0)",
+              "return c & \" Days\""
+            ],
+            "lineageTag": "51330152-e227-47c4-a3bf-dc7876d9fc66"
+          },
+          {
+            "name": "Total Cogs",
+            "expression": [
+              "",
+              " var COGS = SUM(FactInvoice[COGS])",
+              " VAR daycount = DISTINCTCOUNT(FactInvoice[Invoice Date])",
+              " var c = COGS/daycount",
+              " return c + 0"
+            ],
+            "formatString": "0",
+            "lineageTag": "0f372fc3-d342-4b20-a9d4-c24bbd23a8b2"
+          },
+          {
+            "name": "91-180 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"91-180\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "4968b069-3ce1-4f86-b482-4c1303d91c14"
+          },
+          {
+            "name": "1-30 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"1-30\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "b091b9ba-f1ab-4b63-8596-9a59397d3a7d"
+          },
+          {
+            "name": "31-60 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"31-60\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "16833e91-8e8c-4fc2-b6f5-d986c016fa59"
+          },
+          {
+            "name": "61-90 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"61-90\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "fa35fb76-5f21-4bea-a8ff-921760368bf7"
+          },
+          {
+            "name": "181-365 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"181-365\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "6af273dc-63a9-4778-a423-7ffc5bab6f98"
+          },
+          {
+            "name": "> 365 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \">365\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
+            "lineageTag": "c1cd8196-4de1-4fee-abf7-58e438657ab8"
+          },
+          {
+            "name": "46-60 Days Past Terms",
+            "expression": [
+              "",
+              "VAR AgingAmount =",
+              "    CALCULATE (",
+              "        SUM ( FactInvoice[BalanceDue] ),",
+              "        KEEPFILTERS ( 'FactInvoice'[Aging Range] = \"46-60\" )",
+              "    )",
+              "RETURN",
+              "    AgingAmount + 0"
+            ],
+            "formatString": "0",
+            "lineageTag": "9927fbbf-4fed-464b-825c-75c695df94f2"
+          },
+          {
+            "name": "Today's Date",
+            "expression": "MONTH(TODAY()) & \"/\" & DAY(TODAY()) & \"/\" & YEAR(TODAY())",
+            "lineageTag": "8dd9f33a-70a5-49e9-9e41-8c8634e67128"
+          },
+          {
+            "name": "Report Title APDetail",
+            "expression": "CONCATENATE(\"AP Details : \",[Today's Date])",
+            "lineageTag": "01fdf6b5-e804-4da9-9ad6-335e0363e9f7"
+          },
+          {
+            "name": "Last Refreshed Date",
+            "expression": "CONCATENATE(\"Last Refreshed Date : \",FORMAT(NOW(), \"M/D/YYYY h:mm\" & \" ET\"))",
+            "lineageTag": "a93eb33f-9f62-4970-8404-a44c18620eaa"
+          },
+          {
+            "name": "Delayed Payment",
+            "expression": [
+              "var a = CALCULATE(DISTINCTCOUNT(FactInvoice[InvoiceNumber]),FactInvoice[Open / Closed] = \"Closed\")",
+              "var b = [Total Delayed payments]",
+              "Var c = b /a ",
+              "Return c",
+              ""
+            ],
+            "formatString": "0%;-0%;0%",
+            "lineageTag": "558ebab2-7073-417c-aa6c-bc92e013153e"
+          },
+          {
+            "name": "Delayed Payment%",
+            "expression": [
+              "var a = CALCULATE(DISTINCTCOUNT(FactInvoice[InvoiceNumber]),FactInvoice[Open / Closed] = \"Open\")",
+              "var b = [TotalOpenPayments]",
+              "Var c = b /a ",
+              "Return c",
+              ""
+            ],
+            "formatString": "0%;-0%;0%",
+            "lineageTag": "cf32b4ea-f94d-4da3-92f1-3266f0ea5754"
+          },
+          {
+            "name": "Total Delayed payments",
+            "expression": "CALCULATE(COUNT('FactInvoice'[InvoiceNumber]),FILTER('FactInvoice',FactInvoice[Payment Status]=\"Delay\"))",
+            "formatString": "0",
+            "lineageTag": "c8e84278-20f6-4802-85b9-e3a801098eb0"
+          },
+          {
+            "name": "TotalOpenPayments",
+            "expression": [
+              "VAR Openpayments =",
+              "CALCULATE(",
+              "    COUNT('FactInvoice'[InvoiceNumber]),",
+              "    FILTER(",
+              "        'FactInvoice',",
+              "        FactInvoice[Open / Closed] = \"Open\" &&",
+              "        FactInvoice[Aging Range] <> \"< 0\" &&",
+              "        NOT(ISBLANK(FactInvoice[Aging Range]))",
+              "    )",
+              ")",
+              "return Openpayments+0",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "6ef6c355-77bb-446b-bfdf-5602989169b6"
+          },
+          {
+            "name": "Delayed Temp",
+            "expression": [
+              "var a = CALCULATE(DISTINCTCOUNT(FactInvoice[InvoiceNumber]),FactInvoice[Open / Closed] = \"Open\",REMOVEFILTERS(FactInvoice[Carrier / Vendor]))",
+              "var b = [TotalOpenPayments]",
+              "Var c = b /a ",
+              "Return c"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "9a1c07aa-0f32-4b8a-9646-b288481225a8"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Measure Table",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dim Date",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd-mm-yyyy",
+            "lineageTag": "0a0969e2-3330-42e4-950a-2ba316002849",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_26b9a8da-d17e-4f92-b08e-98a26469140b"
+                },
+                "isDefault": true,
+                "relationship": "384f734d-7b45-4aad-bae3-473927e80ee6"
+              }
+            ]
+          },
+          {
+            "name": "Month Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "87fa30aa-b349-4189-a133-64c2719e8f05",
+            "sourceColumn": "Month Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month Number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6947ac52-98c9-4c83-8f63-1fd3493b918c",
+            "sourceColumn": "Month Number",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "88f7f696-1484-4144-b077-1292000fbf22",
+            "sourceColumn": "Quarter",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "QuarterNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "5f0ca9a8-6876-429e-b7bc-5783a0b3a699",
+            "sourceColumn": "QuarterNumber",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ae1e7aca-b490-4857-88a6-6bca96cdbd77",
+            "sourceColumn": "Year",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "928088d9-dae5-468c-a2e5-536728274af5",
+        "partitions": [
+          {
+            "name": "Dim Date",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(Web.Contents(\"https://avacorp1.sharepoint.com/sites/BusinessIntelligenceAnalytics/Shared%20Documents/Power%20BI%20Practice/Presales/Reporting%20Hub%20Dashboards/Finance/Account%20Payables/1.%20Define/Datapoints/Accounts%20Payables%20Report%20Datapoints.xlsx\"), null, true),",
+                "    #\"Dim Date_Sheet\" = Source{[Item=\"Dim Date\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Dim Date_Sheet\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Date\", type date}, {\"Month Name\", type text}, {\"Month Number\", Int64.Type}, {\"Quarter\", type text}, {\"QuarterNumber\", Int64.Type}, {\"Year\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_26b9a8da-d17e-4f92-b08e-98a26469140b",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "c88383ee-c816-4672-bd8f-974a76adeedf",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "0db8d419-a722-44ac-9418-da4c586330da",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "bb334072-2c1d-49d8-91fa-256e7d61485b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "6889b8d2-cb61-43cf-9c08-fa02660d5a22",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "66c4f67a-8e99-456c-926d-521d5dcbf1be",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "f867152c-623c-4f76-a359-7648fbe6ec83",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "a5a9b39d-2b53-415f-a3e7-b789f8ae4499",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "e35aae3f-bd1d-4fb6-b66e-60715244f72c",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "12c590f0-e8ac-479b-9ccc-6239ee3d8ca4",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "4ffd84a6-c69c-46c9-8c2e-153774847d2b",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "6d746f70-343c-4cb3-be52-48b1c852d9f6",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "f780d69e-6ca5-424c-bd2d-a97f4bdd82d9"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "220c4b18-c4a5-4dfd-881f-d7f064eebcc8",
+        "partitions": [
+          {
+            "name": "LocalDateTable_26b9a8da-d17e-4f92-b08e-98a26469140b",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Dim Date'[Date])), 1, 1), Date(Year(MAX('Dim Date'[Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "FactInvoice",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Company",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4791f7c9-b959-4d6d-a215-6125e93885d4",
+            "sourceColumn": "Company",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "InvoiceNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "136c8f1e-1772-4697-92ba-fe02b41c6830",
+            "sourceColumn": "InvoiceNumber",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Invoice Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd-mm-yyyy",
+            "lineageTag": "5f649313-01ad-41fc-b4d7-fca1df688b0d",
+            "sourceColumn": "Invoice Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_a9f8aef1-55af-46dd-9c13-bc68f0034d6d"
+                },
+                "isDefault": true,
+                "relationship": "0d5df426-bb4a-4a01-b664-d9b7d7f886eb"
+              }
+            ]
+          },
+          {
+            "name": "DueDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd-mm-yyyy",
+            "lineageTag": "06103b8d-41ac-4eb3-a48d-9b74f3818f6c",
+            "sourceColumn": "DueDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Payment Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "dd-mm-yyyy",
+            "lineageTag": "97b721db-63ae-4294-aab9-3bc225720aee",
+            "sourceColumn": "Payment Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_e87f8299-69ec-4e1b-bd56-650735166c49"
+                },
+                "isDefault": true,
+                "relationship": "3e1d17fd-5615-44e6-8839-029aeda5f222"
+              }
+            ]
+          },
+          {
+            "name": "BalanceDue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c99fd32c-0d7f-4df5-bed0-ecac87d0cd8b",
+            "sourceColumn": "BalanceDue",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Payment Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "eba29e97-4d19-40d0-a4f2-3b3ab4f3ee17",
+            "sourceColumn": "Payment Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Open / Closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3ab99179-e7f6-493d-87d7-138d0ebcbfc8",
+            "sourceColumn": "Open / Closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Aging Range",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dffb4b8e-e06c-4d83-bc76-5eaa61f4f50c",
+            "sourceColumn": "Aging Range",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Carrier / Vendor",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b03733c7-21a7-411f-8d50-351d672f9239",
+            "sourceColumn": "Carrier / Vendor",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Agent Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "34237fad-5934-4a3d-b563-989500d6f7bf",
+            "sourceColumn": "Agent Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CarrierInvoiceAmount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d25790f5-878b-4371-99d0-34f70f8890b2",
+            "sourceColumn": "CarrierInvoiceAmount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "PaidAmount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a37be31f-b1a8-462e-9f05-8ac7ca27d1fc",
+            "sourceColumn": "PaidAmount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "CurrentAmount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7df662a4-30b5-40f4-a60b-5ec9b8727ae6",
+            "sourceColumn": "CurrentAmount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "NonCurrentAmount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3605c811-6f3d-4a16-8c19-42851154c776",
+            "sourceColumn": "NonCurrentAmount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Invoice Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "97274f13-e8e4-4d29-881d-499f674ce4bf",
+            "sourceColumn": "Invoice Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Mode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "14d9c1d6-79c2-4daa-9ee6-a1c4d941f9b1",
+            "sourceColumn": "Mode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "COGS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "377ab55a-4f0a-40ab-9e33-2342e4ff4dd0",
+            "sourceColumn": "COGS",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Closure Days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "IF(",
+              "    FactInvoice[Open / Closed] = \"Closed\",",
+              "        DATEDIFF(FactInvoice[Invoice Date], FactInvoice[Payment Date], DAY),  0",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "8e495a39-9709-4c6b-a296-1e46c376d0cd",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Aging Flag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8961b6f7-a9b7-4ee5-9b4e-c21f5e63dab5",
+            "sourceColumn": "Aging Flag",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b239ef31-777f-4045-bd42-42541b4530f8",
+        "partitions": [
+          {
+            "name": "FactInvoice",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(Web.Contents(\"https://avacorp1.sharepoint.com/sites/BusinessIntelligenceAnalytics/Shared%20Documents/Power%20BI%20Practice/Presales/Reporting%20Hub%20Dashboards/Finance/Account%20Payables/1.%20Define/Datapoints/Accounts%20Payables%20Report%20Datapoints.xlsx\"), null, true),",
+                "    FactInvoice_Sheet = Source{[Item=\"FactInvoice\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(FactInvoice_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Company\", type text}, {\"InvoiceNumber\", Int64.Type}, {\"Invoice Date\", type date}, {\"DueDate\", type date}, {\"Payment Date\", type date}, {\"BalanceDue\", Int64.Type}, {\"Payment Status\", type text}, {\"Open / Closed\", type text}, {\"Aging Range\", type any}, {\"Carrier / Vendor\", type text}, {\"Agent Name\", type text}, {\"CarrierInvoiceAmount\", type number}, {\"PaidAmount\", type number}, {\"CurrentAmount\", Int64.Type}, {\"NonCurrentAmount\", Int64.Type}, {\"Invoice Status\", type text}, {\"Mode\", type text}, {\"COGS\", type number}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",\" 01-30\",\"1-30\",Replacer.ReplaceValue,{\"Aging Range\"})",
+                "in",
+                "    #\"Replaced Value\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_a9f8aef1-55af-46dd-9c13-bc68f0034d6d",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "2a89f3a3-7663-4e0b-96bd-bc2f0346e0ed",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "2f9f7d84-9fb3-4da6-a0e4-64c9941ab934",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "bdcde2c7-4970-426a-a7c6-b2e60cf85122",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "a37f9d95-ef32-46f5-abd2-ac564288d92d",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "551babc6-d704-47f5-bec1-6f4f7c30eb21",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "1cc8eb99-f374-4020-8bca-2bb6d22fcfd3",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "db888e20-f138-49a5-a2b7-3dc8872c570a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "950398e1-403b-4d10-bbed-f4e5642ab1b5",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "d9daa0e0-c2ba-4276-8488-66f5e0fb27f1",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "505867ba-8a1c-4784-8cdc-7e413aa0f20e",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "3bf08ec6-4c19-4f32-bf4e-f3adf99156d9",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "3ad9456c-090b-4ef5-a713-046c5b78be13"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "57c03cde-e015-4a17-bc3c-be0cc991d2a3",
+        "partitions": [
+          {
+            "name": "LocalDateTable_a9f8aef1-55af-46dd-9c13-bc68f0034d6d",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('FactInvoice'[Invoice Date])), 1, 1), Date(Year(MAX('FactInvoice'[Invoice Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_e87f8299-69ec-4e1b-bd56-650735166c49",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "cb518e72-952a-4da8-949d-9d008a4c0a2e",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "23d31388-ee24-4102-b86a-b44aa6a51f68",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "cf6e68e8-ca41-46da-ac97-b7a88aa833bd",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "fe74f8b9-7197-434b-adc3-c75ba2103c92",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "9c42ee85-8c3f-477f-824e-78e1624f81f6",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "2e22b461-d21e-4ddc-bae9-a80d37e456a8",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "a5120c61-8209-4f94-a628-485d19b0bf7d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "e135f5be-8b4c-46ab-9efd-749b5585fcf4",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "b7d78ef2-646b-446d-ae73-0610abfa18ff",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "028f55d9-4443-41f3-b09e-a267c12e80f9",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "0376edc8-f3d1-433e-84e8-051a87ef7b3d",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "c93d3b1e-81ec-4621-9968-9b2f25a88d01"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "1fa29072-a3a8-4892-853c-2b92cdc40db3",
+        "partitions": [
+          {
+            "name": "LocalDateTable_e87f8299-69ec-4e1b-bd56-650735166c49",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('FactInvoice'[Payment Date])), 1, 1), Date(Year(MAX('FactInvoice'[Payment Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Aging Range",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Aging Range",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e6b9d880-169d-47b1-8142-3e3fdac54db7",
+            "sortByColumn": "Aging Flag",
+            "sourceColumn": "Aging Range",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Aging Flag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "55f8aa5f-3dc1-4fee-af6c-96e2371d58c8",
+            "sourceColumn": "Aging Flag",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "eeb3c815-dcec-4d59-a065-7fa4535c24f3",
+        "partitions": [
+          {
+            "name": "Aging Range",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(Web.Contents(\"https://avacorp1.sharepoint.com/sites/BusinessIntelligenceAnalytics/Shared%20Documents/Power%20BI%20Practice/Presales/Reporting%20Hub%20Dashboards/Finance/Account%20Payables/1.%20Define/Datapoints/Accounts%20Payables%20Report%20Datapoints.xlsx\"), null, true),",
+                "    #\"Aging Range_Sheet\" = Source{[Item=\"Aging Range\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Aging Range_Sheet\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Aging Range\", type text}, {\"Aging Flag\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

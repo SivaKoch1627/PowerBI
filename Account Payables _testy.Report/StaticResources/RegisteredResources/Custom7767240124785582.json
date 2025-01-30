@@ -1,0 +1,58 @@
+{
+  "name": "Custom",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#1D1D30"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#BDBDBD"
+              }
+            },
+            "checkboxAndApplyColor": {
+              "solid": {
+                "color": "#1D1D30"
+              }
+            }
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#1D1D30"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#C7C7C7"
+              }
+            },
+            "transparency": 0
+          },
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#1D1D30"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#C7C7C7"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}
